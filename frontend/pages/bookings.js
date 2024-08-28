@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Header from './component/header'
 import { useRouter } from 'next/router';
 import { auth, db } from '../lib/firebase'; 
 import {
@@ -9,6 +10,7 @@ import {
 import { onAuthStateChanged } from 'firebase/auth';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+
 
 const Booking = () => {
   const router = useRouter();
@@ -109,7 +111,8 @@ const Booking = () => {
     }
   };
 
-  return (
+  return (<div>
+    <Header/>
     <div className="flex flex-col min-h-screen bg-gradient-to-r from-gray-100 to-gray-300 overflow-hidden">
   <div className="flex flex-grow flex-col items-center justify-center px-4 py-6 sm:py-10">
     <div className="w-full max-w-lg bg-white p-6 sm:p-8 rounded-lg shadow-lg border border-gray-200">
@@ -252,21 +255,7 @@ const Booking = () => {
             {loading ? 'Processing...' : 'Create Booking'}
           </button>
 
-          <button
-            type="button"
-            onClick={() => router.push('/showbookings')}
-            className="w-full py-3 px-4 rounded-lg text-white bg-green-600 hover:bg-green-700"
-          >
-            View All Bookings
-          </button>
-
-          <button
-            type="button"
-            onClick={() => router.push('/invoiceform')}
-            className="w-full py-3 px-4 rounded-lg text-white bg-gray-600 hover:bg-gray-700"
-          >
-            Create Invoice Here
-          </button>
+          
 
           <button
             type="button"
@@ -282,7 +271,7 @@ const Booking = () => {
 </div>
 
 
-
+</div>
   
   );
 };

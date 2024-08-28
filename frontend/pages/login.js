@@ -26,7 +26,7 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);  // Use auth here
       console.log("Login successful");
-      router.push("/bookings");
+      router.push("/homepage");
     } catch (error) {
       // Log the entire error object for debugging
       console.error('Login error:', error);

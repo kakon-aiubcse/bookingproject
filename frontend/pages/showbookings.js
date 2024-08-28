@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Header from './component/header'
 import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase'; 
 import { Router, useRouter } from 'next/router';
@@ -38,6 +39,7 @@ const ShowBookings = () => {
   };
 
   return (
+    <div><Header/>
     <div className="flex flex-col min-h-screen bg-gray-100">
   <div className="container mx-auto p-4 flex-grow">
     <h2 className="text-xl md:text-2xl font-bold mt-8 mb-4 text-center">Booking List</h2>
@@ -96,7 +98,7 @@ const ShowBookings = () => {
     </div>
   </div>
 </div>
-
+</div>
 
     
   );
