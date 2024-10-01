@@ -1,32 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import Header from './component/header'
-import { useRouter } from 'next/router';
-import { auth, db } from '../lib/firebase'; 
-import {
-  collection,
-  addDoc,
-  Timestamp,
-} from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-
+import React, { useState, useEffect } from "react";
+import Header from "./component/header";
+import { useRouter } from "next/router";
+import { auth, db } from "../lib/firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import BookingsView from "./Views/bookingsView";
 
 const Booking = () => {
   const router = useRouter();
+  const { packageId } = router.query;
 
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
-    name: '',
-    passportNumber: '',
-    validDate: new Date(), // Initialize with current date
-    netAmount: '',
-    paidAmount: '',
-    paymentStatus: 'PAID_PARTIAL',
+    packageName: "",
+    name: "",
+    passportNumber: "",
+    validDate: "",
+    netAmount: "",
+    paidAmount: "",
+    paymentStatus: "N/A",
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [selectedPackage, setSelectedPackage] = useState(null);
 
   // Check for user authentication
   useEffect(() => {
@@ -34,48 +33,134 @@ const Booking = () => {
       if (currentUser) {
         setUser(currentUser);
       } else {
-        router.push('/login'); // Redirect to login if not authenticated
+        router.push("/login"); // Redirect to login if not authenticated
       }
     });
 
     return () => unsubscribe();
   }, [router]);
 
+  // Fetch package details when packageId changes
+  useEffect(() => {
+    if (packageId) {
+      const packages = [
+        { id: 1, name: "Sajek Valley", price: 400 },
+        { id: 2, name: "Saint Martin", price: 600 },
+        { id: 3, name: "Kaptai Lake", price: 250 },
+      ];
+
+      const selected = packages.find((pkg) => pkg.id === parseInt(packageId));
+      if (selected) {
+        setSelectedPackage(selected);
+        setFormData((prevData) => ({
+          ...prevData,
+          packageName: selected.name,
+          netAmount: selected.price,
+        }));
+      }
+    }
+  }, [packageId]);
+
+  // Helper functions for validation
+  const isValidNumber = (value) => /^[0-9]+(\.[0-9]+)?$/.test(value);
+  const isValidName = (value) => /^[A-Za-z\s]{1,24}$/.test(value);
+  const isValidPackageName = (value) => /^[A-Za-z\s]{1,24}$/.test(value);
+  const isValidPassport = (value) => /^[A-Z0-9]{6,9}$/.test(value);
+
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // For amount fields, prevent negative values
-    if ((name === 'netAmount' || name === 'paidAmount') && value < 0) return;
+    if ((name === "netAmount" || name === "paidAmount") && value < 0) return;
 
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData((prevData) => {
+      const updatedData = { ...prevData, [name]: value };
+
+      if (name === "netAmount" || name === "paidAmount") {
+        const net = parseFloat(updatedData.netAmount);
+        const paid = parseFloat(updatedData.paidAmount);
+
+        if (isNaN(net) || isNaN(paid)) {
+          updatedData.paymentStatus = "N/A";
+        } else if (net === 0 && paid === 0) {
+          updatedData.paymentStatus = "N/A";
+        } else if (paid > net) {
+          setError("Paid amount cannot exceed net amount.");
+          return prevData; // Return previous state to avoid state update
+        } else if (paid === net) {
+          updatedData.paymentStatus = "Paid";
+        } else {
+          updatedData.paymentStatus = "Pending";
+        }
+      }
+
+      return updatedData;
+    });
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
-    setSuccessMessage('');
+    setError("");
+    setSuccessMessage("");
 
-    // Basic form validation
-    if (
-      !formData.name.trim() ||
-      !formData.passportNumber.trim() ||
-      !formData.validDate ||
-      !formData.netAmount ||
-      !formData.paidAmount
-    ) {
-      setError('Please fill in all required fields.');
+    // Validate form fields
+    if (!formData.name.trim()) {
+      setError("Name is required.");
       setLoading(false);
       return;
     }
 
+    if (!isValidName(formData.name)) {
+      setError("Name should contain 24 digits only with no characters.");
+      setLoading(false);
+      return;
+    }
+
+    if (!isValidPackageName(formData.packageName)) {
+      setError(
+        "Package Name should contain 24 digits only with no characters."
+      );
+      setLoading(false);
+      return;
+    }
+
+    if (!formData.passportNumber.trim()) {
+      setError("Passport number is required.");
+      setLoading(false);
+      return;
+    }
+
+    if (!isValidPassport(formData.passportNumber)) {
+      setError("Invalid passport number format. Example: J12345678");
+      setLoading(false);
+      return;
+    }
+
+    if (
+      !formData.netAmount ||
+      !isValidNumber(formData.netAmount) ||
+      parseFloat(formData.netAmount) <= 0
+    ) {
+      setError("Net amount must be a positive number and cannot be zero.");
+      setLoading(false);
+      return;
+    }
+
+    if (
+      !formData.paidAmount ||
+      !isValidNumber(formData.paidAmount) ||
+      parseFloat(formData.paidAmount) < 0
+    ) {
+      setError("Paid amount must be a non-negative number.");
+      setLoading(false);
+      return;
+    }
+
+    // Check if paidAmount exceeds netAmount
     if (parseFloat(formData.paidAmount) > parseFloat(formData.netAmount)) {
-      setError('Paid amount cannot exceed net amount.');
+      setError("Paid amount cannot exceed net amount.");
       setLoading(false);
       return;
     }
@@ -84,195 +169,53 @@ const Booking = () => {
       const bookingData = {
         name: formData.name.trim(),
         passportNumber: formData.passportNumber.trim(),
-        validDate: Timestamp.fromDate(new Date(formData.validDate)), // Ensure validDate is correctly converted
+        validDate: Timestamp.fromDate(formData.validDate), // Convert validDate to Timestamp
         netAmount: parseFloat(formData.netAmount),
         paidAmount: parseFloat(formData.paidAmount),
         paymentStatus: formData.paymentStatus,
         createdAt: Timestamp.now(),
         createdBy: user.uid,
+        packageName: selectedPackage?.name || formData.packageName,
       };
 
-      await addDoc(collection(db, 'bookings'), bookingData);
+      await addDoc(collection(db, "bookings"), bookingData);
 
-      setSuccessMessage('Booking created successfully!');
+      setSuccessMessage("Booking created successfully!");
       setFormData({
-        name: '',
-        passportNumber: '',
+        packageName: "",
+        name: "",
+        passportNumber: "",
         validDate: new Date(), // Reset to current date
-        netAmount: '',
-        paidAmount: '',
-        paymentStatus: 'PAID_PARTIAL',
+        netAmount: "",
+        paidAmount: "",
+        paymentStatus: "N/A",
       });
+
+      setTimeout(() => {
+        router.push("/invoiceform");
+      }, 1000);
     } catch (err) {
-      console.error('Error creating booking:', err);
-      setError('An error occurred while creating the booking. Please try again.');
+      console.error("Error creating booking:", err);
+      setError(
+        "An error occurred while creating the booking. Please try again."
+      );
     } finally {
       setLoading(false);
     }
   };
 
-  return (<div>
-    <Header/>
-    <div className="flex flex-col min-h-screen bg-gradient-to-r from-gray-100 to-gray-300 overflow-hidden">
-  <div className="flex flex-grow flex-col items-center justify-center px-4 py-6 sm:py-10">
-    <div className="w-full max-w-lg bg-white p-6 sm:p-8 rounded-lg shadow-lg border border-gray-200">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-gray-900">Create New Booking</h1>
-
-      {/* Success Message */}
-      {successMessage && (
-        <div className="bg-green-100 text-green-800 p-3 rounded-lg mb-4 text-center">
-          {successMessage}
-        </div>
-      )}
-
-      {/* Error Message */}
-      {error && (
-        <div className="bg-red-100 text-red-800 p-3 rounded-lg mb-4 text-center">
-          {error}
-        </div>
-      )}
-
-      {/* Booking Form */}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name */}
-        <div>
-          <label htmlFor="name" className="block text-gray-700 font-semibold mb-1 text-sm sm:text-base">
-            Name<span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-            placeholder="Enter full name"
-            required
-          />
-        </div>
-
-        {/* Passport Number */}
-        <div>
-          <label htmlFor="passportNumber" className="block text-gray-700 font-semibold mb-1 text-sm sm:text-base">
-            Passport Number<span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            id="passportNumber"
-            name="passportNumber"
-            value={formData.passportNumber}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-            placeholder="Enter passport number"
-            required
-          />
-        </div>
-
-        {/* Valid Date */}
-        <div>
-          <label htmlFor="validDate" className="block text-gray-700 font-semibold mb-1 text-sm sm:text-base">
-            Valid Date<span className="text-red-500">*</span>
-          </label>
-          <DatePicker
-            selected={formData.validDate}
-            onChange={(date) => setFormData((prevData) => ({
-              ...prevData,
-              validDate: date
-            }))}
-            dateFormat="yyyy/MM/dd"
-            className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-            placeholderText="Select a valid date"
-            required
-          />
-        </div>
-
-        {/* Net Amount */}
-        <div>
-          <label htmlFor="netAmount" className="block text-gray-700 font-semibold mb-1 text-sm sm:text-base">
-            Net Amount ($)<span className="text-red-500">*</span>
-          </label>
-          <input
-            type="number"
-            id="netAmount"
-            name="netAmount"
-            value={formData.netAmount}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-            placeholder="Enter net amount"
-            min="0"
-            step="0.01"
-            required
-          />
-        </div>
-
-        {/* Paid Amount */}
-        <div>
-          <label htmlFor="paidAmount" className="block text-gray-700 font-semibold mb-1 text-sm sm:text-base">
-            Paid Amount ($)<span className="text-red-500">*</span>
-          </label>
-          <input
-            type="number"
-            id="paidAmount"
-            name="paidAmount"
-            value={formData.paidAmount}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-            placeholder="Enter paid amount"
-            min="0"
-            step="0.01"
-            required
-          />
-        </div>
-
-        {/* Payment Status */}
-        <div>
-          <label htmlFor="paymentStatus" className="block text-gray-700 font-semibold mb-1 text-sm sm:text-base">
-            Payment Status<span className="text-red-500">*</span>
-          </label>
-          <select
-            id="paymentStatus"
-            name="paymentStatus"
-            value={formData.paymentStatus}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-            required
-          >
-            <option value="PAID_PARTIAL">Paid Partial</option>
-            <option value="PAID_FULL">Paid Full</option>
-            <option value="PENDING">Pending</option>
-          </select>
-        </div>
-
-        {/* Form Actions */}
-        <div className="flex flex-col space-y-4 mt-6">
-          <button
-            type="submit"
-            className={`w-full py-3 px-4 rounded-lg text-white ${
-              loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
-            }`}
-            disabled={loading}
-          >
-            {loading ? 'Processing...' : 'Create Booking'}
-          </button>
-
-          
-
-          <button
-            type="button"
-            onClick={() => router.back()}
-            className="w-full py-3 px-4 rounded-lg text-white bg-red-500 hover:bg-red-600"
-          >
-            Go Back
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-
-</div>
-  
+  return (
+    <BookingsView
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      successMessage={successMessage}
+      error={error}
+      formData={formData}
+      DatePicker={DatePicker}
+      loading={loading}
+      setFormData={setFormData}
+      minDate={new Date()} // Pass the minDate prop to BookingsView
+    />
   );
 };
 

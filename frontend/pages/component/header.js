@@ -1,59 +1,229 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { auth } from "../../lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { getFirestore, doc, getDoc } from "firebase/firestore"; // Import Firestore functions
 
 const Header = () => {
+  const { pathname, push } = useRouter();
+  const [isBookingsDropdownOpen, setIsBookingsDropdownOpen] = useState(false);
+  const [isInvoicesDropdownOpen, setIsInvoicesDropdownOpen] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(null);
+  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const bookingsDropdownRef = useRef(null);
+  const invoicesDropdownRef = useRef(null);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+
+  const db = getFirestore(); // Initialize Firestore
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+
+        // Fetch user data from Firestore using the authenticated user's UID
+        try {
+          const userDoc = await getDoc(doc(db, "users", currentUser.uid));
+          if (userDoc.exists()) {
+            setUserData(userDoc.data()); // Set user data
+          } else {
+            console.log("No such document!");
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      } else if (pathname !== "/login") {
+        push("/login"); // Redirect to login if not authenticated
+      }
+    });
+
+    return () => unsubscribe();
+  }, [push, db, pathname]);
+
+  const handleMouseEnter = (dropdownType) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      setTimeoutId(null);
+    }
+    dropdownType === "bookings"
+      ? setIsBookingsDropdownOpen(true)
+      : setIsInvoicesDropdownOpen(true);
+  };
+
+  const handleMouseLeave = (dropdownType) => {
+    const id = setTimeout(() => {
+      dropdownType === "bookings"
+        ? setIsBookingsDropdownOpen(false)
+        : setIsInvoicesDropdownOpen(false);
+    }, 200);
+    setTimeoutId(id);
+  };
+
+  const handleBookingsClick = (e) => {
+    e.preventDefault();
+    push("/bookie");
+  };
+
+  const handleInvoicesClick = (e) => {
+    e.preventDefault();
+    push("/invoice");
+  };
+
+  const handleUserDropdownToggle = () => {
+    setIsUserDropdownOpen((prev) => !prev);
+  };
+  const handleMouseEnterUser = () => {
+    setIsUserDropdownOpen(true);
+  };
+
+  const handleMouseLeaveUser = () => {
+    setIsUserDropdownOpen(false);
+  };
+
   return (
-    <header className="bg-blue-800 text-white py-4 px-6">
-      <div className="container mx-auto flex justify-between items-center flex-wrap">
-        {/* Logo or Title */}
-        <div
-          className="text-2xl font-bold cursor-pointer mb-2 sm:mb-0"
-          aria-label="Go to home page"
-        >
-          <Link href="/homepage">
-            <span className="text-2xl font-bold">Bookie</span>
+    <header className="border-b-2 border-white bg-gradient-to-r from-rose-500 to-orange-600 text-white py-4 px-4 sm:py-6 sm:px-6">
+      <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+        <div className="flex items-center space-x-2 text-xl sm:text-2xl cursor-pointer">
+          <Link href="/Views/homepage">
+            <div className="flex items-center">
+              <img
+                src="/bookinglogo.svg"
+                alt="bookinglogo"
+                className="h-8 w-8 sm:h-10 sm:w-10"
+              />
+              <span className="ml-2 text-2xl font-bold">
+                Bookie
+                <span className="font-extrabold text-amber-500">.</span>
+              </span>
+            </div>
           </Link>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="flex space-x-6 mb-2 sm:mb-0">
-        <Link href="/homepage">
-            <span className="hover:text-gray-300" aria-label="Bookings page">
-             homepage
+        <nav className="relative flex font-semibold flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-10">
+          <Link href="/Views/homepage">
+            <span
+              className={`${
+                pathname === "/Views/homepage"
+                  ? "border-b border-slate-200 text-gray-300"
+                  : ""
+              }`}
+            >
+              Homepage
             </span>
           </Link>
-          <Link href="/bookie">
-            <span className="hover:text-gray-300" aria-label="Bookings page">
+
+          <div
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("bookings")}
+            onMouseLeave={() => handleMouseLeave("bookings")}
+          >
+            <button
+              className={`hover:text-gray-300 ${
+                pathname.startsWith("/bookie")
+                  ? "border-b border-slate-200 text-gray-300"
+                  : ""
+              }`}
+              onClick={handleBookingsClick}
+            >
               Bookings
-            </span>
-          </Link>
-          <Link href="/invoice">
-            <span className="hover:text-gray-300" aria-label="Invoices page">
+            </button>
+            {isBookingsDropdownOpen && (
+              <div
+                className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-36 bg-slate-100 text-black rounded-lg shadow-lg z-10"
+                ref={bookingsDropdownRef}
+              >
+                <div className="block px-3 py-1 bg-slate-100 text-black cursor-pointer text-sm">
+                  <Link href="/bookings">Create Manual</Link>
+                </div>
+
+                <div className="block px-3 py-1 bg-slate-100 text-black cursor-pointer text-sm">
+                  <Link href="/bookie">Show Bookings</Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("invoices")}
+            onMouseLeave={() => handleMouseLeave("invoices")}
+          >
+            <button
+              className={`hover:text-gray-300 ${
+                pathname.startsWith("/invoice")
+                  ? "border-b border-slate-200 text-gray-300"
+                  : ""
+              }`}
+              onClick={handleInvoicesClick}
+            >
               Invoices
+            </button>
+            {isInvoicesDropdownOpen && (
+              <div
+                className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-40 bg-slate-100 text-black rounded-lg shadow-lg z-10"
+                ref={invoicesDropdownRef}
+              >
+                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+                  <Link href="/invoiceform">Create an Invoice</Link>
+                </div>
+                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+                  <Link href="/updateinvoice">Show Invoices</Link>
+                </div>
+                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+                  <Link href="/invoiceHistory">Invoice History</Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <Link href="/Views/contact">
+            <span
+              className={`${
+                pathname === "/Views/contact"
+                  ? "border-b border-slate-200 text-gray-300"
+                  : ""
+              }`}
+            >
+              Contact
             </span>
           </Link>
-          
         </nav>
 
-        {/* User Profile or Logout */}
-        <div className="flex items-center space-x-4">
-          <Link href="/profile">
-            <span
-              className="bg-blue-700 px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
-              aria-label="Go to profile page"
-            >
-              Profile
-            </span>
-          </Link>
-          <Link href="/logout">
-            <span
-              className="bg-red-600 px-4 py-2 rounded-lg hover:bg-red-500 transition duration-300"
-              aria-label="Logout"
-            >
-              Logout
-            </span>
-          </Link>
-        </div>
+        {userData && (
+          <div
+            className="relative flex items-center space-x-2 mt-4 sm:mt-0"
+            onMouseEnter={handleMouseEnterUser}
+            onMouseLeave={handleMouseLeaveUser}
+          >
+            <Link href="/Views/profile">
+              <div className="flex items-center space-x-2">
+                <img
+                  src={userData.pic}
+                  alt="User Icon"
+                  className="w-8 h-8 rounded-3xl"
+                />
+                <span className="text-sm text-slate-200 sm:text-base font-medium">
+                  {userData.name}
+                </span>
+              </div>
+            </Link>
+            {isUserDropdownOpen && (
+              <div className="absolute right-0 top-full mt-1 w-40 bg-slate-100 text-white rounded-lg shadow-lg z-10">
+                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+                  <Link href="/Views/profile">Edit profile</Link>
+                </div>
+                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+                  <Link href="/Views/feedback">Feedbacks</Link>
+                </div>
+                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+                  <a href="/Views/logout">Log out!</a>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </header>
   );

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { auth } from "../lib/firebase";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import Header2 from "./component/header2";
-import LoginView from "./Views/loginview";
+import EmloginView from "./Views/emloginview";
 
 export default function Login() {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("/Views/homepage");
+      router.push("/resetpass");
     } catch (error) {
       let errorMessage = "Wrong Email/Password. Please try again.";
 
@@ -70,7 +70,7 @@ export default function Login() {
     <>
       <Header2 />
       <div className=" overflow-hidden h-[589px]">
-        <LoginView
+        <EmloginView
           handleSubmit={handleSubmit}
           handleChange={handleChange}
           email={email}

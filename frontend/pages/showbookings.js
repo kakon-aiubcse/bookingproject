@@ -1,106 +1,241 @@
-import React, { useState, useEffect } from 'react';
-import Header from './component/header'
-import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
-import { db } from '../lib/firebase'; 
-import { Router, useRouter } from 'next/router';
+import React, { useState, useEffect } from "react";
+
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  Timestamp,
+  doc,
+  deleteDoc,
+  where,
+} from "firebase/firestore";
+import { db } from "../lib/firebase";
+import { useRouter } from "next/router";
+import { auth } from "../lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import BookingListView from "../pages/Views/bookingslistview";
+import PageForm from "./Controller/pdfForm/[id]";
+
+const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGEind = 5;
 
 const ShowBookings = () => {
   const [bookings, setBookings] = useState([]);
-  const [error, setError] = useState('');
+  const [selectedInvoices, setSelectedInvoices] = useState([]);
+  const [showInvoiceModal, setShowInvoiceModal] = useState(false);
+  const [error, setError] = useState("");
+  const [currentBookingPage, setCurrentBookingPage] = useState(1);
+  const [currentInvoicePage, setCurrentInvoicePage] = useState(1);
+  const [totalBookings, setTotalBookings] = useState(0);
+  const [totalInvoices, setTotalInvoices] = useState(0);
+  const [totalInvoicePages, setTotalInvoicePages] = useState(0);
+  const [selectedBookingId, setSelectedBookingId] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(null);
   const router = useRouter();
-
-  useEffect(() => {
-    fetchBookings();
-  }, []);
+  const [user, setUser] = useState(null);
 
   const fetchBookings = async () => {
     try {
-      const q = query(collection(db, 'bookings'), orderBy('createdAt', 'desc'));
-      const querySnapshot = await getDocs(q);
-      const bookingsList = querySnapshot.docs.map(doc => {
+      const startIndex = (currentBookingPage - 1) * ITEMS_PER_PAGE;
+      const bookingsQuery = query(
+        collection(db, "bookings"),
+        orderBy("createdAt", "desc")
+      );
+
+      const querySnapshot = await getDocs(bookingsQuery);
+      const bookingsList = querySnapshot.docs.map((doc) => {
         const data = doc.data();
-        // Debugging line
-        console.log('Fetched data:', data);
-        const validDate = data.validDate instanceof Timestamp 
-          ? data.validDate.toDate() 
-          : new Date(data.validDate.seconds * 1000 || data.validDate); // Handles different formats
+        const validDate =
+          data.validDate instanceof Timestamp
+            ? data.validDate.toDate()
+            : new Date(data.validDate.seconds * 1000 || data.validDate);
 
         return {
           id: doc.id,
           ...data,
-          validDate
+          validDate,
         };
       });
-      setBookings(bookingsList);
+
+      setTotalBookings(bookingsList.length);
+      setBookings(bookingsList.slice(startIndex, startIndex + ITEMS_PER_PAGE));
     } catch (error) {
-      console.error('Error fetching bookings:', error);
-      setError('An error occurred while fetching the bookings.');
+      console.error("Error fetching bookings:", error);
+      setError("An error occurred while fetching the bookings.");
+    }
+  };
+  useEffect(() => {
+    fetchBookings();
+  }, [currentBookingPage]);
+
+  useEffect(() => {
+    if (showInvoiceModal && selectedBookingId) {
+      fetchInvoices(selectedBookingId);
+    }
+  }, [currentInvoicePage, selectedBookingId, showInvoiceModal]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        router.push("/login");
+      }
+    });
+
+    return () => unsubscribe();
+  }, [router]);
+  const fetchInvoices = async (bookingId) => {
+    try {
+      // Calculate the starting index for pagination
+      const startIndex = (currentInvoicePage - 1) * ITEMS_PER_PAGEind;
+
+      // Construct the query to fetch invoices associated with the given bookingId
+      const invoicesQuery = query(
+        collection(db, "invoiceHistory"),
+        where("bookingId", "==", bookingId),
+        orderBy("slipNumber", "asc")
+      );
+
+      // Execute the query
+      const querySnapshot = await getDocs(invoicesQuery);
+
+      // Map through the documents to create an array of invoice objects
+      const invoices = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      // Update total invoices and pages for pagination
+      const totalCount = invoices.length;
+      setTotalInvoices(totalCount);
+      setTotalInvoicePages(Math.ceil(totalCount / ITEMS_PER_PAGEind));
+
+      // Slice the invoices array to get only the items for the current page
+      const paginatedInvoices = invoices.slice(
+        startIndex,
+        startIndex + ITEMS_PER_PAGEind
+      );
+
+      // Update the selected invoices state
+      setSelectedInvoices(paginatedInvoices);
+    } catch (err) {
+      console.error("Error fetching invoices:", err);
+      // Set error state to notify user about the error
+      setError("An error occurred while fetching the invoices.");
     }
   };
 
+  const handleDelete = async (bookingId) => {
+    try {
+      const invoicesQuery = query(
+        collection(db, "invoiceHistory"),
+        where("bookingId", "==", bookingId)
+      );
+
+      const invoiceSnapshot = await getDocs(invoicesQuery);
+      const deletePromises = invoiceSnapshot.docs.map((invoiceDoc) =>
+        deleteDoc(doc(db, "invoiceHistory", invoiceDoc.id))
+      );
+      await Promise.all(deletePromises);
+
+      await deleteDoc(doc(db, "bookings", bookingId));
+      fetchBookings();
+    } catch (error) {
+      console.error("Error deleting booking and related entries:", error);
+      setError(
+        "An error occurred while deleting the booking and related entries. Please try again."
+      );
+    }
+  };
+
+  const handleViewInvoices = (bookingId) => {
+    setSelectedBookingId(bookingId); // Ensure this ID matches an actual booking
+    fetchInvoices(bookingId); // Fetch invoices related to the booking
+    setShowInvoiceModal(true); // Show modal for invoices
+  };
+
+  const getStatusClass = (status) => {
+    switch (status) {
+      case "Paid":
+        return "text-green-500";
+      case "Pending":
+        return "text-red-500";
+      default:
+        return "bg-gray-200 text-gray-800";
+    }
+  };
+
+  const handlePagination = (direction, type) => {
+    if (type === "invoices") {
+      setCurrentInvoicePage((prevPage) => {
+        const newPage = direction === "next" ? prevPage + 1 : prevPage - 1;
+        return newPage;
+      });
+    }
+    if (type === "bookings") {
+      setCurrentBookingPage((prevPage) => {
+        const newPage = direction === "next" ? prevPage + 1 : prevPage - 1;
+        return newPage;
+      });
+    }
+  };
+
+  const truncateText = (text = "", maxLength = 10) => {
+    // Ensure text is a string and handle undefined cases
+    const str = typeof text === "string" ? text : "";
+    return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
+  };
+  const toggleInvoiceDropdown = (id) => {
+    if (selectedBookingId === id) {
+      setDropdownOpen(!dropdownOpen); // Toggle dropdown visibility
+    } else {
+      setSelectedBookingId(id);
+      setDropdownOpen(true);
+    }
+  };
+
+  const handleDownload = (id) => {
+    // Set the selected booking ID in state (if you need to use it elsewhere)
+    setSelectedBookingId(id);
+
+    // Navigate to the PDF form page with the autoSubmit query
+    router.push(`/Controller/pdfForm/${id}?autoSubmit=true`);
+  };
+
+  const totalPages = Math.ceil(totalBookings / ITEMS_PER_PAGE);
+  console.log("Selected Invoices:", selectedInvoices);
+  console.log("Bookings:", bookings);
+  console.log("Selected Booking ID:", selectedBookingId);
+
   return (
-    <div><Header/>
-    <div className="flex flex-col min-h-screen bg-gray-100">
-  <div className="container mx-auto p-4 flex-grow">
-    <h2 className="text-xl md:text-2xl font-bold mt-8 mb-4 text-center">Booking List</h2>
-
-    {/* Error Message */}
-    {error && (
-      <div className="bg-red-100 text-red-800 p-4 rounded mb-4 text-center">
-        {error}
+    <>
+      <div className="overflow-hidden h-[589px]">
+        <BookingListView
+          handleViewInvoices={handleViewInvoices}
+          handleDelete={handleDelete}
+          getStatusClass={getStatusClass}
+          handlePagination={handlePagination}
+          truncateText={truncateText}
+          totalPages={totalPages}
+          error={error}
+          bookings={bookings}
+          currentBookingPage={currentBookingPage}
+          currentInvoicePage={currentInvoicePage}
+          showInvoiceModal={showInvoiceModal}
+          selectedBookingId={selectedBookingId}
+          selectedInvoices={selectedInvoices}
+          totalInvoicePages={totalInvoicePages}
+          setShowInvoiceModal={setShowInvoiceModal}
+          setCurrentBookingPage={setCurrentBookingPage}
+          setCurrentInvoicePage={setCurrentInvoicePage}
+          dropdownOpen={dropdownOpen}
+          toggleInvoiceDropdown={toggleInvoiceDropdown}
+          handleDownload={handleDownload}
+        />
       </div>
-    )}
-
-    {/* Booking Table */}
-    <div className="overflow-x-auto">
-      <table className="min-w-full bg-white border border-gray-300">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">Name</th>
-            <th className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">Passport Number</th>
-            <th className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">Valid Date</th>
-            <th className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">Net Amount</th>
-            <th className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">Paid Amount</th>
-            <th className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">Payment Status</th>
-            <th className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">Creation</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bookings.length === 0 ? (
-            <tr>
-              <td colSpan="7" className="py-4 text-center">No bookings found</td>
-            </tr>
-          ) : (
-            bookings.map((booking) => (
-              <tr key={booking.id}>
-                <td className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">{booking.name}</td>
-                <td className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">{booking.passportNumber}</td>
-                <td className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">{booking.validDate.toLocaleDateString()}</td>
-                <td className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">${booking.netAmount.toFixed(2)}</td>
-                <td className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">${booking.paidAmount.toFixed(2)}</td>
-                <td className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">{booking.paymentStatus.replace('_', ' ')}</td>
-                <td className="py-2 px-2 md:px-4 border-b text-xs md:text-sm">{new Date(booking.createdAt.seconds * 1000).toLocaleString()}</td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-    </div>
-
-    <div className="flex justify-center mt-6">
-      <button
-        type="button"
-        onClick={() => router.back()}
-        className="w-full max-w-xs py-2 px-4 rounded-lg text-white bg-red-400 hover:bg-red-600 text-sm md:text-base"
-      >
-        Go Back
-      </button>
-    </div>
-  </div>
-</div>
-</div>
-
-    
+    </>
   );
 };
 
