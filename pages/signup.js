@@ -24,7 +24,7 @@ export default function SignUp() {
 
   const validate = () => {
     const errors = {};
-    const { name, email, mobile, password } = formData;
+    const { name = "", email = "", mobile = "", password = "" } = formData;
 
     // Validate Name
     if (!name.trim()) {
@@ -104,7 +104,7 @@ export default function SignUp() {
     }
 
     setLoading(true);
-    const { email, password, name, mobile } = formData;
+    const { email = "", password = "", name = "", mobile = "" } = formData;
 
     let imageURL = null;
 

@@ -456,7 +456,7 @@ const EditInvoice = () => {
                 <div className="flex flex-col space-y-3 mt-4">
                   <button
                     type="submit"
-                    className="px-2 py-2 bg-amber-600 text-white rounded-lg text-base font-semibold hover:bg-amber-700 transition duration-300 disabled:bg-gray-400"
+                    className="px-2 py-2 bg-rose-600 text-white rounded-lg text-base font-semibold hover:bg-rose-700 transition duration-300 disabled:bg-gray-400"
                   >
                     Update Invoice
                   </button>

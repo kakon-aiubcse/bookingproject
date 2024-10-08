@@ -4,7 +4,12 @@ import { useRouter } from "next/router";
 const SignupView = ({
   handleSubmit,
   handleChange,
-  formData,
+  formData = {
+    name: "",
+    email: "",
+    mobile: "",
+    password: "",
+  },
   message,
   errors,
   loading,
@@ -72,16 +77,16 @@ const SignupView = ({
                   type="text"
                   id="name"
                   name="name"
-                  value={formData.name}
+                  value={formData?.name || ""}
                   onChange={handleChange}
                   required
                   placeholder="Enter your Name"
                   className={`w-full border ${
-                    errors.name ? "border-red-500" : "border-gray-300"
+                    errors?.name ? "border-red-500" : "border-gray-300"
                   } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-slate-600`}
                 />
-                {errors.name && (
-                  <p className="text-red-600 text-xs mt-2">{errors.name}</p>
+                {errors?.name && (
+                  <p className="text-red-600 text-xs mt-2">{errors?.name}</p>
                 )}
               </div>
 
@@ -91,16 +96,16 @@ const SignupView = ({
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email}
+                  value={formData?.email || ""}
                   onChange={handleChange}
                   required
                   placeholder="Enter your Email"
                   className={`w-full border ${
-                    errors.email ? "border-red-500" : "border-gray-300"
+                    errors?.email ? "border-red-500" : "border-gray-300"
                   } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-slate-600`}
                 />
-                {errors.email && (
-                  <p className="text-red-600 text-xs mt-2">{errors.email}</p>
+                {errors?.email && (
+                  <p className="text-red-600 text-xs mt-2">{errors?.email}</p>
                 )}
               </div>
 
@@ -110,16 +115,16 @@ const SignupView = ({
                   type="tel"
                   id="mobile"
                   name="mobile"
-                  value={formData.mobile}
+                  value={formData?.mobile || ""}
                   onChange={handleChange}
                   required
                   placeholder="Enter your Phone Number"
                   className={`w-full border ${
-                    errors.mobile ? "border-red-500" : "border-gray-300"
+                    errors?.mobile ? "border-red-500" : "border-gray-300"
                   } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-slate-600`}
                 />
-                {errors.mobile && (
-                  <p className="text-red-600 text-xs mt-2">{errors.mobile}</p>
+                {errors?.mobile && (
+                  <p className="text-red-600 text-xs mt-2">{errors?.mobile}</p>
                 )}
               </div>
 
@@ -129,12 +134,12 @@ const SignupView = ({
                   type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
-                  value={formData.password}
+                  value={formData?.password || ""}
                   onChange={handleChange}
                   required
                   placeholder="Enter your Password"
                   className={`w-full border ${
-                    errors.password ? "border-red-500" : "border-gray-300"
+                    errors?.password ? "border-red-500" : "border-gray-300"
                   } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-slate-600`}
                 />
                 <button
@@ -149,8 +154,10 @@ const SignupView = ({
                     className="w-5 h-5 text-gray-500"
                   />
                 </button>
-                {errors.password && (
-                  <p className="text-red-600 text-xs mt-2">{errors.password}</p>
+                {errors?.password && (
+                  <p className="text-red-600 text-xs mt-2">
+                    {errors?.password}
+                  </p>
                 )}
               </div>
 

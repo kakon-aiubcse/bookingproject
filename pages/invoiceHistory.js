@@ -12,7 +12,7 @@ import Header from "./component/header";
 import { auth } from "../lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/router";
-import InvoicehistoryView from "../../frontend/pages/Views/invoicehistoryView";
+import InvoicehistoryView from "./Views/invoicehistoryView";
 
 const InvoiceHistory = () => {
   const router = useRouter();

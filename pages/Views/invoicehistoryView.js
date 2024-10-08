@@ -18,6 +18,7 @@ const InvoicehistoryView = ({
   selectedIndex,
   setCurrentPage,
 }) => {
+  const safecurrentInvoices = currentInvoices || [];
   const router = useRouter();
   return (
     <>
@@ -303,14 +304,14 @@ const InvoicehistoryView = ({
                     </tr>
                   </thead>
                   <tbody>
-                    {currentInvoices.length === 0 ? (
+                    {safecurrentInvoices.length === 0 ? (
                       <tr>
                         <td colSpan="2" className="py-4 px-4 text-center">
                           No bookings found
                         </td>
                       </tr>
                     ) : (
-                      currentInvoices.map((entry) => (
+                      safecurrentInvoices.map((entry) => (
                         <tr key={entry.id} className="border-b">
                           <td className="px-4 py-2 text-xs md:text-sm">
                             <button

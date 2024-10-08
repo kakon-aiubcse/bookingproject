@@ -23,6 +23,7 @@ const BookingListView = ({
   toggleInvoiceDropdown,
   handleDownload,
 }) => {
+  const safeBookings = bookings || [];
   return (
     <div className="flex flex-col  overflow-hidden">
       <div className="flex flex-grow  bg-gradient-to-b from-slate-100 to-slate-100 flex-col items-center mb-0">
@@ -77,14 +78,14 @@ const BookingListView = ({
                 </tr>
               </thead>
               <tbody>
-                {bookings.length === 0 ? (
+                {safeBookings.length === 0 ? (
                   <tr>
                     <td colSpan="2" className="py-4 px-4 text-center">
                       No bookings found
                     </td>
                   </tr>
                 ) : (
-                  bookings.map((booking) => (
+                  safeBookings.map((booking) => (
                     <tr key={booking.id} className="border-b">
                       <td className="px-2 py-2 text-gray-700 text-xs md:text-sm">
                         {truncateText(booking.id, 6)}

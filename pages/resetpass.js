@@ -6,8 +6,8 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
-import { db } from "../../frontend/lib/firebase"; // Your Firestore instance
-import Header2 from "../../frontend/pages/component/header2"; // Assuming you have a Header component
+import { db } from "../lib/firebase";
+import Header2 from "./component/header2";
 import { useRouter } from "next/router";
 import Image from "next/image"; // For rendering the eye icons
 

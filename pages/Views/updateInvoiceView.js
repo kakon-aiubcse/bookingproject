@@ -13,6 +13,7 @@ const UpdateinvoiceView = ({
   handlePagination,
 }) => {
   const router = useRouter();
+  const safeinvoices = currentInvoices || [];
   return (
     <>
       <div className="flex flex-grow  bg-gradient-to-b from-slate100 to-slate-100 flex-col items-center mb-0">
@@ -71,7 +72,7 @@ const UpdateinvoiceView = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {currentInvoices.map((invoice) => (
+                  {safeinvoices.map((invoice) => (
                     <tr key={invoice.id} className="border-b">
                       <td className="px-2 py-2  text-gray-700 text-xs md:text-sm">
                         {invoice.invoiceNumber}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "./component/header";
+
 import { useRouter } from "next/router";
 import { auth, db } from "../lib/firebase";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
@@ -17,7 +17,7 @@ const Booking = () => {
     packageName: "",
     name: "",
     passportNumber: "",
-    validDate: "",
+    validDate: null,
     netAmount: "",
     paidAmount: "",
     paymentStatus: "N/A",
