@@ -106,7 +106,7 @@ const PdfForm = () => {
           paymentStatus: data.paymentStatus || "",
           packageName: data.packageName || "",
           validDate: data.validDate
-            ? format(data.validDate.toDate(), "dd MMM yyyy, hh:mm:ss a")
+            ? format(data.validDate.toDate(), "dd MMM yyyy, ")
             : "",
           createdAt: data.createdAt
             ? format(data.createdAt.toDate(), "dd MMM yyyy, hh:mm:ss a")
