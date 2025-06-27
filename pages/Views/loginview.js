@@ -16,7 +16,7 @@ const LoginView = ({
 
   return (
     <div
-      className="relative flex flex-col overflow-hidden  justify-center items-center"
+      className="relative flex flex-col overflow-hidden  justify-center items-center "
       style={{
         minHeight: "100vh", // This will ensure the page height fills the full viewport
         backgroundImage: "url('/loginpic.jpg')",
