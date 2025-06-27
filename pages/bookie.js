@@ -5,7 +5,7 @@ import ShowBookings from "./showbookings";
 
 const HomePage = () => {
   return (
-    <div>
+    <div >
       <Header />
 
       <ShowBookings />

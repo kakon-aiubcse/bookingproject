@@ -1,12 +1,14 @@
+"use client";
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter,  usePathname } from "next/navigation";
 import { auth } from "../../lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore"; // Import Firestore functions
+import { getFirestore, doc, getDoc } from "firebase/firestore"; 
 
 const Header = () => {
-  const { pathname, push } = useRouter();
+  const { push } = useRouter();
+  const pathname = usePathname();
   const [isBookingsDropdownOpen, setIsBookingsDropdownOpen] = useState(false);
   const [isInvoicesDropdownOpen, setIsInvoicesDropdownOpen] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
@@ -16,32 +18,40 @@ const Header = () => {
   const invoicesDropdownRef = useRef(null);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
 
+  
+
   const db = getFirestore(); // Initialize Firestore
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
+ useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    if (currentUser) {
+      setUser(currentUser);
 
-        // Fetch user data from Firestore using the authenticated user's UID
-        try {
-          const userDoc = await getDoc(doc(db, "users", currentUser.uid));
-          if (userDoc.exists()) {
-            setUserData(userDoc.data()); // Set user data
-          } else {
-            console.log("No such document!");
-          }
-        } catch (error) {
-          console.error("Error fetching user data:", error);
+      try {
+        const userDoc = await getDoc(doc(db, "users", currentUser.uid));
+        if (userDoc.exists()) {
+          setUserData(userDoc.data());
+        } else {
+          console.log("No such document!");
         }
-      } else if (pathname !== "/login") {
-        push("/login"); // Redirect to login if not authenticated
+      } catch (error) {
+        console.error("Error fetching user data:", error);
       }
-    });
+    } else {
+      
+      const publicRoutes = ["/", "/login" , "/signup", "/contact", "/Views/contact"];
+      if (!publicRoutes.includes(pathname)) {
+        push("/login");
+      }
+    }
+  });
 
-    return () => unsubscribe();
-  }, [push, db, pathname]);
+  return () => unsubscribe();
+}, [push, pathname, db]);
 
+
+
+  
   const handleMouseEnter = (dropdownType) => {
     if (timeoutId) {
       clearTimeout(timeoutId);
@@ -63,7 +73,7 @@ const Header = () => {
 
   const handleBookingsClick = (e) => {
     e.preventDefault();
-    push("/bookie");
+    router.push("/bookie");
   };
 
   const handleInvoicesClick = (e) => {
@@ -86,7 +96,7 @@ const Header = () => {
     <header className="border-b-2 border-white bg-slate-950 text-white py-4 px-4 sm:py-6 sm:px-6">
       <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
         <div className="flex items-center space-x-2 text-xl sm:text-2xl cursor-pointer">
-          <Link href="/Views/homepage">
+          <Link href="/">
             <div className="flex items-center">
               <img
                 src="/bookinglogo.svg"

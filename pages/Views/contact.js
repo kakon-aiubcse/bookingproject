@@ -2,11 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import Header from "../component/header";
-import Header2 from "../component/header2";
-import { useRouter } from "next/router";
+
 
 const ContactPage = () => {
-  const router = useRouter();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,30 +14,10 @@ const ContactPage = () => {
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const nameInputRef = useRef(null); // Create a ref for the input
+ 
+  const nameInputRef = useRef(null); 
 
-  const auth = getAuth();
-  const db = getFirestore();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-        router.push("/login");
-      }
-    });
-    return () => unsubscribe();
-  }, [auth, router]);
-
-  useEffect(() => {
-    // Focus the input field when the component mounts
-    if (nameInputRef.current) {
-      nameInputRef.current.focus();
-    }
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,7 +45,8 @@ const ContactPage = () => {
 
   return (
     <>
-      {isLoggedIn ? <Header /> : <Header2 />}
+    <Header/>
+    
       <div className="flex bg-gradient-to-tr from-slate-100 to-slate-100 h-[589px] overflow-hidden p-20">
         {/* First Div (Image and Words) */}
         <div className="relative w-1/2 h-full flex flex-col items-center justify-center bg-gray-100 border border-gray-300 rounded-lg">

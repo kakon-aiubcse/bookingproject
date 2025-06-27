@@ -211,7 +211,7 @@ const ShowBookings = () => {
 
   return (
     <>
-      <div className="overflow-hidden h-[589px]">
+      <div className=" min-h-screen]">
         <BookingListView
           handleViewInvoices={handleViewInvoices}
           handleDelete={handleDelete}

@@ -69,7 +69,7 @@ export default function Login() {
   return (
     <>
       <Header2 />
-      <div className=" overflow-hidden h-[589px]">
+      <div className=" overflow-hidden h-dvh">
         <LoginView
           handleSubmit={handleSubmit}
           handleChange={handleChange}

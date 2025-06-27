@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
-import Header2 from "./component/header2";
+// import Header2 from "./component/header2";
 import { useRouter } from "next/router";
 import Image from "next/image"; // For rendering the eye icons
 
@@ -120,7 +120,7 @@ const ResetPasswordPage = () => {
 
   return (
     <>
-      <Header2 isReadOnly={true} />
+    {/*   <Header2 isReadOnly={false} /> */}
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <div className="bg-white shadow-lg rounded-lg p-8 mt-4 w-96">
           <h2 className="text-3xl font-semibold text-center mb-6">

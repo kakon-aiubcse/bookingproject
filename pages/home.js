@@ -1,10 +1,14 @@
+
 import Link from "next/link";
 import Header2 from "./component/header2";
 
-export default function Welcome() {
-  return (
+
+export default function Home() {
+  return (<>
+      
     <div>
-      <Header2 />
+      {/* <Header2 /> */}
+    
       <div
         className="size-auto relative flex pt-5 pb-5 justify-center"
         style={{
@@ -109,6 +113,6 @@ export default function Welcome() {
           </div>
         </div>
       </div>
-    </div>
+    </div></>
   );
 }
