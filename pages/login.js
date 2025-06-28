@@ -21,7 +21,7 @@ export default function Login() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(event);
     setMessage("");
     setLoading(true);
 
