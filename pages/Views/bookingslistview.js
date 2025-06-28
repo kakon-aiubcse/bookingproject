@@ -181,14 +181,14 @@ const BookingListView = ({
             </table>
           </div>
           {/* Pagination Controls for Bookings */}
-          <div className="flex bg-slate-100 border border-slate-200 justify-between items-center mt-2 ">
+          <div className="flex bg-bgrnd-0 border border-violet-400 justify-between items-center mt-2 relative top-5 mb-10 ">
             <button
               onClick={() => handlePagination("prev", "bookings")}
               disabled={currentBookingPage === 1}
-              className={`py-2 px-4 rounded-lg font-semibold text-black ${
+              className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 ${
                 currentBookingPage === 1
-                  ? "text-slate-400 cursor-not-allowed"
-                  : "text-slate-800 hover:bg-amber-600"
+                  ? "text-scdry-0 cursor-not-allowed"
+                  : "text-hdline-0 hover:bg-violet-600"
               }`}
               aria-label={
                 currentBookingPage === 1 ? "No previous page" : "Previous page"
@@ -197,13 +197,13 @@ const BookingListView = ({
               &lt; Previous
             </button>
 
-            <div className="border-l-2 border-r-2 border-l-slate-200 border-r-slate-200 mt-2 mb-2 pr-10 pl-10">
+            <div className="border-l-2 border-r-2 border-l-violet-400 border-r-violet-400 mt-2 mb-2 pr-10 pl-10">
               <div className="flex items-center space-x-2">
                 {currentBookingPage > 3 && (
                   <>
                     <button
                       onClick={() => setCurrentBookingPage(1)}
-                      className="py-2 px-3 rounded-lg bg-slate-100 text-slate-800 hover:bg-slate-400 hover:text-white"
+                      className="py-2 px-3 rounded-lg bg-bgrnd-0 text-hdline-0  hover:text-btton-0"
                     >
                       1
                     </button>
@@ -223,10 +223,10 @@ const BookingListView = ({
                         <button
                           key={page}
                           onClick={() => setCurrentBookingPage(page)}
-                          className={`py-2 px-3 border-slate-400 ${
+                          className={`py-2 px-3 border-violet-400 ${
                             currentBookingPage === page
-                              ? "border border-black bg-white text-slate-800"
-                              : "bg-white text-gray-400 hover:bg-slate-400 hover:text-white"
+                              ? "border border-violet-400 bg-bgrnd-0 text-hdline-0"
+                              : "bg-bgrnd-0 text-gray-400 "
                           }`}
                         >
                           {page}
@@ -241,10 +241,10 @@ const BookingListView = ({
                     <span>...</span>
                     <button
                       onClick={() => setCurrentBookingPage(totalPages)}
-                      className={`py-2 px-3 bg-white ${
+                      className={`py-2 px-3 bg-bgrnd-0 ${
                         currentBookingPage === totalPages
                           ? "text-slate-400 cursor-not-allowed"
-                          : "text-gray-400 hover:bg-slate-400 hover:text-white"
+                          : "text-bttext-0 hover:bg-bgrnd-0 hover:text-white"
                       }`}
                       disabled={currentBookingPage === totalPages}
                     >
@@ -260,8 +260,8 @@ const BookingListView = ({
               disabled={currentBookingPage === totalPages}
               className={`py-2 px-4 rounded-lg font-semibold text-black ${
                 currentBookingPage === totalPages
-                  ? "text-slate-400 cursor-not-allowed"
-                  : "text-slate-800 hover:bg-amber-600"
+                ? "text-scdry-0 cursor-not-allowed"
+                  : "text-hdline-0 hover:bg-violet-600"
               }`}
               aria-label={
                 currentBookingPage === totalPages ? "No next page" : "Next page"
@@ -277,16 +277,18 @@ const BookingListView = ({
           <div className="min-w-full bg-bgrnd-0 text-hdline-0 p-4 rounded-lg shadow-lg w-full max-w-2xl">
             <h2 className="text-xl text-center text-hdline-0 bg-bgrnd-0 font-semibold mb-2 border-b border-violet-300 pb-2">
               Invoices for{" "}
-              {selectedBookingId
+            <span className="text-btton-0 font-ios text-2xl">
+                {selectedBookingId
                 ? selectedInvoices.length > 0
                   ? selectedInvoices[0].bookingName || "No Booking Name Found"
                   : bookings.find((booking) => booking.id === selectedBookingId)
                       ?.name || "No Booking Name Found"
                 : "Loading..."}
+            </span>
             </h2>
 
-            <div className="overflow-x-auto">
-              <table className="min-w-full text-bttext-0 bg-bgrnd-0 border border-violet-400 rounded-lg shadow-md">
+            <div className="overflow-x-auto relative top-3">
+              <table className="min-w-full text-bttext-0 bg-bgrnd-0 border border-violet-400 rounded-lg shadow-md relative ">
                 <thead>
                   <tr className="bg-bgrnd-0 border-b border-violet-300">
                     <th className="px-4 py-2 text-left text-xs md:text-sm whitespace-nowrap">
@@ -421,11 +423,11 @@ const BookingListView = ({
             </div>
 
             {/* Pagination Controls for Invoices */}
-            <div className="flex bg-slate-100 border border-slate-200 justify-between items-center mt-2">
+            <div className="flex bg-bgrnd-0 border border-violet-400 justify-between items-center mt-2">
               <button
                 onClick={() => handlePagination("prev", "invoices")}
                 disabled={currentInvoicePage === 1}
-                className={`py-2 px-4 rounded-lg font-semibold text-slate-900 disabled:text-slate-400  ${
+                className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 disabled:text-red-400  ${
                   currentInvoicePage === 1 ? "cursor-not-allowed" : ""
                 }`}
                 aria-label={
@@ -437,18 +439,18 @@ const BookingListView = ({
                 &lt; Previous
               </button>
 
-              <div className="border-l-2 border-r-2 border-l-slate-200 border-r-slate-200 mt-2 pr-10 pl-10">
+              <div className="border-l-2 border-r-2 border-l-violet-400 border-r-violet-400 mt-2 pr-10 pl-10">
                 <div className="flex items-center space-x-2">
                   {totalInvoicePages > 0 && currentInvoicePage > 3 && (
                     <>
                       <button
                         onClick={() => setCurrentInvoicePage(1)}
-                        className="py-2 px-3 rounded-lg bg-white text-gray-400 hover:bg-slate-400 hover:text-white"
+                        className="py-2 px-3 rounded-lg bg-bgrnd-0 text-hdline-0 hover:bg-bgrnd-0 hover:text-btton-0"
                         aria-label="Go to first page"
                       >
                         1
                       </button>
-                      <span className="text-slate-400">...</span>
+                      <span className="text-violet-400">...</span>
                     </>
                   )}
 
@@ -458,10 +460,10 @@ const BookingListView = ({
                       <button
                         key={page}
                         onClick={() => setCurrentInvoicePage(page)}
-                        className={`py-2 px-3 border-slate-400 ${
+                        className={`py-2 px-3 border-violet-400 ${
                           currentInvoicePage === page
-                            ? "border border-black bg-white text-slate-800"
-                            : "bg-white text-gray-400 hover:bg-slate-400 hover:text-white"
+                            ? "border border-violet-500 bg-bgrnd-0 text-hdline-0"
+                            : "bg-bgrnd-0 text-scdry-0 hover:bg-bgrnd-0 hover:text-white"
                         }`}
                         aria-label={`Go to page ${page}`}
                       >
@@ -473,15 +475,15 @@ const BookingListView = ({
                   {totalInvoicePages > 0 &&
                     currentInvoicePage < totalInvoicePages - 2 && (
                       <>
-                        <span className="text-gray-400">...</span>
+                        <span className="text-violet-500">...</span>
                         <button
                           onClick={() =>
                             setCurrentInvoicePage(totalInvoicePages)
                           }
-                          className={`py-2 px-3 bg-white ${
+                          className={`py-2 px-3 bg-bgrnd-0 ${
                             currentInvoicePage === totalInvoicePages
                               ? "text-slate-400 cursor-not-allowed"
-                              : "text-gray-400 hover:bg-slate-400 hover:text-white"
+                              : "text-gray-400 hover:bg-bgrnd-0 hover:text-white"
                           }`}
                           disabled={currentInvoicePage === totalInvoicePages}
                           aria-label={`Go to last page (${totalInvoicePages})`}
@@ -499,10 +501,10 @@ const BookingListView = ({
                   currentInvoicePage === totalInvoicePages ||
                   totalInvoicePages === 0
                 }
-                className={`py-2 px-4 rounded-lg font-semibold text-slate-900 disabled:text-slate-400 ${
+                className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 disabled:text-red-400 ${
                   currentInvoicePage === totalInvoicePages
-                    ? "text-slate-400 cursor-not-allowed"
-                    : "text-slate-800 hover:bg-amber-600"
+                    ? "text-scdry-0 cursor-not-allowed"
+                    : "text-hdline-0 hover:bg-bgrnd-0"
                 }`}
                 aria-label={
                   currentInvoicePage === totalInvoicePages ||
@@ -517,13 +519,13 @@ const BookingListView = ({
             <div className="flex justify-center mt-4">
               <button
                 onClick={() => setShowInvoiceModal(false)}
-                className="bg-slate-500 text-amber-500 py-1 px-4 rounded hover:bg-gray-600"
+                className="bg-btton-0 text-bttext-0 py-1 px-4 rounded "
               >
                 Close
               </button>
               <button
                 onClick={() => router.push("/updateinvoice")}
-                className="bg-amber-500 text-white py-1 px-4 rounded hover:bg-amber-600 ml-4"
+                className="bg-btton-0 text-bttext-0 py-1 px-4 rounded hover:bg-amber-600 ml-4"
               >
                 Update Invoices
               </button>
