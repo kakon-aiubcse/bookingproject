@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { auth } from "../../lib/firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { useRouter } from "next/router";
-import Header2 from "../component/header2";
+import Header from "../component/header";
 import {
   getFirestore,
   collection,
@@ -102,7 +102,7 @@ const ForgotPassword = () => {
 
   return (
     <>
-      <Header2 />
+      <Header />
       <div className="overflow-hidden h-[589px]">
         <div
           className="relative flex flex-col justify-center items-center"

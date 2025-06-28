@@ -4,7 +4,7 @@ import { auth } from "../lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
-import Header2 from "./component/header2";
+import Header from "./component/header";
 import SignupView from "./Views/signupview";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -149,7 +149,7 @@ export default function SignUp() {
 
   return (
     <>
-      <Header2 />
+      <Header />
       <div className="overflow-hidden h-[589px]">
         <SignupView
           handleSubmit={handleSubmit}
