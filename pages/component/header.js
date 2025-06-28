@@ -131,7 +131,8 @@ const Header = () => {
           >
             <button
               className={`hover:text-gray-300 ${
-                pathname.startsWith("/bookie")
+               
+                pathname === "/bookie"
                   ? "border-b border-btton-0 text-gray-300"
                   : ""
               }`}
@@ -162,7 +163,7 @@ const Header = () => {
           >
             <button
               className={`hover:text-gray-300 ${
-                pathname.startsWith("/invoice")
+                pathname=== "/invoice"
                   ? "border-b border-btton-0 text-gray-300"
                   : ""
               }`}

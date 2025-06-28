@@ -82,7 +82,7 @@ const BookingListView = ({
               <tbody>
                 {safeBookings.length === 0 ? (
                   <tr>
-                    <td colSpan="2" className="py-4 px-4 text-center">
+                    <td colSpan="2" className="py-4 px-4 text-hdline-0 text-center">
                       No bookings found
                     </td>
                   </tr>
@@ -273,9 +273,9 @@ const BookingListView = ({
         </div>
       </div>{" "}
       {showInvoiceModal && (
-        <div className=" min-w-full  fixed inset-0 bg-slate-500 bg-opacity-80 flex justify-center items-center">
-          <div className="min-w-full border border-slate-900 bg-slate-100 text-black p-4 rounded-lg shadow-lg w-full max-w-2xl">
-            <h2 className="text-xl text-center text-black bg-amber-500 font-semibold mb-2 border-b border-slate-300 pb-2">
+        <div className=" min-w-full  fixed inset-0 bg-bgrnd-0 bg-opacity-80 flex justify-center items-center">
+          <div className="min-w-full bg-bgrnd-0 text-hdline-0 p-4 rounded-lg shadow-lg w-full max-w-2xl">
+            <h2 className="text-xl text-center text-hdline-0 bg-bgrnd-0 font-semibold mb-2 border-b border-violet-300 pb-2">
               Invoices for{" "}
               {selectedBookingId
                 ? selectedInvoices.length > 0
@@ -286,9 +286,9 @@ const BookingListView = ({
             </h2>
 
             <div className="overflow-x-auto">
-              <table className="min-w-full text-black bg-white border border-slate-400 rounded-lg shadow-md">
+              <table className="min-w-full text-bttext-0 bg-bgrnd-0 border border-violet-400 rounded-lg shadow-md">
                 <thead>
-                  <tr className="bg-slate-400 border-b border-gray-300">
+                  <tr className="bg-bgrnd-0 border-b border-violet-300">
                     <th className="px-4 py-2 text-left text-xs md:text-sm whitespace-nowrap">
                       Invoice No.
                     </th>
@@ -333,32 +333,32 @@ const BookingListView = ({
                     selectedInvoices.map((invoice) => (
                       <tr
                         key={invoice.id}
-                        className="border-b border-slate-200 hover:bg-slate-200"
+                        className="border-b border-slate-200 hover:bg-bgrnd-0"
                       >
-                        <td className="px-4 py-2 text-xs md:text-sm whitespace-nowrap">
+                        <td className="px-4 py-2 hover:text-btton-0 text-xs md:text-sm whitespace-nowrap">
                           {invoice.invoiceNumber}
                         </td>
-                        <td className="px-4 py-2 text-xs md:text-sm whitespace-nowrap">
+                        <td className="px-4 py-2 hover:text-btton-0 text-xs md:text-sm whitespace-nowrap">
                           {invoice.slipNumber}
                         </td>
 
-                        <td className="px-4 py-2 text-xs md:text-sm whitespace-nowrap">
+                        <td className="px-4 py-2 hover:text-btton-0 text-xs md:text-sm whitespace-nowrap">
                           {truncateText(invoice.id, 6)}
                         </td>
-                        <td className="px-4 py-2 text-xs md:text-sm whitespace-nowrap">
+                        <td className="px-4 py-2 hover:text-btton-0 text-xs md:text-sm whitespace-nowrap">
                           $
                           {typeof invoice.netAmount === "number"
                             ? invoice.netAmount.toFixed(2)
                             : "N/A"}
                         </td>
-                        <td className="px-4 py-2 text-xs md:text-sm whitespace-nowrap">
+                        <td className="px-4 py-2 hover:text-btton-0 text-xs md:text-sm whitespace-nowrap">
                           $
                           {isNaN(Number(invoice.totalPaidAmount))
                             ? "N/A"
                             : Number(invoice.totalPaidAmount).toFixed(2)}
                         </td>
                         <td
-                          className={`px-4 py-2 text-xs md:text-sm whitespace-nowrap ${
+                          className={`px-4 py-2 hover:text-btton-0 text-xs md:text-sm whitespace-nowrap ${
                             Number(invoice.creditedAmount) > 0
                               ? "text-green-500"
                               : ""
@@ -370,14 +370,14 @@ const BookingListView = ({
                                 Number(invoice.creditedAmount) > 0 ? "+" : ""
                               } $${Number(invoice.creditedAmount).toFixed(2)}`}
                         </td>
-                        <td className="px-4 py-2 text-xs md:text-sm whitespace-nowrap">
+                        <td className="px-4 py-2 hover:text-btton-0 text-xs md:text-sm whitespace-nowrap">
                           $
                           {typeof invoice.paidAmount === "number"
                             ? invoice.paidAmount.toFixed(2)
                             : "N/A"}
                         </td>
                         <td
-                          className={`px-4 py-2 text-xs md:text-sm whitespace-nowrap ${
+                          className={`px-4 py-2 hover:text-btton-0 text-xs md:text-sm whitespace-nowrap ${
                             Number(invoice.dueAmount) > 0
                               ? "text-red-500"
                               : "text-green-500"
@@ -394,7 +394,7 @@ const BookingListView = ({
                         >
                           {invoice.paymentStatus}
                         </td>
-                        <td className="px-4 py-2 text-xs md:text-sm whitespace-nowrap">
+                        <td className="px-4 py-2 hover:text-btton-0 text-xs md:text-sm whitespace-nowrap">
                           {invoice.createdAt
                             ? new Date(
                                 invoice.createdAt.seconds * 1000
