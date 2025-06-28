@@ -4,12 +4,13 @@ import Header from "./component/header";
 import ShowBookings from "./showbookings";
 
 const HomePage = () => {
-  return (
-    <div >
+  return (<> 
       <Header />
-
+<div className="h-dvh" >
       <ShowBookings />
     </div>
+  </>
+   
   );
 };
 

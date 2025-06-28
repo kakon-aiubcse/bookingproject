@@ -4,7 +4,7 @@ import Header from "../pages/component/header";
 
 export default function page() {
   return(<>
-  <div className="flex flex-col h-[2000px]">
+  <div className="flex flex-col h-dvh">
     <Header/>
  <Home/>
   </div>
