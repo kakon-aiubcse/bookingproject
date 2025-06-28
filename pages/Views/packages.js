@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const packages = [
   { id: 1, name: "Sajek Valley", price: 400, image: "/sajek.jpg" },

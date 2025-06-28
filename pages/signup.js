@@ -150,7 +150,7 @@ export default function SignUp() {
   return (
     <>
       <Header />
-      <div className="overflow-hidden h-[589px]">
+      <div className="overflow-hidden h-dvh">
         <SignupView
           handleSubmit={handleSubmit}
           handleChange={handleChange}
@@ -162,7 +162,7 @@ export default function SignUp() {
           toggleShowPassword={toggleShowPassword}
           showPassword={showPassword}
         />
-        <input type="file" accept="image/*" onChange={onProfileImageChange} />
+       
         {profileImage && <p>Selected file: {profileImage.name}</p>}{" "}
         {/* Feedback on file selection */}
       </div>

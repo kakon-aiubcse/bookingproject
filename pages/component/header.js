@@ -39,7 +39,7 @@ const Header = () => {
       }
     } else {
       
-      const publicRoutes = ["/", "/login" , "/signup", "/contact", "/Views/contact"];
+      const publicRoutes = ["/", "/login" , "/signup", "/contact", "/Views/contact","/Views/homepage"];
       if (!publicRoutes.includes(pathname)) {
         push("/login");
       }
