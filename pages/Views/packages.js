@@ -10,29 +10,32 @@ export default function Packages() {
   const router = useRouter();
 
   return (
-    <div className="flex bg-gradient-to-b from-slate-100 to-slate-100 flex-col items-center p-6  min-h-screen">
-      <h1 className="text-3xl font-bold text-slate-900 mb-8">
-        Select our Packages <span className="text-rose-500 font-bold">.</span>
+    <div className="flex bg-bgrnd-0 flex-col items-center justify-center p-6 h-auto w-screen ">
+      <h1 className="text-3xl font-bold text-hdline-0 mb-8">
+        Select Any Packages <span className="text-btton-0 font-bold relative right-2">.</span>
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-screen-lg">
+      <div className="grid grid-cols-3  items-center justify-center gap-6 w-screen h-fit px-10">
         {packages.map((pkg) => (
           <div
             key={pkg.id}
-            className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
+            className=" bg-bgrnd-0 text-hdline-0 shadow-lg rounded-lg overflow-hidden border border-slate-400"
           >
             <img
               src={pkg.image}
               alt={pkg.name}
               className="w-full h-60 object-cover"
             />
-            <div className="p-6 text-center">
+            <div className="p-6 text-center font-ios font-medium">
               <h2 className="text-xl font-semibold mb-2">{pkg.name}</h2>
-              <p className="text-lg text-gray-600 mb-4">
-                Price: $<b>{pkg.price}</b>
+              <p className="text-lg text-scdry-0 mb-4">
+                Price:{" "}
+                <b>
+                  <span className="text-hdline-0">${pkg.price}</span>
+                </b>
               </p>
               <button
                 onClick={() => router.push(`/bookings?packageId=${pkg.id}`)}
-                className="px-6 py-3 bg-rose-500 text-slate-200 rounded-lg text-lg font-semibold hover:bg-slate-600 hover:text-rose-500 transition duration-300"
+                className="px-6 py-3 bg-btton-0 font-ios text-bttext-0 rounded-lg text-lg font-semibold transition duration-300"
               >
                 Book Now!
               </button>
