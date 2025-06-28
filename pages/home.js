@@ -15,7 +15,7 @@ export default function Home() {
               <label className="text-3xl text-scdry-0 ">
                 Web Application
               </label>{" "}
-              <label className="text-btton-0 scoop relative right-3">.</label>
+              <label className="text-amber-500 scoop relative right-3">.</label>
             </h1>
           </div>
         </div>
@@ -28,7 +28,7 @@ export default function Home() {
               <span className="text-fuchsia-600 text-[50px]">.</span>
             </label>
           </h2>
-          <p className=" text-lg font-semibold text-prgraph-0 font-roboto">
+          <div className=" text-lg font-semibold text-prgraph-0 font-roboto">
             Our bookie app provides an easy and efficient way to manage your:
             <ol className="list-outside items-center text-start flex flex-col space-y-2 pt-2  text-sm font-semibold">
               <li className=" hover:text-btton-0">
@@ -41,11 +41,11 @@ export default function Home() {
                 Plan your adventures!
               </li>
             </ol>
-          </p>
+          </div>
 
           
           <div className="flex flex-col space-y-4 top-8 relative w-full px-44 ">
-            <Link href="/login" className="w-dvh">
+            <Link href="/login" className="">
               <button className="w-full space-y-6 text-center px-4 py-3 text-bttext-0 bg-btton-0 rounded-xl text-lg font-bold">
                 Start here...
               </button>

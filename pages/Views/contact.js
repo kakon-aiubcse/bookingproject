@@ -47,31 +47,31 @@ const ContactPage = () => {
     <>
     <Header/>
     
-      <div className="flex bg-gradient-to-tr from-slate-100 to-slate-100 h-[589px] overflow-hidden p-20">
+      <div className="flex bg-bgrnd-0 h-dvh w-full overflow-hidden p-20">
         {/* First Div (Image and Words) */}
-        <div className="relative w-1/2 h-full flex flex-col items-center justify-center bg-gray-100 border border-gray-300 rounded-lg">
+        <div className="relative w-1/2 h-full flex flex-col items-center justify-center ">
           {/* Image Section */}
-          <div className="relative w-full h-1/2">
+          <div className="relative w-full h-1/2 items-center justify-end flex flex-col bottom-8">
             <img
-              src="/contact.png"
+              src="/contact.png.png"
               alt="Background"
-              className="object-cover w-full h-full rounded-t-lg"
+              className="  rounded-t-lg"
             />
           </div>
           {/* Text Section */}
-          <div className="relative w-full h-1/2 flex flex-col justify-center items-center bg-orange-600 text-slate-100 p-6 rounded-b-lg">
-            <h2 className="text-2xl font-semibold">Manage Your Bookings</h2>
-            <p className="mt-2 text-center">
+          <div className="relative w-full h-1/2 flex flex-col justify-start items-center bg-bgrnd-0 text-hdline-0 p-6 rounded-b-lg">
+            <h2 className="text-4xl font-semibold font-ios ">Manage Your Bookings<label className="text-btton-0">.</label></h2>
+            <p className="mt-2 text-center text-prgraph-0">
               Effortlessly track, manage, and organize all your bookings and
               invoices in one place.
             </p>
           </div>
         </div>
         {/* Second Div (Contact Form) */}
-        <div className="relative w-1/2 h-full flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-lg">
-          <div className="max-w-md w-full p-8">
-            <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
-              Contact Us
+        <div className="relative w-1/2 font-ios h-full flex items-center justify-center bg-bgrnd-0 text-scdry-0  rounded-lg shadow-lg">
+          <div className=" p-10 w-full  space-y-10">
+            <h1 className="text-4xl font-bold text-center mb-6 text-hdline-0">
+              Contact us
             </h1>
             {successMessage && (
               <div className="mb-4 text-green-600 text-center">
@@ -83,7 +83,7 @@ const ContactPage = () => {
                 {errorMessage}
               </div>
             )}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <input
                   ref={nameInputRef} // Attach the ref
@@ -93,7 +93,7 @@ const ContactPage = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
+                  className="w-full p-2 border  rounded-md  focus:ring-2 focus:ring-btton-0"
                 />
               </div>
               <div>
@@ -104,7 +104,7 @@ const ContactPage = () => {
                   onChange={handleChange}
                   required
                   placeholder="Enter your Email"
-                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
+                  className="w-full p-2 border  rounded-md  focus:ring-2 focus:ring-btton-0"
                 />
               </div>
               <div>
@@ -115,12 +115,12 @@ const ContactPage = () => {
                   required
                   placeholder="Share your feedback with us"
                   rows="4"
-                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
+                  className="w-full p-2 border  rounded-md  focus:ring-2 focus:ring-btton-0"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-rose-500 text-white py-2 rounded-md hover:bg-slate-600 hover:text-rose-500 transition duration-200"
+                className="w-full bg-btton-0 text-white py-2 rounded-md font-ios  "
               >
                 Send Message
               </button>
