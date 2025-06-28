@@ -73,7 +73,7 @@ const Header = () => {
 
   const handleBookingsClick = (e) => {
     e.preventDefault();
-    router.push("/bookie");
+    push("/bookie");
   };
 
   const handleInvoicesClick = (e) => {
@@ -105,7 +105,7 @@ const Header = () => {
               />
               <span className="ml-2 text-2xl font-bold">
                 Bookie
-                <span className="font-extrabold text-amber-500">.</span>
+                <span className="font-extrabold text-btton-0">.</span>
               </span>
             </div>
           </Link>
@@ -116,7 +116,7 @@ const Header = () => {
             <span
               className={`${
                 pathname === "/Views/homepage"
-                  ? "border-b border-slate-200 text-gray-300"
+                  ? "border-b border-btton-0 text-gray-300"
                   : ""
               }`}
             >
@@ -132,7 +132,7 @@ const Header = () => {
             <button
               className={`hover:text-gray-300 ${
                 pathname.startsWith("/bookie")
-                  ? "border-b border-slate-200 text-gray-300"
+                  ? "border-b border-btton-0 text-gray-300"
                   : ""
               }`}
               onClick={handleBookingsClick}
@@ -141,14 +141,14 @@ const Header = () => {
             </button>
             {isBookingsDropdownOpen && (
               <div
-                className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-36 bg-slate-100 text-black rounded-lg shadow-lg z-10"
+                className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-36 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10"
                 ref={bookingsDropdownRef}
               >
-                <div className="block px-3 py-1 bg-slate-100 text-black cursor-pointer text-sm">
+                <div className="block px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm">
                   <Link href="/bookings">Create Manual</Link>
                 </div>
 
-                <div className="block px-3 py-1 bg-slate-100 text-black cursor-pointer text-sm">
+                <div className="block px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm">
                   <Link href="/bookie">Show Bookings</Link>
                 </div>
               </div>
@@ -163,7 +163,7 @@ const Header = () => {
             <button
               className={`hover:text-gray-300 ${
                 pathname.startsWith("/invoice")
-                  ? "border-b border-slate-200 text-gray-300"
+                  ? "border-b border-btton-0 text-gray-300"
                   : ""
               }`}
               onClick={handleInvoicesClick}
@@ -172,16 +172,16 @@ const Header = () => {
             </button>
             {isInvoicesDropdownOpen && (
               <div
-                className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-40 bg-slate-100 text-black rounded-lg shadow-lg z-10"
+                className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-40 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10"
                 ref={invoicesDropdownRef}
               >
-                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+                <div className="block px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 ">
                   <Link href="/invoiceform">Create an Invoice</Link>
                 </div>
-                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+                <div className="block px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0">
                   <Link href="/updateinvoice">Show Invoices</Link>
                 </div>
-                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+                <div className="block px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0">
                   <Link href="/invoiceHistory">Invoice History</Link>
                 </div>
               </div>
@@ -192,7 +192,7 @@ const Header = () => {
             <span
               className={`${
                 pathname === "/Views/contact"
-                  ? "border-b border-slate-200 text-gray-300"
+                  ? "border-b border-btton-0 text-gray-300"
                   : ""
               }`}
             >
@@ -220,14 +220,14 @@ const Header = () => {
               </div>
             </Link>
             {isUserDropdownOpen && (
-              <div className="absolute right-0 top-full mt-1 w-40 bg-slate-100 text-white rounded-lg shadow-lg z-10">
-                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+              <div className="absolute right-0 top-full mt-1 w-40 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10">
+                <div className="block px-3 py-1  text-hdline- bg-bgrnd-0 hover:text-btton-0 cursor-pointer text-sm">
                   <Link href="/Views/profile">Edit profile</Link>
                 </div>
-                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+                <div className="block px-3 py-1  text-hdline- bg-bgrnd-0 hover:text-btton-0 cursor-pointer text-sm">
                   <Link href="/Views/feedback">Feedbacks</Link>
                 </div>
-                <div className="block px-3 py-1 hover:bg-slate-100 text-black cursor-pointer text-sm">
+                <div className="block px-3 py-1  text-hdline- bg-bgrnd-0 hover:text-btton-0 cursor-pointer text-sm">
                   <a href="/Views/logout">Log out!</a>
                 </div>
               </div>

@@ -16,8 +16,8 @@ export default function Login() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === "email") setEmail(value);
-    if (name === "password") setPassword(value);
-    setPassword(event.target.value);
+    if (name === "password") setPassword(event.target.value);
+    
   };
 
   const handleSubmit = async (event) => {

@@ -88,7 +88,7 @@ const LoginView = ({
                   name="password"
                   value={password}
                   onChange={handleChange}
-                  autoComplete="off"
+        
                   required
                   placeholder="Password"
                   className="w-full border border-gray-300 rounded-lg px-10 py-3 focus:outline-none focus:ring-2 focus:ring-slate-600"
