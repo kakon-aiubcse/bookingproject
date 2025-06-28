@@ -211,7 +211,7 @@ const ShowBookings = () => {
 
   return (
     <>
-      <div className=" min-h-screen]">
+      <div className="min-h-screen]">
         <BookingListView
           handleViewInvoices={handleViewInvoices}
           handleDelete={handleDelete}
@@ -233,6 +233,7 @@ const ShowBookings = () => {
           dropdownOpen={dropdownOpen}
           toggleInvoiceDropdown={toggleInvoiceDropdown}
           handleDownload={handleDownload}
+          setDropdownOpen={setDropdownOpen}
         />
       </div>
     </>

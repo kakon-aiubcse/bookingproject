@@ -20,16 +20,18 @@ const BookingListView = ({
   setCurrentBookingPage,
   setCurrentInvoicePage,
   dropdownOpen,
+  setDropdownOpen,
   toggleInvoiceDropdown,
   handleDownload,
 }) => {
   const safeBookings = bookings || [];
   return (
-    <div className="flex flex-col  overflow-hidden">
-      <div className="flex flex-grow  bg-gradient-to-b from-slate-100 to-slate-100 flex-col items-center mb-0">
-        <div className="w-full max-w-8xl p-4  bg-gradient-to-b from-slate-100 to-slate-100 rounded-lg shadow-lg border border-gray-200">
-          <h2 className="text-2xl text-center md:text-3xl font-bold m-6  text-black">
-            Booking List
+    <div className="flex flex-col h-auto overflow-hidden">
+      <div className="flex flex-grow  bg-bgrnd-0 flex-col items-center mb-0">
+        <div className="w-full min-h-screen p-4  bg-bgrnd-0">
+          <h2 className="text-4xl text-center font-ios font-bold m-6  text-hdline-0">
+            Booking Lists{" "}
+            <span className="text-btton-0 relative right-2">.</span>
           </h2>
 
           {/* Error Message */}
@@ -42,37 +44,37 @@ const BookingListView = ({
           {/* Bookings Table */}
 
           <div className="overflow-x-auto">
-            <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+            <table className="min-w-full bg-bgrnd-0 space-y-10 gap-10 rounded-lg shadow-md">
               <thead>
-                <tr className="bg-gray-100 border-b">
-                  <th className="px-2 py-2 text-left text-gray-600 text-xs md:text-sm">
+                <tr className="bg-bgrnd-0 ">
+                  <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs ">
                     Booking ID
                   </th>
-                  <th className="px-2 py-2 text-left text-gray-600 text-xs md:text-sm">
+                  <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs ">
                     Package
                   </th>
-                  <th className="px-2 py-2 text-left text-gray-600 text-xs md:text-sm">
+                  <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs ">
                     Name
                   </th>
-                  <th className="px-2 py-2 text-left text-gray-600 text-xs md:text-sm">
+                  <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs ">
                     Passport Number
                   </th>
-                  <th className="px-2 py-2 text-left text-gray-600 text-xs md:text-sm">
+                  <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs ">
                     Booking Date
                   </th>
-                  <th className="px-2 py-2 text-left text-gray-600 text-xs md:text-sm">
+                  <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs ">
                     Net Amount
                   </th>
-                  <th className="px-2 py-2 text-left text-gray-600 text-xs md:text-sm">
+                  <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs ">
                     Paid Amount
                   </th>
-                  <th className="px-2 py-2 text-left text-gray-600 text-xs md:text-sm">
+                  <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs ">
                     Status
                   </th>
-                  <th className="px-2 py-2 text-left text-gray-600 text-xs md:text-sm">
+                  <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs ">
                     Creation
                   </th>
-                  <th className="px-2 py-2 text-left text-gray-600 text-xs md:text-sm">
+                  <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs ">
                     Actions
                   </th>
                 </tr>
@@ -86,72 +88,84 @@ const BookingListView = ({
                   </tr>
                 ) : (
                   safeBookings.map((booking) => (
-                    <tr key={booking.id} className="border-b">
-                      <td className="px-2 py-2 text-gray-700 text-xs md:text-sm">
+                    <tr
+                      key={booking.id}
+                      className="border-btton-0  border-b-[0.1px]"
+                    >
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
                         {truncateText(booking.id, 6)}
                       </td>
-                      <td className="px-2 py-2 text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
                         {booking.packageName}
                       </td>
-                      <td className="px-2 py-2 text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
                         {booking.name}
                       </td>
-                      <td className="px-2 py-2 text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
                         {booking.passportNumber}
                       </td>
-                      <td className="px-2 py-2 text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
                         {format(new Date(booking.validDate), "dd MMM yyyy")}
                       </td>
-                      <td className="px-2 py-2 text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
                         ${Number(booking.netAmount || 0).toFixed(2)}
                       </td>
-                      <td className="px-2 py-2 text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
                         ${Number(booking.paidAmount || 0).toFixed(2)}
                       </td>
                       <td
-                        className={`px-2 py-2 font-semibold text-gray-700 text-xs md:text-sm ${getStatusClass(
+                        className={`px-2 py-6 font-semibold font-ios text-xs  ${getStatusClass(
                           booking.paymentStatus
                         )}`}
                       >
                         {booking.paymentStatus}
                       </td>
-                      <td className="px-2 py-2 text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
                         {format(
                           new Date(booking.createdAt.seconds * 1000),
                           "dd MMM yyyy, HH:mm:ss a"
                         )}
                       </td>
-                      <td className="px-4 py-2 text-gray-700 text-xs text-right md:text-sm relative">
+                      <td className="px-4 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs text-right md:text-sm relative">
                         <div className="relative inline-block text-left">
                           <button
                             onClick={() => toggleInvoiceDropdown(booking.id)}
-                            className="text-amber-800 hover:text-amber-600 text-xs md:text-sm mr-2 md:mr-4 flex items-center justify-center"
+                            className=" text-xs mr-2  flex items-center justify-center"
                           >
                             <img
                               src="/dropicon.png"
                               alt="Dropdown Icon"
-                              className="h-4 w-5 hover:border hover:border-slate-100" // Adjust size as needed
+                              className="h-4 w-5 " // Adjust size as needed
                             />
                           </button>
 
                           {dropdownOpen && selectedBookingId === booking.id && (
-                            <div className="origin-top-right absolute right-9 top-1/2 transform -translate-y-1/2 mt-0 w-24 rounded-lg shadow-lg bg-white border border-gray-300 z-10">
+                            <div className="origin-top-right absolute right-8 top-1/2 transform -translate-y-1/2 mt-0 w-24 rounded-lg shadow-lg bg-bgrnd-0 z-10">
                               <div className="py-1">
                                 <button
-                                  onClick={() => handleViewInvoices(booking.id)}
-                                  className="block w-full text-left px-3 py-1 text-gray-800 hover:bg-blue-100"
+                                  onClick={() => {
+                                    handleViewInvoices(booking.id);
+                                    setDropdownOpen(false);
+                                  }}
+                                  className="block w-full font-ios text-left px-3 py-1 text-gray-200 hover:text-slate-200 bg-btton-0"
                                 >
                                   Invoices
                                 </button>
                                 <button
-                                  onClick={() => handleDownload(booking.id)}
-                                  className="block w-full text-left px-3 py-1 text-gray-800 hover:bg-blue-100"
+                                  onClick={() => {
+                                    handleDownload(booking.id);
+                                    setDropdownOpen(false);
+                                  }}
+                                  className="block w-full font-ios text-left px-3 py-1 text-gray-200 hover:text-slate-200 bg-btton-0"
                                 >
                                   Receipt
                                 </button>
                                 <button
-                                  onClick={() => handleDelete(booking.id)}
-                                  className="block w-full text-left px-3 py-1 text-red-600 hover:bg-red-100"
+                                  onClick={() => {
+                                    handleDelete(booking.id);
+                                    setDropdownOpen(false);
+                                  }}
+                                  className="block w-full bg-btton-0 font-ios text-left px-3 py-1 text-red-600  hover:text-red-600"
                                 >
                                   Delete
                                 </button>

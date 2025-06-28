@@ -6,7 +6,7 @@ import ShowBookings from "./showbookings";
 const HomePage = () => {
   return (<> 
       <Header />
-<div className="h-dvh" >
+<div className="min-h-screen bg-bgrnd-0" >
       <ShowBookings />
     </div>
   </>
