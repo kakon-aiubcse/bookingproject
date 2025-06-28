@@ -13,7 +13,7 @@ import {
 import { db } from "../../../lib/firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import html2canvas from "html2canvas";
-import { format } from "date-fns";
+import { format } from "date-fns/format";
 import Header from "../../component/header";
 
 const today = new Date();

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { auth } from "../lib/firebase";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import Header2 from "./component/header2";
+import Header from "./component/header";
 import EmloginView from "./Views/emloginview";
 
 export default function Login() {
@@ -68,7 +68,7 @@ export default function Login() {
 
   return (
     <>
-      <Header2 />
+      <Header />
       <div className=" overflow-hidden h-[589px]">
         <EmloginView
           handleSubmit={handleSubmit}
