@@ -1,9 +1,11 @@
 import { useRouter } from "next/navigation";
 
 const packages = [
-  { id: 1, name: "Sajek Valley", price: 400, image: "/sajek.jpg" },
-  { id: 2, name: "Saint Martin", price: 600, image: "/saint.jpg" },
-  { id: 3, name: "Kaptai Lake", price: 250, image: "/kaptai.jpg" },
+  { id: 1, name: "Sajek Valley", price: 200, image: "/sajek.jpg" },
+  { id: 2, name: "Saint Martin", price: 350, image: "/saint.jpg" },
+  { id: 3, name: "Kaptai Lake", price: 150, image: "/kaptai.jpg" },
+  { id: 4, name: "Cox Bajar", price: 400, image: "/coxbajar.jpg" },
+  { id: 5, name: "Bandarban", price: 180, image: "/bandarban.jpg" },
 ];
 
 export default function Packages() {
@@ -12,7 +14,8 @@ export default function Packages() {
   return (
     <div className="flex bg-bgrnd-0 flex-col items-center justify-center p-6 h-auto w-screen ">
       <h1 className="text-3xl font-bold text-hdline-0 mb-8">
-        Select Any Packages <span className="text-btton-0 font-bold relative right-2">.</span>
+        Select Any Packages{" "}
+        <span className="text-btton-0 font-bold relative right-2">.</span>
       </h1>
       <div className="grid grid-cols-3  items-center justify-center gap-6 w-screen h-fit px-10">
         {packages.map((pkg) => (
