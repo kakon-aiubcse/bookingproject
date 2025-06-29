@@ -47,6 +47,8 @@ const Booking = () => {
         { id: 1, name: "Sajek Valley", price: 400 },
         { id: 2, name: "Saint Martin", price: 600 },
         { id: 3, name: "Kaptai Lake", price: 250 },
+        { id: 4, name: "Cox Bajar", price: 400, image: "/coxbajar.jpg" },
+        { id: 5, name: "Bandarban", price: 180, image: "/bandarban.jpg" },
       ];
 
       const selected = packages.find((pkg) => pkg.id === parseInt(packageId));
@@ -205,7 +207,7 @@ const Booking = () => {
   };
 
   return (
-    <BookingsView
+    <BookingsView classname = "min-h-screen bg-bgrnd-0"
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       successMessage={successMessage}
