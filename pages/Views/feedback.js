@@ -107,12 +107,12 @@ const Feedback = () => {
         {messages.length > 0 && (
           <div className="flex h-[200px] justify-center text-center bg-bgrnd-0 text-bttext-0 shadow-md rounded-lg p-6 max-w-2xl  w-full mb-4">
             {/* Identity Section */}
-            <div className="flex-1 text-center mb-4">
+            <div className="flex-1 text-center ">
               <h2 className="text-lg font-semibold">Identity</h2>
-              <h3 className="text-hdline-0 m-5 ">
+              <h3 className="text-hdline-0 m-3 relative top-3 ">
                 {messages[currentIndex].name}
               </h3>
-              <p className="text-hdline-0 m-5">
+              <p className="text-hdline-0 m-1">
                 {messages[currentIndex].email}
               </p>
             </div>
