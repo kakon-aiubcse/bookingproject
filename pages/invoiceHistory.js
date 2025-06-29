@@ -21,7 +21,7 @@ const InvoiceHistory = () => {
   const [selectedInvoice, setSelectedInvoice] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -138,7 +138,7 @@ const InvoiceHistory = () => {
       <div>
         <Header />
       </div>
-      <div className="overflow-hidden h-[595px]">
+      <div className="overflow-hidden min-h-screen bg-bgrnd-0">
         <InvoicehistoryView
           truncateText={truncateText}
           currentPage={currentPage}
