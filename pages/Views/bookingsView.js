@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../component/header";
 import dynamic from "next/dynamic"; 
+import { useRouter } from "next/router";
 
 const DatePicker = dynamic(() => import("react-datepicker"), { ssr: false }); 
 
@@ -14,6 +15,7 @@ const BookingsView = ({
   setFormData,
   minDate,
 }) => {
+  const router = useRouter();
   return (
     <>
       <div>
@@ -209,7 +211,7 @@ const BookingsView = ({
                     <button
                       type="button"
                       onClick={() => router.back()}
-                      className="w-full py-2 px-3 rounded-md text-rose-500 bg-bgrnd-0 hover:bg-gray-600"
+                      className="w-full py-2 px-3 rounded-md text-rose-500 bg-bgrnd-0"
                     >
                       Go Back
                     </button>

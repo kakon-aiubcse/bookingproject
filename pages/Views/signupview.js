@@ -1,5 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { useEffect , useState } from "react";
+import { auth } from "../../lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const SignupView = ({
   handleSubmit,
@@ -17,7 +20,21 @@ const SignupView = ({
   showPassword,
   onProfileImageChange,
 }) => {
+  const [user, setUser] = useState(null)
   const router = useRouter();
+  useEffect(()=>{
+    const unsubscribe = onAuthStateChanged(auth,(currentuser)=>{
+      if(currentuser ){
+        setUser(currentuser)
+        router.push("/Views/homepage")
+      }
+      else{
+        router.push("/signup")
+      }
+      return () => unsubscribe();
+
+    })
+  },[router])
 
   return (
     <div className="rrelative flex flex-col  w-screen pb-32 justify-center items-center bg-bgrnd-0 h-dvh">

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { auth } from "../lib/firebase";
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import Header from "./component/header";
+import { signInWithEmailAndPassword , onAuthStateChanged} from "firebase/auth";
 import LoginView from "./Views/loginview";
+
 
 export default function Login() {
   const router = useRouter();
@@ -11,7 +11,21 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser) {
+          setUser(currentUser);
+          router.push("/Views/homepage")
+        } else {
+          router.push("/login"); // Redirect to login if not authenticated
+        }
+      });
+  
+      return () => unsubscribe();
+    }, [router])
 
   const handleChange = (event) => {
     const { name, value } = event.target;
