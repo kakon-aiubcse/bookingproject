@@ -153,61 +153,38 @@ const ProfilePage = () => {
     return <div className="text-center">Loading...</div>;
   }
   return (
-    <div className=" overflow-hidden h-[679px]">
+    <div className=" overflow-hidden bg-bgrnd-0">
       <Header />
-      <div
-        className="relative flex flex-col overflow-hidden h-[58px] justify-center items-center min-h-screen  "
-        style={{
-          minHeight: "100vh",
-          backgroundImage: `url(${userDetails.pic || "/usericon.svg"})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="absolute inset-0  bg-black/30 backdrop-blur-3xl"></div>
-        <div className="relative z-10  max-w-6xl mb-24 w-full bg-slate-200 shadow-lg rounded-lg  flex flex-col md:flex-row">
-          {/* Left side: User picture and Delete button */}
-          <div className="w-full  border-r-2 border-black md:w-1/3 flex flex-col items-center space-y-6 p-8 bg-slate-200 rounded-lg">
+      <div className="relative flex flex-col overflow-hidden  justify-center items-center min-h-screen  ">
+        <h1 className="text-3xl p-5 m-5 font-ios flex flex-col items-center justify-center font-extrabold text-hdline-0">
+          Profile details.
+        </h1>
+        <div className=" w-screen  min-h-screen  flex flex-row  ">
+          {/* 1st side: User picture and Delete button */}
+          <div className="w-1/3  h-screen flex flex-col items-end justify-start   p-3 m-3  ">
             {/* Profile Picture */}
             <div
-              className="relative w-40 h-40 rounded-full overflow-hidden shadow-md bg-cover bg-center bg-no-repeat"
+              className="relative w-40 h-44 rounded-md bg-cover bg-center bg-no-repeat"
               style={{
                 backgroundImage: `url(${userDetails.pic || "/usericon.svg"})`,
               }} // Fallback to default icon
             >
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                <span className="text-white font-semibold"></span>
-              </div>
-            </div>
-
-            {/* Delete Profile Button */}
-            <div className="mt-4">
-              <DeleteProfile
-                showDeleteForm={showDeleteForm}
-                handleDeleteProfile={handleDeleteProfile}
-                reAuthError={reAuthError}
-                deleting={deleting}
-                setShowDeleteForm={setShowDeleteForm}
-              />
+             
             </div>
           </div>
 
-          {/* Right side: User profile details and edit form */}
-          <div className="w-full md:w-2/3 p-8 bg-white shadow-lg rounded-lg">
-            <h1 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">
-              Profile
-            </h1>
-
+          {/* 2nd side: User profile details and edit form */}
+          <div className="w-1/3  h-screen flex flex-col items-start justify-start p-3 m-3 ">
             <div className=" space-y-6">
               {userDetails && (
                 <>
                   <div className="flex items-center justify-between gap-4">
-                    <label className="font-semibold text-gray-600 w-1/3 text-right">
+                    <label className="font-semibold text-scdry-0 w-1/3 text-left">
                       Email:
                     </label>
                     <span
-                      className={`text-gray-800 w-2/3 truncate ${
-                        editMode ? "" : ""
+                      className={`text-bttext-0   ${
+                        editMode ? "text-red-500" : ""
                       }`}
                     >
                       {editMode ? formData.email : userDetails.email || "N/A"}
@@ -215,23 +192,18 @@ const ProfilePage = () => {
                   </div>
 
                   <div className="flex items-center justify-between gap-4">
-                    <label className="font-semibold text-gray-600 w-1/3 text-right">
+                    <label className="font-semibold text-scdry-0 w-1/3 text-left">
                       Password:
                     </label>
 
                     {editMode ? (
                       <div className="flex items-center w-2/3">
-                        <span className="text-gray-800 truncate">
+                        <span className="text-red-500 truncate">
                           {formData.password}
                         </span>
-                        <Link href="/resetpass">
-                          <button className="bg-rose-500 text-white ml-6 py-2 px-6 rounded-md hover:bg-rose-600 transition duration-200">
-                            Reset Password?
-                          </button>
-                        </Link>
                       </div>
                     ) : (
-                      <span className="text-gray-800 w-2/3 truncate">
+                      <span className="text-bttext-0 w-2/3 truncate">
                         {userDetails.password || "N/A"}
                       </span>
                     )}
@@ -239,7 +211,7 @@ const ProfilePage = () => {
 
                   {/* Name Field */}
                   <div className="flex items-center justify-between gap-4">
-                    <label className="font-semibold text-gray-600 w-1/3 text-right">
+                    <label className="font-semibold text-scdry-0 w-1/3 text-left">
                       Name:
                     </label>
                     {editMode ? (
@@ -247,20 +219,20 @@ const ProfilePage = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="border border-gray-300 p-2 w-2/3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                        className="border border-violet-500 p-2 w-2/3 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-600 transition"
                       />
                     ) : (
-                      <span className="text-gray-800 w-2/3 truncate">
+                      <span className="text-bttext-0 w-2/3 truncate">
                         {userDetails.name || "N/A"}
                       </span>
                     )}
                   </div>
 
-                  {/* Email Field */}
+                 
 
                   {/* Phone Field */}
                   <div className="flex items-center justify-between gap-4">
-                    <label className="font-semibold text-gray-600 w-1/3 text-right">
+                    <label className="font-semibold text-scdry-0 w-1/3 text-left">
                       Phone:
                     </label>
                     {editMode ? (
@@ -268,10 +240,10 @@ const ProfilePage = () => {
                         name="mobile"
                         value={formData.mobile}
                         onChange={handleChange}
-                        className="border border-gray-300 p-2 w-2/3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                        className="border border-violet-500 p-2 w-2/3 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-600 transition"
                       />
                     ) : (
-                      <span className="text-gray-800 w-2/3 truncate">
+                      <span className="text-bttext-0 w-2/3 truncate">
                         {userDetails.mobile || "N/A"}
                       </span>
                     )}
@@ -282,8 +254,8 @@ const ProfilePage = () => {
             {/* Profile Picture Upload */}
             <div className="flex items-center pl-20 ml-4 justify-between gap-4">
               {editMode && (
-                <div className="flex items-center mt-4 space-x-4">
-                  <span className="text-sm font-medium text-gray-700">
+                <div className="flex items-center mt-4 relative right-24 space-x-4">
+                  <span className="text-sm font-medium text-scdry-0">
                     Change Profile Picture:
                   </span>
                   <input
@@ -293,45 +265,68 @@ const ProfilePage = () => {
                       onProfileImageChange(event);
                       console.log("File input changed:", event.target.files[0]); // Check the file
                     }}
-                    className="inline-block text-sm text-gray-500 border border-slate-300
-    file:mr-4 file:py-2 file:px-4
-    file:rounded-full file:border-0
-    file:text-sm file:font-semibold
-    file:bg-white file:text-black
-    hover:file:bg-white-600 hover:file:text-black
-    focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50
-    transition duration-150 ease-in-out"
+                    className="inline-block text-sm text-bttext-0 border border-violet-500
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-full file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-btton-0 file:text-bttext-0
+                    hover:file:bg-btton-0 hover:file:text-bttext-0
+                    focus:outline-none focus:ring-2 focus:ring-btton-0 focus:ring-opacity-50
+                    transition duration-150 ease-in-out"
                   />
                 </div>
               )}
             </div>
-
+          </div>
+          {/* 3rd side: User profile details and edit form */}
+          <div className="w-1/3 h-screen flex flex-col space-y-5 items-start justify-start p-3 m-3 ">
             {/* Action Buttons */}
-            <div className="mt-8 flex justify-center">
+         <div className="flex ">
+              <Link href="/resetpass">
+              <button className="bg-bgrnd-0 border border-btton-0 text-bttext-0  py-3 px-4 rounded-md  transition duration-200">
+                Reset Password
+              </button>
+            </Link>
+            </div>
+           
+               <div className="flex  ">
               {editMode ? (
                 <div className="flex space-x-6">
                   <button
                     onClick={handleUpdate}
-                    className="bg-slate-800 text-rose-500 py-2 px-6 rounded-md hover:bg-slate-950 transition duration-200"
+                    className="bg-btton-0  text-bttext-0 py-2 px-6 rounded-md hover:bg-violet-600 transition duration-200"
                   >
                     Save Changes
                   </button>
                   <button
                     onClick={() => setEditMode(false)}
-                    className="bg-red-500 text-white py-2 px-6 rounded-md hover:bg-red-600 transition duration-200"
+                    className=" text-red-500 py-2 px-6 rounded-md hover:text-red-800 transition duration-200"
                   >
                     Cancel
                   </button>
                 </div>
               ) : (
-                <button
-                  onClick={handleEdit}
-                  className="bg-rose-500 text-white py-2 px-6 rounded-md hover:bg-rose-600 transition duration-200"
-                >
-                  Edit Profile
-                </button>
+                <>
+                  <button
+                    onClick={handleEdit}
+                    className="bg-btton-0 w-[150px] text-bttext-0 py-3 px-4 rounded-md  transition duration-200"
+                  >
+                    Edit Profile
+                  </button>
+                  {/* Delete Profile Button */}
+                </>
               )}
             </div>
+             <div className="flex ">
+              <DeleteProfile
+                showDeleteForm={showDeleteForm}
+                handleDeleteProfile={handleDeleteProfile}
+                reAuthError={reAuthError}
+                deleting={deleting}
+                setShowDeleteForm={setShowDeleteForm}
+              />
+            </div>
+            
           </div>
         </div>
       </div>
