@@ -69,9 +69,11 @@ const InvoiceHistory = () => {
   };
 
   const handleView = (invoice) => {
+    
     const index = history.findIndex((entry) => entry.id === invoice.id); // Get the index based on the unique ID
     setSelectedInvoice(invoice);
     setSelectedIndex(index);
+    console.log(invoice)
   };
 
   const handleBackToList = () => {
@@ -79,21 +81,47 @@ const InvoiceHistory = () => {
     setSelectedIndex(null);
   };
 
-  const handleNext = () => {
-    if (selectedIndex < history.length - 1) {
-      const nextIndex = selectedIndex + 1;
-      setSelectedInvoice(history[nextIndex]);
-      setSelectedIndex(nextIndex);
+const handleNext = () => {
+  if (selectedIndex !== null) {
+    const currentBookingId = selectedInvoice.bookingId;
+    for (let i = selectedIndex + 1; i < history.length; i++) {
+      if (history[i].bookingId === currentBookingId) {
+        setSelectedInvoice(history[i]);
+        setSelectedIndex(i);
+        return;
+      }
     }
-  };
+    console.log("No next slip for this booking.");
+  }
+};
 
-  const handlePrev = () => {
-    if (selectedIndex > 0) {
-      const prevIndex = selectedIndex - 1;
-      setSelectedInvoice(history[prevIndex]);
-      setSelectedIndex(prevIndex);
+const handlePrev = () => {
+  if (selectedIndex !== null) {
+    const currentBookingId = selectedInvoice.bookingId;
+    for (let i = selectedIndex - 1; i >= 0; i--) {
+      if (history[i].bookingId === currentBookingId) {
+        setSelectedInvoice(history[i]);
+        setSelectedIndex(i);
+        return;
+      }
     }
-  };
+    console.log("No previous slip for this booking.");
+  }
+};
+
+  const hasNext =
+    selectedInvoice &&
+    history.length &&
+    history
+      .slice(selectedIndex + 1)
+      .some((item) => item.bookingId === selectedInvoice.bookingId);
+  const hasPrev =
+    selectedInvoice &&
+    history.length &&
+    history
+      .slice(0, selectedIndex)
+      .some((item) => item.bookingId === selectedInvoice.bookingId);
+
 
   const totalPages = Math.ceil(history.length / itemsPerPage);
   const currentInvoices =
@@ -155,6 +183,8 @@ const InvoiceHistory = () => {
           handleView={handleView}
           selectedIndex={selectedIndex}
           setCurrentPage={setCurrentPage}
+          hasNext =  {hasNext}
+          hasPrev = {hasPrev}
         />
       </div>
     </>

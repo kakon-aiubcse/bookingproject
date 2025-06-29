@@ -17,9 +17,12 @@ const InvoicehistoryView = ({
   handleView,
   selectedIndex,
   setCurrentPage,
+  hasNext,
+  hasPrev
 }) => {
   const safecurrentInvoices = currentInvoices || [];
   const router = useRouter();
+
   return (
     <>
       <div className="flex flex-col flex-grow-0  bg-bgrnd-0 ">
@@ -207,44 +210,42 @@ const InvoicehistoryView = ({
                           : "N/A"}
                       </p>
                     </div>
-                      <div className="flex bg-bgrnd-0 justify-between items-center my-2 py-2">
-                    {/* Previous Button */}
-                    <button
-                      onClick={handlePrev}
-                      disabled={selectedIndex === 0}
-                      className={`py-3 px-6 ml-2 rounded-lg text-bttext-0 bg-btton-0 hover:bg-bttext-0 hover:text-btton-0 text-lg transition-all duration-200 ${
-                        selectedIndex === 0
-                          ? "opacity-50 cursor-not-allowed"
-                          : ""
-                      }`}
-                    >
-                      &lt; Prev
-                    </button>
+                    <div className="flex bg-bgrnd-0 w-full justify-between items-center my-2 py-2">
+                      {/* Previous Button */}
+                      <button
+                        onClick={handlePrev}
+                        disabled={!hasPrev}
+                        className={`py-3 px-6 ml-2 rounded-lg text-bttext-0 bg-btton-0  text-lg transition-all duration-200 ${
+                          hasPrev
+                            ? ""
+                            : "text-red-500 bg-transparent cursor-not-allowed"
+                        }`}
+                      >
+                        &lt; Prev
+                      </button>
 
-                    {/* Close Button */}
-                    <button
-                      onClick={handleBackToList}
-                      className="py-3 px-6 ml-2 rounded-lg text-red-500 font-semibold bg-bgrnd-0 text-lg transition-all duration-200"
-                    >
-                      Close
-                    </button>
+                      {/* Close Button */}
+                      <button
+                        onClick={handleBackToList}
+                        className="py-3 px-6 ml-2 rounded-lg text-red-500 font-semibold bg-bgrnd-0 text-lg transition-all duration-200"
+                      >
+                        Close
+                      </button>
 
-                    {/* Next Button */}
-                    <button
-                      onClick={handleNext}
-                      disabled={selectedIndex === history.length - 1}
-                      className={`py-3 px-6 ml-2 rounded-lg text-bttext-0 bg-btton-0 hover:bg-bttext-0 hover:text-btton-0 text-lg transition-all duration-200 ${
-                        selectedIndex === history.length - 1
-                          ? "opacity-50 cursor-not-allowed"
-                          : ""
-                      }`}
-                    >
-                      Next &gt;
-                    </button>
+                      {/* Next Button */}
+                      <button
+                        onClick={handleNext}
+                        disabled={!hasNext}
+                        className={`py-3 px-6 ml-2 rounded-lg text-bttext-0 bg-btton-0  text-lg transition-all duration-200 ${
+                          hasNext
+                            ? ""
+                            : "text-red-500 bg-transparent cursor-not-allowed"
+                        }`}
+                      >
+                        Next &gt;
+                      </button>
+                    </div>
                   </div>
-                  </div>
-
-                
                 </div>
               </div>
             ) : (
@@ -313,7 +314,10 @@ const InvoicehistoryView = ({
                       </tr>
                     ) : (
                       safecurrentInvoices.map((entry) => (
-                        <tr key={entry.id} className="border-b border-violet-500 ">
+                        <tr
+                          key={entry.id}
+                          className="border-b border-violet-500 "
+                        >
                           <td className="px-4 py-2 text-xs bg-bgrnd-0 ">
                             <button
                               onClick={() => handleView(entry)} // Call only with entry
@@ -457,7 +461,8 @@ const InvoicehistoryView = ({
                         <>
                           <button
                             onClick={() => setCurrentPage(1)}
-  className="py-2 px-3 rounded-lg bg-bgrnd-0 text-hdline-0 hover:bg-bgrnd-0 hover:text-btton-0"                          >
+                            className="py-2 px-3 rounded-lg bg-bgrnd-0 text-hdline-0 hover:bg-bgrnd-0 hover:text-btton-0"
+                          >
                             1
                           </button>
                           <span className="text-violet-400">...</span>
@@ -475,8 +480,8 @@ const InvoicehistoryView = ({
                                 onClick={() => setCurrentPage(page)}
                                 className={`py-2 px-3 border-violet-400  ${
                                   currentPage === page
-                                  ? "border border-violet-500 bg-bgrnd-0 text-hdline-0"
-                            : "bg-bgrnd-0 text-scdry-0 hover:bg-bgrnd-0 hover:text-white"
+                                    ? "border border-violet-500 bg-bgrnd-0 text-hdline-0"
+                                    : "bg-bgrnd-0 text-scdry-0 hover:bg-bgrnd-0 hover:text-white"
                                 }`}
                               >
                                 {page}
@@ -494,7 +499,7 @@ const InvoicehistoryView = ({
                             className={`py-2 px-3 bg-bgrnd-0 ${
                               currentPage === totalPages
                                 ? "text-slate-400 cursor-not-allowed"
-                              : "text-gray-400 hover:bg-bgrnd-0 hover:text-white"
+                                : "text-gray-400 hover:bg-bgrnd-0 hover:text-white"
                             }`}
                             disabled={currentPage === totalPages}
                           >
@@ -508,10 +513,10 @@ const InvoicehistoryView = ({
                   <button
                     onClick={handleNextPage}
                     disabled={currentPage === totalPages}
-                className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 disabled:text-red-400 ${
+                    className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 disabled:text-red-400 ${
                       currentPage === totalPages
                         ? "text-scdry-0 cursor-not-allowed"
-                    : "text-hdline-0 hover:bg-violet-600"
+                        : "text-hdline-0 hover:bg-violet-600"
                     }`}
                     aria-label={
                       currentPage === totalPages ? "No next page" : "Next page"
