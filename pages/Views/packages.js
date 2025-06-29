@@ -21,7 +21,7 @@ export default function Packages() {
         {packages.map((pkg) => (
           <div
             key={pkg.id}
-            className=" bg-bgrnd-0 text-hdline-0 shadow-lg rounded-lg overflow-hidden border border-slate-400"
+            className=" bg-bgrnd-0 text-hdline-0 shadow-lg rounded-lg overflow-hidden border border-violet-800"
           >
             <img
               src={pkg.image}

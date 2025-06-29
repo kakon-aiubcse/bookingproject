@@ -4,7 +4,7 @@ import Updateinvoices from "./updateinvoice";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="min-h-screen bg-bgrnd-0">
       <Updateinvoices />
     </div>
   );

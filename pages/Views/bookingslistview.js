@@ -92,25 +92,25 @@ const BookingListView = ({
                       key={booking.id}
                       className="border-btton-0  border-b-[0.1px]"
                     >
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs ">
                         {truncateText(booking.id, 6)}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs ">
                         {booking.packageName}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs ">
                         {booking.name}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs ">
                         {booking.passportNumber}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs ">
                         {format(new Date(booking.validDate), "dd MMM yyyy")}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs ">
                         ${Number(booking.netAmount || 0).toFixed(2)}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs ">
                         ${Number(booking.paidAmount || 0).toFixed(2)}
                       </td>
                       <td
@@ -120,13 +120,13 @@ const BookingListView = ({
                       >
                         {booking.paymentStatus}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs ">
                         {format(
                           new Date(booking.createdAt.seconds * 1000),
                           "dd MMM yyyy, HH:mm:ss a"
                         )}
                       </td>
-                      <td className="px-4 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs text-right md:text-sm relative">
+                      <td className="px-4 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs text-right  relative">
                         <div className="relative inline-block text-left">
                           <button
                             onClick={() => toggleInvoiceDropdown(booking.id)}
@@ -291,7 +291,7 @@ const BookingListView = ({
               <table className="min-w-full text-bttext-0 bg-bgrnd-0 border border-violet-400 rounded-lg shadow-md relative ">
                 <thead>
                   <tr className="bg-bgrnd-0 border-b border-violet-300">
-                    <th className="px-4 py-2 text-left text-xs md:text-sm whitespace-nowrap">
+                    <th className="px-4 py-2 text-left text-xs  whitespace-nowrap">
                       Invoice No.
                     </th>
                     <th className="px-4 py-2 text-left text-xs md:text-sm whitespace-nowrap">

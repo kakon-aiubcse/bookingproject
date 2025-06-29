@@ -128,7 +128,7 @@ const Updateinvoices = () => {
       <div>
         <Header />
       </div>
-      <div className="overflow-hidden h-[589px]">
+      <div className="overflow-hidden min-h-screen">
         <UpdateinvoiceView
           error={error}
           truncateText={truncateText}

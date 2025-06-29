@@ -16,12 +16,13 @@ const UpdateinvoiceView = ({
   const safeinvoices = currentInvoices || [];
   return (
     <>
-      <div className="flex flex-grow  bg-gradient-to-b from-slate100 to-slate-100 flex-col items-center mb-0">
-        <div className="w-full max-w-8xl p-1  bg-gradient-to-b from-slate100 to-slate-100 rounded-lg shadow-lg ">
-          <div className="w-full max-w-8xl p-3  bg-gradient-to-b from-slate100 to-slate-100 rounded-lg shadow-lg ">
-            <h2 className="text-2xl text-center md:text-3xl font-bold m-6  text-slate-900">
-              Invoice List
-            </h2>
+        <div className="flex flex-col h-auto overflow-hidden">
+      <div className="flex flex-grow  bg-bgrnd-0 flex-col items-center mb-0">
+        <div className="w-full min-h-screen p-4  bg-bgrnd-0">
+          <h2 className="text-4xl text-center font-ios font-bold m-6  text-hdline-0">
+          Invoice Lists{" "}
+            <span className="text-btton-0 relative right-2">.</span>
+          </h2>
 
             {/* Error Message */}
             {error && (
@@ -32,41 +33,41 @@ const UpdateinvoiceView = ({
 
             {/* Invoices Table */}
             <div className="overflow-x-auto">
-              <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+              <table className="min-w-full bg-bgrnd-0 space-y-10 gap-10 rounded-lg shadow-md">
                 <thead>
-                  <tr className="bg-gray-100 border-b">
+                  <tr className="bg-bgrnd-0">
                     {/* Table headers */}
-                    <th className="px-2 py-2 text-left text-gray-600 text-xs md:text-sm">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
                       INV No.
                     </th>
-                    <th className="px-2 py-2  text-left text-gray-600 text-xs md:text-sm">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
                       Bookie ID
                     </th>
-                    <th className="px-2 py-2  text-left text-gray-600 text-xs md:text-sm">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
                       Bookie Name
                     </th>
-                    <th className="px-2 py-2  text-left text-gray-600 text-xs md:text-sm">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
                       Package Name
                     </th>
-                    <th className="px-2 py-2  text-left text-gray-600 text-xs md:text-sm">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
                       Issued At
                     </th>
-                    <th className="px-2 py-2  text-left text-gray-600 text-xs md:text-sm">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
                       Status
                     </th>
-                    <th className="px-2 py-2  text-left text-gray-600 text-xs md:text-sm">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
                       Net Amount
                     </th>
-                    <th className="px-2 py-2  text-left text-gray-600 text-xs md:text-sm">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
                       Total Paid
                     </th>
-                    <th className="px-2 py-2  text-left text-gray-600 text-xs md:text-sm">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
                       Due
                     </th>
-                    <th className="px-2 py-2  text-left text-gray-600 text-xs md:text-sm">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
                       Updated At
                     </th>
-                    <th className="px-2 py-2  text-left text-gray-600 text-xs md:text-sm">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
                       Actions
                     </th>
                   </tr>
@@ -74,19 +75,19 @@ const UpdateinvoiceView = ({
                 <tbody>
                   {safeinvoices.map((invoice) => (
                     <tr key={invoice.id} className="border-b">
-                      <td className="px-2 py-2  text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
                         {invoice.invoiceNumber}
                       </td>
-                      <td className="px-2 py-2  text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
                         {truncateText(invoice.bookingId, 6)}
                       </td>
-                      <td className="px-2 py-2  text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
                         {bookings[invoice.bookingId] || "N/A"}
                       </td>
-                      <td className="px-2 py-2  text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
                         {invoice.packageName}
                       </td>
-                      <td className="px-2 py-2  text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
                         {invoice.dateIssued
                           ? new Date(invoice.dateIssued).toLocaleDateString(
                               "en-GB",
@@ -105,13 +106,13 @@ const UpdateinvoiceView = ({
                       >
                         {invoice.paymentStatus}
                       </td>
-                      <td className="px-2 py-2  text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
                         $
                         {invoice.netAmount
                           ? Number(invoice.netAmount).toFixed(2)
                           : "N/A"}
                       </td>
-                      <td className="px-2 py-2  text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
                         $
                         {isNaN(Number(invoice.totalPaidAmount))
                           ? "N/A"
@@ -128,7 +129,7 @@ const UpdateinvoiceView = ({
                           ? `-$${Number(invoice.dueAmount).toFixed(2)}`
                           : "Clear"}
                       </td>
-                      <td className="px-2 py-2  text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
                         {invoice.updatedAt
                           ? new Date(invoice.updatedAt).toLocaleDateString(
                               "en-GB",
@@ -149,12 +150,12 @@ const UpdateinvoiceView = ({
                             )
                           : "N/A"}
                       </td>
-                      <td className="px-2 py-2  text-gray-700 text-xs md:text-sm">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
                         <button
                           onClick={() =>
                             router.push(`/Controller/editinvoice/${invoice.id}`)
                           }
-                          className="text-amber-500 hover:text-rose-600 text-xs md:text-sm mr-2"
+                          className="text-btton-0 hover:text-violet-600 text-xs  mr-2"
                         >
                           Edit
                         </button>
@@ -162,7 +163,7 @@ const UpdateinvoiceView = ({
                           onClick={() =>
                             handleDelete(invoice.id, invoice.invoiceNumber)
                           }
-                          className="text-red-500 hover:text-red-600 text-xs md:text-sm"
+                          className="text-red-500 hover:text-red-600 text-xs "
                         >
                           Delete
                         </button>
@@ -174,14 +175,14 @@ const UpdateinvoiceView = ({
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex bg-slate-100 border border-slate-200 justify-between items-center mt-2 ">
+            <div className="flex bg-bgrnd-0 border border-violet-400 justify-between items-center mt-2 relative top-5 mb-10 ">
               <button
                 onClick={() => handlePagination("prev", "invoices")}
                 disabled={currentPage === 1}
-                className={`py-2 px-4 rounded-lg font-semibold text-black ${
+                className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 ${
                   currentPage === 1
-                    ? "text-slate-400 cursor-not-allowed"
-                    : "text-slate-800 hover:bg-rose-600"
+                    ? "text-scdry-0 cursor-not-allowed"
+                    : "text-hdline-0 hover:bg-violet-600"
                 }`}
                 aria-label={
                   currentPage === 1 ? "No previous page" : "Previous page"
@@ -190,13 +191,13 @@ const UpdateinvoiceView = ({
                 &lt; Previous
               </button>
 
-              <div className="border-l-2 border-r-2 border-l-slate-200 border-r-slate-200 mt-2 mb-2 pr-10 pl-10">
+              <div className="border-l-2 border-r-2 border-l-violet-400 border-r-violet-400 mt-2 mb-2 pr-10 pl-10">
                 <div className="flex items-center space-x-2">
                   {currentPage > 3 && (
                     <>
                       <button
                         onClick={() => setCurrentPage(1)}
-                        className="py-2 px-3 rounded-lg bg-slate-100 text-slate-800 hover:bg-slate-400 hover:text-white"
+                        className="py-2 px-3 rounded-lg bg-bgrnd-0 text-hdline-0  hover:text-btton-0"
                       >
                         1
                       </button>
@@ -213,10 +214,10 @@ const UpdateinvoiceView = ({
                           <button
                             key={page}
                             onClick={() => setCurrentPage(page)}
-                            className={`py-2 px-3 border-slate-400 ${
+                            className={`py-2 px-3 border-violet-400 ${
                               currentPage === page
-                                ? "border border-black bg-slate-100 text-slate-800"
-                                : "bg-white text-gray-400 hover:bg-slate-400 hover:text-white"
+                                ? "border border-violet-400 bg-bgrnd-0 text-hdline-0"
+                                : "bg-bgrnd-0 text-gray-400"
                             }`}
                           >
                             {page}
@@ -231,10 +232,10 @@ const UpdateinvoiceView = ({
                       <span>...</span>
                       <button
                         onClick={() => setCurrentPage(totalPages)}
-                        className={`py-2 px-3 bg-white ${
+                        className={`py-2 px-3 bg-bgrnd-0 ${
                           currentPage === totalPages
-                            ? "text-slate-400 cursor-not-allowed"
-                            : "text-gray-400 hover:bg-slate-400 hover:text-white"
+                             ? "text-slate-400 cursor-not-allowed"
+                          : "text-bttext-0 hover:bg-bgrnd-0 hover:text-white"
                         }`}
                         disabled={currentPage === totalPages}
                       >
@@ -248,11 +249,11 @@ const UpdateinvoiceView = ({
               <button
                 onClick={() => handlePagination("next", "invoices")}
                 disabled={currentPage === totalPages}
-                className={`py-2 px-4 rounded-lg font-semibold text-black ${
-                  currentPage === totalPages
-                    ? "text-slate-400 cursor-not-allowed"
-                    : "text-slate-800 hover:bg-rose-600"
-                }`}
+                className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 ${
+                currentPage === totalPages
+                ? "text-scdry-0 cursor-not-allowed"
+                  : "text-hdline-0 hover:bg-violet-600"
+              }`}
                 aria-label={
                   currentPage === totalPages ? "No next page" : "Next page"
                 }
