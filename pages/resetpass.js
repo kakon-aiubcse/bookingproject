@@ -9,7 +9,8 @@ import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 
 import { useRouter } from "next/router";
-import Image from "next/image"; // For rendering the eye icons
+import Image from "next/image"; 
+import Header from "./component/header";
 
 const ResetPasswordPage = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -120,13 +121,13 @@ const ResetPasswordPage = () => {
 
   return (
     <>
-   
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <div className="bg-white shadow-lg rounded-lg p-8 mt-4 w-96">
-          <h2 className="text-3xl font-semibold text-center mb-6">
+   <Header/>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-bgrnd-0">
+        <div className="bg-bgrnd-0 shadow-lg rounded-lg p-8 mt-4 ">
+          <h2 className="text-5xl font-ios text-hdline-0 font-semibold text-center mb-6">
             Reset Your Password
           </h2>
-          <p className="text-center text-gray-600 mb-4">
+          <p className="text-start text-scdry-0 mb-4">
             Please enter your new password below:
           </p>
 
@@ -137,7 +138,7 @@ const ResetPasswordPage = () => {
               placeholder="Enter new password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-violet-500"
             />
             <button
               type="button"
@@ -165,7 +166,7 @@ const ResetPasswordPage = () => {
           {message && (
             <p
               className={`mt-4 text-center ${
-                message.includes("Error") ? "text-red-500" : "text-slate-500"
+                message.includes("Error") ? "text-red-500" : "text-slate-200"
               }`}
             >
               {message}
@@ -174,7 +175,7 @@ const ResetPasswordPage = () => {
 
           <button
             onClick={handlePasswordReset}
-            className="w-full bg-rose-500 text-white py-3 rounded hover:bg-rose-600 transition duration-200"
+            className="w-full bg-btton-0 text-bttext-0 py-3 rounded font-semibold font-ios "
           >
             Reset Password
           </button>
