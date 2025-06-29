@@ -62,22 +62,22 @@ const ForgotPassword = () => {
 
       setMessage(
         <h1>
-          <span className="text-slate-800 text-2xl font-semibold text-center mt-2">
+          <span className="text-hdline-0 font-ios text-2xl w-screen text-[15px] font-semibold text-center mt-2">
             Reset password link has been sent.
             <a
               href="https://mail.google.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-700 font-semibold underline"
+              className=" px-3 text-btton-0 font-semibold "
             >
-              Check!
+              Check here!
             </a>
           </span>
-          <h2 className="text-rose-900 text-sm font-mono text-center mt-4">
+          <h2 className="text-red-500 text-xs font-mono text-center mt-4">
             *only if valid Email Address.
           </h2>
           <h3>
-            <Link href="/login" className="text-slate-950">
+            <Link href="/login" className="text-btton-0 underline">
               login?
             </Link>
           </h3>
@@ -103,36 +103,23 @@ const ForgotPassword = () => {
   return (
     <>
       <Header />
-      <div className="overflow-hidden h-[589px]">
-        <div
-          className="relative flex flex-col justify-center items-center"
-          style={{
-            minHeight: "100vh",
-            backgroundImage: "url('/loginpic.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          {/* Blurry background */}
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-3xl"></div>
-
-          {/* Content */}
-          <div className="relative z-10 max-w-6xl mb-24 w-full shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row">
+      
+        <div className="relative flex flex-col bg-bgrnd-0 min-h-screen w-screen justify-center items-center">
+          <div className="relative max-w-6xl mb-24 w-full shadow-lg rounded-lg overflow-hidden flex flex-row">
             {/* Left Side - Welcome Text */}
-            <div className="md:w-1/2 p-10 font-bold flex h-[500px] flex-col justify-center items-center bg-cover bg-center relative">
-              <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
-              <h2 className="text-4xl text-slate-300 font-bold mb-16 z-10">
+            <div className="bg-bgrnd-0 p-10 w-1/2 font-bold flex  flex-col justify-center items-center relative">
+              <h2 className="text-4xl text-hdline-0 font-bold mb-4">
                 Reset Password{" "}
-                <span className="font-extrabold text-rose-500"> . </span>
+                <span className="font-extrabold text-violet-500"> ! </span>
               </h2>
-              <p className="mb-6 text-slate-200 underline-offset-0 text-lg z-10">
+              <p className=" text-scdry-0 text-lg">
                 Enter your email address to receive a password reset link..
               </p>
             </div>
 
             {/* Right Side - Reset Form */}
-            <div className="md:w-1/2 p-10 bg-gradient-to-b from-slate-500 to-slate-300 flex flex-col justify-center relative z-10">
-              <h2 className="text-2xl font-semibold text-slate-800 mb-5 text-center">
+            <div className=" p-10 w-1/2  bg-bgrnd-0 flex flex-col justify-center relative">
+              <h2 className="text-3xl text-hdline-0 font-semibold  mb-5 text-center">
                 Forgot Password?
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6 mt-4">
@@ -151,20 +138,20 @@ const ForgotPassword = () => {
                     ref={emailInputRef} // Use ref here
                     required
                     placeholder="Email Address"
-                    className="w-full border border-gray-300 rounded-lg px-10 py-3 focus:outline-none focus:ring-2 focus:ring-rose-600"
+                    className="w-full border border-gray-300 rounded-lg px-10 py-3 focus:outline-none focus:ring-2 focus:ring-violet-600"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="mt-4 w-full py-2 bg-rose-500 text-black font-sans font-semibold rounded-lg"
+                  className="mt-4 w-full py-2 bg-btton-0 text-bttext-0 font-ios font-semibold rounded-lg"
                 >
                   {isSubmitting ? "Sending..." : "Find"}
                 </button>
 
                 {message && (
-                  <p className="text-slate-950 font-mono font-semibold text-center mt-4">
+                  <p className="text-hdline-0 font-mono font-semibold text-center mt-4">
                     {message}
                   </p>
                 )}
@@ -172,7 +159,7 @@ const ForgotPassword = () => {
             </div>
           </div>
         </div>
-      </div>
+
     </>
   );
 };
