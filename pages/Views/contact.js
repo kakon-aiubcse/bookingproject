@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import React, {  useState, useRef } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../lib/firebase";
+
 import Header from "../component/header";
 
-
 const ContactPage = () => {
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,10 +13,8 @@ const ContactPage = () => {
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
- 
-  const nameInputRef = useRef(null); 
 
-
+  const nameInputRef = useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,8 +42,8 @@ const ContactPage = () => {
 
   return (
     <>
-    <Header/>
-    
+      <Header />
+
       <div className="flex bg-bgrnd-0 h-dvh w-full overflow-hidden p-20">
         {/* First Div (Image and Words) */}
         <div className="relative w-1/2 h-full flex flex-col items-center justify-center ">
@@ -60,7 +57,9 @@ const ContactPage = () => {
           </div>
           {/* Text Section */}
           <div className="relative w-full h-1/2 flex flex-col justify-start items-center bg-bgrnd-0 text-hdline-0 p-6 rounded-b-lg">
-            <h2 className="text-4xl font-semibold font-ios ">Manage Your Bookings<label className="text-btton-0">.</label></h2>
+            <h2 className="text-4xl font-semibold font-ios ">
+              Manage Your Bookings<label className="text-btton-0">.</label>
+            </h2>
             <p className="mt-2 text-center text-prgraph-0">
               Effortlessly track, manage, and organize all your bookings and
               invoices in one place.

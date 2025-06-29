@@ -101,25 +101,25 @@ const Feedback = () => {
   return (
     <>
       <Header />
-      <div className="flex flex-col bg-gradient-to-b from-slate-100 to-slate-100 items-center justify-center min-h-[589px] bg-gray-100">
-        <h1 className="text-center  text-3xl font-bold mb-4">User Feedback</h1>
+      <div className="flex flex-col  items-center justify-center bg-bgrnd-0 min-h-screen">
+        <h1 className="text-center font-ios text-hdline-0 text-3xl font-bold mb-4">User Feedbacks.</h1>
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         {messages.length > 0 && (
-          <div className="flex h-[200px] justify-center text-center bg-white shadow-md rounded-lg p-6 max-w-2xl  w-full mb-4">
+          <div className="flex h-[200px] justify-center text-center bg-bgrnd-0 text-bttext-0 shadow-md rounded-lg p-6 max-w-2xl  w-full mb-4">
             {/* Identity Section */}
             <div className="flex-1 text-center mb-4">
-              <h2 className="text-lg font-semibold">Identity:</h2>
-              <h3 className="text-gray-700 m-5 ">
+              <h2 className="text-lg font-semibold">Identity</h2>
+              <h3 className="text-hdline-0 m-5 ">
                 {messages[currentIndex].name}
               </h3>
-              <p className="text-gray-700 m-5">
+              <p className="text-hdline-0 m-5">
                 {messages[currentIndex].email}
               </p>
             </div>
             {/* Feedback Section */}
             <div className="flex-1 text-center">
-              <h4 className="text-lg font-semibold">Feedback:</h4>
-              <p className="text-gray-600 mt-10 ">
+              <h4 className="text-lg font-semibold">Feedback</h4>
+              <p className="text-hdline-0 mt-10 ">
                 {messages[currentIndex].message}
               </p>
             </div>
@@ -134,11 +134,14 @@ const Feedback = () => {
             </div>
           </div>
         )}
+       {messages.length == 0 && (<div>
+          <span className="text-2xl text-scdry-0 font-ios"> No Feedback found.</span>
+        </div>) } 
         <div className="mt-4">
           <button
             onClick={handlePrevious}
             disabled={currentIndex === 0}
-            className={`px-4 py-2 mr-2 text-black bg-rose-500 rounded ${
+            className={`px-4 py-2 mr-2 text-bttext-0 bg-btton-0 rounded ${
               currentIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
@@ -147,7 +150,7 @@ const Feedback = () => {
           <button
             onClick={handleNext}
             disabled={currentIndex >= messages.length - 1}
-            className={`px-4 py-2 text-black bg-rose-500 rounded ${
+            className={`px-4 py-2 text-bttext-0 bg-btton-0 rounded ${
               currentIndex >= messages.length - 1
                 ? "opacity-50 cursor-not-allowed"
                 : ""
