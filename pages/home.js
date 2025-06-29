@@ -45,7 +45,7 @@ export default function Home() {
 
           
           <div className="flex flex-col space-y-4 top-8 relative w-full px-44 ">
-            <Link href="/login" className="">
+            <Link href="/Views/homepage" className="">
               <button className="w-full space-y-6 text-center px-4 py-3 text-bttext-0 bg-btton-0 rounded-xl text-lg font-bold">
                 Start here...
               </button>

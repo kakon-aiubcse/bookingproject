@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "../component/header";
-import dynamic from "next/dynamic"; // Import dynamic for client-side rendering
+import dynamic from "next/dynamic"; 
 
-const DatePicker = dynamic(() => import("react-datepicker"), { ssr: false }); // Dynamically load DatePicker
+const DatePicker = dynamic(() => import("react-datepicker"), { ssr: false }); 
 
 const BookingsView = ({
   handleChange,
@@ -18,8 +18,8 @@ const BookingsView = ({
     <>
       <div>
         <Header />
-        <div className="flex flex-col min-h-screen bg-bgrnd-0 bottom-20 overflow-hidden">
-          <div className="flex m-3 flex-grow flex-col items-center justify-center px-4 py-0 bottom-10 relative ">
+        <div className="flex flex-col min-h-screen bg-bgrnd-0  overflow-hidden">
+          <div className="flex m-3 flex-grow flex-col items-center justify-center px-4 py-0  relative ">
             <div className="w-full max-w-2xl bg-bgrnd-0 p-4  rounded-lg shadow-md border border-violet-500">
               <h1 className="text-4xl font-ios p-4 font-semibold mb-4 text-center text-hdline-0">
                 Create New Booking

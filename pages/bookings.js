@@ -194,7 +194,7 @@ const Booking = () => {
       });
 
       setTimeout(() => {
-        router.push("/invoiceform");
+        router.push("/bookie");
       }, 1000);
     } catch (err) {
       console.error("Error creating booking:", err);

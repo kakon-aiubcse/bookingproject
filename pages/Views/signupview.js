@@ -45,7 +45,7 @@ const SignupView = ({
                 placeholder="Enter your Name"
                 className={`w-full border ${
                   errors?.name ? "border-red-500" : "border-gray-300"
-                } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-slate-600`}
+                } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-600`}
               />
               {errors?.name && (
                 <p className="text-red-600 text-xs mt-2">{errors?.name}</p>
@@ -64,7 +64,7 @@ const SignupView = ({
                 placeholder="Enter your Email"
                 className={`w-full border ${
                   errors?.email ? "border-red-500" : "border-gray-300"
-                } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-slate-600`}
+                } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-600`}
               />
               {errors?.email && (
                 <p className="text-red-600 text-xs mt-2">{errors?.email}</p>
@@ -83,7 +83,7 @@ const SignupView = ({
                 placeholder="Enter your Phone Number"
                 className={`w-full border ${
                   errors?.mobile ? "border-red-500" : "border-gray-300"
-                } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-slate-600`}
+                } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-600`}
               />
               {errors?.mobile && (
                 <p className="text-red-600 text-xs mt-2">{errors?.mobile}</p>
@@ -102,7 +102,7 @@ const SignupView = ({
                 placeholder="Enter your Password"
                 className={`w-full border ${
                   errors?.password ? "border-red-500" : "border-gray-300"
-                } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-slate-600`}
+                } rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-600`}
               />
               <button
                 type="button"
@@ -123,7 +123,7 @@ const SignupView = ({
 
             {/* image uploading*/}
             <div className="flex items-center space-x-4">
-              <span className="text-sm font-medium text-hdline-0 font-ios ">
+              <span className="text-sm font-medium text-scdry-0 font-ios ">
                 Select Picture:
               </span>
               <input
@@ -160,7 +160,7 @@ const SignupView = ({
             {message && (
               <p className="text-slate-600 text-center mt-4">{message}</p>
             )}
-            <div className="text-base font-ios text-scdry-0 font-medium">
+            <div className="text-base font-ios text-hdline-0 font-medium">
               Already have an account?
               <button
                 onClick={() => router.push("/login")}
