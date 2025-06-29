@@ -260,12 +260,12 @@ const EditInvoice = () => {
   return (
     <>
       <Header />
-      <div className="flex flex-col justify-center items-center text-center bg-gradient-to-b from-slate-500 to-slate-300">
-        <div className="flex flex-grow justify-center items-center bg-gradient-to-b from-slate-500 to-slate-300 flex-col mb-0 w-full">
-          <div className="w-full justify-center items-center max-w-4xl p-6 bg-gradient-to-b from-slate-500 to-slate-300 rounded-lg shadow-lg">
-            <div className="w-full justify-center items-center max-w-4xl bg-white p-6 sm:p-8 rounded-lg shadow-md mx-auto">
-              <h1 className="text-2xl sm:text-2xl font-semibold mb-4 text-center text-gray-900">
-                Edit Invoice of {bookingName}
+      <div className="flex flex-col font-ios justify-center items-center text-center bg-bgrnd-0 min-h-screen">
+        <div className="flex flex-grow justify-center items-center bg-bgrnd-0 flex-col mb-0 w-full">
+          <div className="w-full justify-center items-center max-w-4xl p-6 bg-bgrnd-0 rounded-lg shadow-lg">
+            <div className="w-full justify-center items-center max-w-4xl bg-bgrnd-0 p-6 sm:p-8 rounded-lg shadow-md mx-auto">
+              <h1 className="text-3xl font-ios font-semibold mb-4  text-center text-hdline-0">
+                Edit Invoice of <span className="text-violet-600 text-4xl">{bookingName}</span>
               </h1>
 
               {successMessage && (
@@ -280,11 +280,11 @@ const EditInvoice = () => {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-2">
+              <form onSubmit={handleSubmit} className="space-y-3 border border-violet-500 p-4">
                 <div className="flex items-start space-x-0">
                   <label
                     htmlFor="invoiceNumber"
-                    className="text-gray-700 font-medium text-sm w-36"
+                    className="text-scdry-0 font-ios text-end pr-4  font-medium text-sm w-36"
                   >
                     Invoice Number
                   </label>
@@ -294,7 +294,7 @@ const EditInvoice = () => {
                     name="invoiceNumber"
                     value={formData.invoiceNumber}
                     onChange={handleChange}
-                    className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm"
+                    className="flex-grow border  rounded-md p-1.5 focus:outline-none focus:ring-2 hover:focus:ring-violet-500 text-sm"
                     placeholder="Enter invoice number"
                     readOnly
                     required
@@ -304,7 +304,7 @@ const EditInvoice = () => {
                 <div className="flex items-start space-x-0">
                   <label
                     htmlFor="bookingId"
-                    className="text-gray-700 font-medium text-sm w-36"
+                    className="text-scdry-0 font-ios text-end pr-4  font-medium text-sm w-36"
                   >
                     Booking ID
                   </label>
@@ -314,7 +314,7 @@ const EditInvoice = () => {
                     name="bookingId"
                     value={formData.bookingId}
                     onChange={handleChange}
-                    className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm"
+                    className="flex-grow border  rounded-md p-1.5 focus:outline-none focus:ring-2 hover:focus:ring-violet-500 text-sm"
                     placeholder="Enter booking ID"
                     required
                   />
@@ -324,7 +324,7 @@ const EditInvoice = () => {
                   <div className="flex items-start space-x-0">
                     <label
                       htmlFor="bookingName"
-                      className="text-gray-700 font-medium text-sm w-36"
+                      className="text-scdry-0 font-ios text-end pr-4  font-medium text-sm w-36"
                     >
                       Booking Name
                     </label>
@@ -334,7 +334,7 @@ const EditInvoice = () => {
                       name="bookingName"
                       value={bookingName}
                       readOnly
-                      className="flex-grow border border-gray-100 rounded-md p-1.5 bg-gray-100 text-sm"
+                      className="flex-grow border  rounded-md p-1.5 bg-gray-100 text-sm"
                     />
                   </div>
                 )}
@@ -342,7 +342,7 @@ const EditInvoice = () => {
                 <div className="flex items-start space-x-0">
                   <label
                     htmlFor="netAmount"
-                    className="text-gray-700 font-medium text-sm w-36"
+                    className="text-scdry-0 font-ios text-end pr-4  font-medium text-sm w-36"
                   >
                     Net Amount
                   </label>
@@ -354,7 +354,7 @@ const EditInvoice = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, netAmount: e.target.value })
                     }
-                    className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm"
+                    className="flex-grow border  rounded-md p-1.5 focus:outline-none focus:ring-2 hover:focus:ring-violet-500 text-sm"
                     placeholder="Enter net amount"
                     required
                   />
@@ -363,7 +363,7 @@ const EditInvoice = () => {
                 <div className="flex items-start space-x-0">
                   <label
                     htmlFor="paidAmount"
-                    className="text-gray-700 font-medium text-sm w-36"
+                    className="text-scdry-0 font-ios text-end pr-4  font-medium text-sm w-36"
                   >
                     Paid Amount
                   </label>
@@ -373,7 +373,7 @@ const EditInvoice = () => {
                     name="paidAmount"
                     value={formData.paidAmount}
                     onChange={handleChange}
-                    className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm"
+                    className="flex-grow border  rounded-md p-1.5 focus:outline-none focus:ring-2 hover:focus:ring-violet-500 text-sm"
                     readOnly
                     required
                   />
@@ -382,7 +382,7 @@ const EditInvoice = () => {
                 <div className="flex items-start space-x-0">
                   <label
                     htmlFor="creditedAmount"
-                    className="text-gray-700 font-medium text-sm w-36"
+                    className="text-scdry-0 font-ios text-end pr-4  font-medium text-sm w-36"
                   >
                     Debited Amount: <span className="text-red-500">*</span>
                   </label>
@@ -393,7 +393,7 @@ const EditInvoice = () => {
                     id="creditedAmount"
                     value={formData.creditedAmount}
                     onChange={handleChange}
-                    className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm"
+                    className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 hover:focus:ring-violet-500 text-sm"
                     placeholder="Enter New amount"
                     min="0" // Optional: Prevent negative values
                   />
@@ -405,7 +405,7 @@ const EditInvoice = () => {
                 <div className="flex items-start space-x-0">
                   <label
                     htmlFor="totalPaidAmount"
-                    className="text-gray-700 font-medium text-sm w-36"
+                    className="text-scdry-0 font-ios text-end pr-4  font-medium text-sm w-36"
                   >
                     Total Paid Amount
                   </label>
@@ -415,14 +415,14 @@ const EditInvoice = () => {
                     name="totalPaidAmount"
                     value={formData.totalPaidAmount}
                     readOnly
-                    className="flex-grow border border-gray-100 rounded-md p-1.5 bg-gray-100 text-sm"
+                    className="flex-grow border  rounded-md p-1.5 bg-gray-100 text-sm"
                   />
                 </div>
 
                 <div className="flex items-start space-x-0">
                   <label
                     htmlFor="dueAmount"
-                    className="text-gray-700 font-medium text-sm w-36"
+                    className="text-scdry-0 font-ios text-end pr-4  font-medium text-sm w-36"
                   >
                     Due Amount
                   </label>
@@ -432,14 +432,14 @@ const EditInvoice = () => {
                     name="dueAmount"
                     value={formData.dueAmount}
                     readOnly
-                    className="flex-grow border border-gray-100 rounded-md p-1.5 bg-gray-100 text-sm"
+                    className="flex-grow border  rounded-md p-1.5 bg-gray-100 text-sm"
                   />
                 </div>
 
                 <div className="flex items-start space-x-0">
                   <label
                     htmlFor="paymentStatus"
-                    className="text-gray-700 font-medium text-sm w-36"
+                    className="text-scdry-0 font-ios text-end pr-4  font-medium text-sm w-36"
                   >
                     Payment Status
                   </label>
@@ -449,21 +449,21 @@ const EditInvoice = () => {
                     name="paymentStatus"
                     value={formData.paymentStatus}
                     readOnly
-                    className="flex-grow border border-gray-100 rounded-md p-1.5 bg-gray-100 text-sm"
+                    className="flex-grow border  rounded-md p-1.5 bg-gray-100 text-sm"
                   />
                 </div>
 
                 <div className="flex flex-col space-y-3 mt-4">
                   <button
                     type="submit"
-                    className="px-2 py-2 bg-rose-600 text-white rounded-lg text-base font-semibold hover:bg-rose-700 transition duration-300 disabled:bg-gray-400"
+                    className="px-2 py-2 bg-btton-0 text-bttext-0 rounded-lg text-base font-semibold transition duration-300 disabled:bg-gray-400"
                   >
                     Update Invoice
                   </button>
                   <button
                     type="button"
                     onClick={() => router.back()}
-                    className="w-full py-2 px-3 rounded-md text-white bg-gray-500 hover:bg-gray-600"
+                    className="w-full py-2 px-3 rounded-md text-red-500 bg-bgrnd-0 "
                   >
                     Go Back
                   </button>
