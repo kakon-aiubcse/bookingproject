@@ -215,7 +215,7 @@ const Header = () => {
                   alt="User Icon"
                   className="w-8 h-8 rounded-3xl"
                 />
-                <span className="text-sm text-slate-200 sm:text-base font-medium">
+                <span className="text-sm text-btton-0 font-ios font-medium">
                   {userData.name}
                 </span>
               </div>
