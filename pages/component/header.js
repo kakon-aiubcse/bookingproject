@@ -20,7 +20,7 @@ const Header = () => {
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [menuopen, setMenuopen] = useState(false);
 
-  const db = getFirestore(); // Initialize Firestore
+  const db = getFirestore(); 
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -54,6 +54,19 @@ const Header = () => {
 
     return () => unsubscribe();
   }, [push, pathname, db]);
+  useEffect(() => {
+  if (menuopen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  // Cleanup on unmount (optional)
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [menuopen]);
+
 
   const handleMouseEnter = (dropdownType) => {
     if (timeoutId) {
@@ -96,10 +109,9 @@ const Header = () => {
   };
 
   return (
-    <header className=" bg-bgrnd-0 text-hdline-0 py-6 px-6 ">
+    <header className=" bg-bgrnd-0 text-hdline-0 py-6 px-6 xs:px-6 xs:overflow-hidden">
       <div className="container mx-auto flex flex-row justify-between items-center xs:items-start xs:flex-col ">
         <div className=" flex items-center space-x-2 text-xl sm:text-2xl cursor-pointer ">
-          
           <Link href="/">
             <div className="flex items-center">
               <img
@@ -115,20 +127,24 @@ const Header = () => {
           </Link>
         </div>
         <Menu
-          className="hidden xs:absolute xs:left-72 xs:block xs:h-16 xs:w-16 "
-          onClick={() => setMenuopen(!menuopen)}
+          className="hidden xs:block xs:absolute  xs:left-[320px] xs:h-16 xs:w-16"
+          
+          onClick = {()=> setMenuopen(!menuopen) }
         />
-        {!menuopen && (
+        
           <nav
-            className="xs:bg-white xs:w-full  xs:flex xs:flex-col xs:space-y-10 xs:text-black xs:top-28 xs:right-0  xs:h-dvh xs:fixed xs:z-50
-           relative flex font-semibold flex-row  space-y-0 space-x-10 "
+            className={`${
+              !menuopen ? "xs:hidden" : "flex"
+            } xs:bg-bgrnd-0 xs:w-full  xs:flex xs:flex-col xs:space-y-12 xs:py-5 xs:text-hdline-0 xs:top-[100px] xs:right-0  xs:h-dvh xs:fixed xs:z-50
+           relative flex font-semibold flex-row  space-y-0 space-x-10 `}
           >
             <Link href="/Views/homepage">
               <span
-                className={`${ 
+                className={`${
                   pathname === "/Views/homepage"
-                    ? "border-b border-btton-0 text-gray-300"
-                    : ""
+                    ? "border-b border-btton-0 text-gray-300  xs:relative xs:left-[40px]  "
+                    : " xs:relative xs:left-[40px]"
+                    
                 }`}
               >
                 Homepage
@@ -152,14 +168,15 @@ const Header = () => {
               </button>
               {isBookingsDropdownOpen && (
                 <div
-                  className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-36 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10"
+                  className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-36 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10
+                 xs:relative xs:left-[100px] xs:top-[-35px] xs:shadow-none xs:z-0 xs:hover:text-violet-800"
                   ref={bookingsDropdownRef}
                 >
-                  <div className="block px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm">
+                  <div className="block xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm">
                     <Link href="/bookings">Create Manual</Link>
                   </div>
 
-                  <div className="block px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm">
+                  <div className="block xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm">
                     <Link href="/bookie">Show Bookings</Link>
                   </div>
                 </div>
@@ -174,7 +191,7 @@ const Header = () => {
               <button
                 className={`hover:text-gray-300 ${
                   pathname === "/invoice"
-                    ? "border-b border-btton-0 text-gray-300"
+                    ? "border-b border-btton-0 text-gray-300 "
                     : ""
                 }`}
                 onClick={handleInvoicesClick}
@@ -183,16 +200,17 @@ const Header = () => {
               </button>
               {isInvoicesDropdownOpen && (
                 <div
-                  className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-40 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10"
+                  className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-40 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10
+                   xs:relative xs:left-[100px] xs:top-[-50px] xs:shadow-none xs:z-0 "
                   ref={invoicesDropdownRef}
                 >
-                  <div className="block px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 ">
+                  <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 ">
                     <Link href="/invoiceform">Create an Invoice</Link>
                   </div>
-                  <div className="block px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0">
+                  <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0">
                     <Link href="/updateinvoice">Show Invoices</Link>
                   </div>
-                  <div className="block px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0">
+                  <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0">
                     <Link href="/invoiceHistory">Invoice History</Link>
                   </div>
                 </div>
@@ -211,26 +229,25 @@ const Header = () => {
               </span>
             </Link>
           </nav>
-        )}
+        
 
-        {userData  && (
+        {userData && (
           <div
             className="relative flex items-center space-x-2 mt-0 xs:flex xs:flex-col xs:top-2 "
             onMouseEnter={handleMouseEnterUser}
             onMouseLeave={handleMouseLeaveUser}
           >
-           
-              <div className="flex items-center space-x-2">
-                <img
-                  src={userData.pic}
-                  alt="User Icon"
-                  className="w-8 h-8 rounded-3xl"
-                />
-                <span className="text-sm text-btton-0 sm:text-base font-medium">
-                  {userData.name}
-                </span>
-              </div>
-           
+            <div className="flex items-center space-x-2">
+              <img
+                src={userData.pic}
+                alt="User Icon"
+                className="w-8 h-8 rounded-3xl"
+              />
+              <span className="text-sm text-btton-0 sm:text-base font-medium">
+                {userData.name}
+              </span>
+            </div>
+
             {isUserDropdownOpen && (
               <div className="absolute right-0 top-full mt-1 w-40 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10">
                 <div className="block px-3 py-1  text-hdline- bg-bgrnd-0 hover:text-btton-0 cursor-pointer text-sm">
