@@ -19,6 +19,7 @@ const Header = () => {
   const invoicesDropdownRef = useRef(null);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [menuopen, setMenuopen] = useState(false);
+  const [isXs, setIsXs] = useState(false);
 
   const db = getFirestore();
 
@@ -66,6 +67,14 @@ const Header = () => {
       document.body.style.overflow = "auto";
     };
   }, [menuopen]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 439px)");
+    const update = () => setIsXs(mq.matches);
+    update(); // set initially
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const handleMouseEnter = (dropdownType) => {
     if (timeoutId) {
@@ -133,30 +142,33 @@ const Header = () => {
         <nav
           className={`${
             !menuopen ? "xs:hidden" : "flex"
-          } xs:bg-bgrnd-0 xs:w-full  xs:flex xs:flex-col xs:space-y-12 xs:py-5 xs:text-hdline-0 xs:top-[100px] xs:right-0  xs:h-dvh xs:fixed xs:z-50
+          } xs:bg-bgrnd-0 xs:w-full  xs:flex xs:flex-col xs:space-y-9 xs:mt-4  xs:text-hdline-0 xs:top-[100px] xs:right-0  xs:h-dvh xs:fixed xs:z-50
            relative flex font-semibold flex-row  space-y-0 space-x-10 `}
         >
-          <Link href="/Views/homepage">
-            <span
-              className={`${
-                pathname === "/Views/homepage"
-                  ? "border-b border-btton-0 text-gray-300  xs:relative xs:left-[40px]  "
-                  : " xs:relative xs:left-[40px]"
-              }`}
-            >
-              Homepage
-            </span>
-          </Link>
+          <div className="xs:border-b xs:border-btton-0 relative xs:relative xs:left-10 xs:py-2">
+            {" "}
+            <Link href="/Views/homepage">
+              <span
+                className={`${
+                  pathname === "/Views/homepage"
+                    ? "border-b border-btton-0 text-gray-300  xs:relative xs:border-none xs:text-btton-0  "
+                    : ""
+                }`}
+              >
+                Homepage
+              </span>
+            </Link>
+          </div>
 
           <div
-            className="relative"
+            className="relative  xs:border-b xs:border-btton-0 xs:py-2"
             onMouseEnter={() => handleMouseEnter("bookings")}
             onMouseLeave={() => handleMouseLeave("bookings")}
           >
             <button
               className={`hover:text-gray-300 ${
-                pathname === "/bookie" || ( menuopen && isBookingsDropdownOpen)
-                  ? "border-b w-auto h-auto border-btton-0 text-gray-300 xs:text-violet-500"
+                pathname === "/bookie" || (menuopen && isBookingsDropdownOpen)
+                  ? "border-b w-auto h-auto border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
                   : ""
               }`}
               onClick={!menuopen ? handleBookingsClick : undefined}
@@ -182,14 +194,14 @@ const Header = () => {
           </div>
 
           <div
-            className="relative"
+            className="relative  xs:border-b xs:border-btton-0 xs:py-2"
             onMouseEnter={() => handleMouseEnter("invoices")}
             onMouseLeave={() => handleMouseLeave("invoices")}
           >
             <button
               className={`hover:text-gray-300 ${
                 pathname === "/invoice" || (menuopen && isInvoicesDropdownOpen)
-                  ? "border-b border-btton-0 text-gray-300 "
+                  ? "border-b border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
                   : ""
               }`}
               onClick={!menuopen ? handleInvoicesClick : undefined}
@@ -215,21 +227,62 @@ const Header = () => {
             )}
           </div>
 
-          <Link href="/Views/contact">
+       <div className="relative xs:border-b xs:border-btton-0 xs:py-2"> <Link href="/Views/contact">
             <span
-              className={`${
+              className={` ${
                 pathname === "/Views/contact"
-                  ? "border-b border-btton-0 text-gray-300"
+                  ? "border-b border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
                   : ""
               }`}
             >
               Contact
             </span>
           </Link>
-
+        </div>  
+          <div className=" xs:border-b xs:border-btton-0 hidden xs:block xs:py-2">
+            {" "}
+            <Link href="/Views/profile">
+              <span
+                className={`${
+                  pathname === "/Views/profile"
+                    ? "border-b border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
+                    : ""
+                }`}
+              >
+                Edit Profile
+              </span>
+            </Link>
+          </div>
+          <div className="xs:border-b xs:border-btton-0 hidden xs:block xs:py-2">
+            <Link href="/Views/feedback">
+              <span
+                className={` ${
+                  pathname === "/Views/feedback"
+                    ? "border-b border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
+                    : ""
+                }`}
+              >
+                Feedbacks
+              </span>
+            </Link>
+          </div>
+          <div className="hidden xs:block xs:py-2">
+            {" "}
+            <Link href="/Views/logout">
+              <span
+                className={`${
+                  pathname === "/Views/logout"
+                    ? "border-b border-btton-0  xs:border-none xs:text-text-500"
+                    : "text-red-500"
+                }`}
+              >
+                Logout
+              </span>
+            </Link>
+          </div>
         </nav>
 
-        {userData  &&(
+        {userData && (
           <div
             className="relative flex items-center space-x-2 mt-0 xs:flex xs:flex-col xs:top-2 "
             onMouseEnter={handleMouseEnterUser}
