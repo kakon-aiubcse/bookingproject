@@ -142,7 +142,7 @@ const Header = () => {
         <nav
           className={`${
             !menuopen ? "xs:hidden" : "flex"
-          } xs:bg-bgrnd-0 xs:w-full  xs:flex xs:flex-col xs:space-y-9 xs:mt-4  xs:text-hdline-0 xs:top-[100px] xs:right-0  xs:h-dvh xs:fixed xs:z-50
+          } xs:bg-bgrnd-0 xs:w-full  xs:flex xs:flex-col xs:space-y-5  xs:pt-[10px] xs:text-hdline-0 xs:top-[95px] xs:right-0  xs:h-dvh xs:fixed xs:z-50
            relative flex font-semibold flex-row  space-y-0 space-x-10 `}
         >
           <div className="xs:border-b xs:border-btton-0 relative xs:relative xs:left-10 xs:py-2">
