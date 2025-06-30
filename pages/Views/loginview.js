@@ -88,7 +88,6 @@ const LoginView = ({
                   name="password"
                   value={password}
                   onChange={handleChange}
-        
                   required
                   placeholder="Password"
                   className="w-full border border-gray-300 rounded-lg px-10 py-3 focus:outline-none focus:ring-2 focus:ring-slate-600"
@@ -133,11 +132,8 @@ const LoginView = ({
               )}
               <div className="text-sm text-white  z-10">
                 Don't have an account?
-                <button
-                  onClick={() => router.push("/signup")}
-                  className="ml-2 mt-10 text-[20px] text-btton-0  font-semibold hover:underline"
-                >
-                  Sign up.
+                <button className="ml-2 mt-10 text-[20px] text-btton-0  font-semibold hover:underline">
+                  <a href="../signup">Sign up.</a>
                 </button>
               </div>
             </form>

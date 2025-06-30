@@ -5,10 +5,8 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
-  screens: {
-    xs: { max: "430px" },
-  },
   theme: {
+   
     extend: {
       colors: {
         bgrnd: ["#16161a"],
@@ -30,7 +28,11 @@ module.exports = {
         ],
         roboto: ["Roboto", "sans-serif"],
       },
+       screens:{
+      xs: {max: "430px"}
+    }
     },
+   
   },
   plugins: [],
 };
