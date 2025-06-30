@@ -20,7 +20,7 @@ const Header = () => {
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [menuopen, setMenuopen] = useState(false);
 
-  const db = getFirestore(); 
+  const db = getFirestore();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -55,18 +55,17 @@ const Header = () => {
     return () => unsubscribe();
   }, [push, pathname, db]);
   useEffect(() => {
-  if (menuopen) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
+    if (menuopen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-  // Cleanup on unmount (optional)
-  return () => {
-    document.body.style.overflow = "auto";
-  };
-}, [menuopen]);
-
+    // Cleanup on unmount (optional)
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menuopen]);
 
   const handleMouseEnter = (dropdownType) => {
     if (timeoutId) {
@@ -128,111 +127,109 @@ const Header = () => {
         </div>
         <Menu
           className="hidden xs:block xs:absolute xs:top-4  xs:left-[315px] xs:h-14 xs:w-14"
-          
-          onClick = {()=> setMenuopen(!menuopen) }
+          onClick={() => setMenuopen(!menuopen)}
         />
-        
-          <nav
-            className={`${
-              !menuopen ? "xs:hidden" : "flex"
-            } xs:bg-bgrnd-0 xs:w-full  xs:flex xs:flex-col xs:space-y-12 xs:py-5 xs:text-hdline-0 xs:top-[100px] xs:right-0  xs:h-dvh xs:fixed xs:z-50
+
+        <nav
+          className={`${
+            !menuopen ? "xs:hidden" : "flex"
+          } xs:bg-bgrnd-0 xs:w-full  xs:flex xs:flex-col xs:space-y-12 xs:py-5 xs:text-hdline-0 xs:top-[100px] xs:right-0  xs:h-dvh xs:fixed xs:z-50
            relative flex font-semibold flex-row  space-y-0 space-x-10 `}
+        >
+          <Link href="/Views/homepage">
+            <span
+              className={`${
+                pathname === "/Views/homepage"
+                  ? "border-b border-btton-0 text-gray-300  xs:relative xs:left-[40px]  "
+                  : " xs:relative xs:left-[40px]"
+              }`}
+            >
+              Homepage
+            </span>
+          </Link>
+
+          <div
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("bookings")}
+            onMouseLeave={() => handleMouseLeave("bookings")}
           >
-            <Link href="/Views/homepage">
-              <span
-                className={`${
-                  pathname === "/Views/homepage"
-                    ? "border-b border-btton-0 text-gray-300  xs:relative xs:left-[40px]  "
-                    : " xs:relative xs:left-[40px]"
-                    
-                }`}
-              >
-                Homepage
-              </span>
-            </Link>
-
-            <div
-              className="relative"
-              onMouseEnter={() => handleMouseEnter("bookings")}
-              onMouseLeave={() => handleMouseLeave("bookings")}
+            <button
+              className={`hover:text-gray-300 ${
+                pathname === "/bookie" || ( menuopen && isBookingsDropdownOpen)
+                  ? "border-b w-auto h-auto border-btton-0 text-gray-300 xs:text-violet-500"
+                  : ""
+              }`}
+              onClick={!menuopen ? handleBookingsClick : undefined}
             >
-              <button
-                className={`hover:text-gray-300 ${
-                  pathname === "/bookie"
-                    ? "border-b border-btton-0 text-gray-300"
-                    : ""
-                }`}
-                onClick={!menuopen? handleBookingsClick : undefined}
-              >
-                Bookings
-              </button>
-              {isBookingsDropdownOpen && (
-                <div
-                  className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-36 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10
-                 xs:relative xs:left-[100px] xs:top-[-35px] xs:shadow-none xs:z-0 xs:hover:text-violet-800"
-                  ref={bookingsDropdownRef}
-                >
-                  <div className="block xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm">
-                    <Link href="/bookings">Create Manual</Link>
-                  </div>
+              Bookings
+            </button>
 
-                  <div className="block xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm">
-                    <Link href="/bookie">Show Bookings</Link>
-                  </div>
+            {isBookingsDropdownOpen && (
+              <div
+                className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-36 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10
+                 xs:relative xs:left-[100px] xs:top-[-35px] xs:shadow-none xs:z-0 xs:text-btton-0"
+                ref={bookingsDropdownRef}
+              >
+                <div className="block xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm xs:border-b xs:border-violet-600">
+                  <Link href="/bookings">Create Manual</Link>
                 </div>
-              )}
-            </div>
 
-            <div
-              className="relative"
-              onMouseEnter={() => handleMouseEnter("invoices")}
-              onMouseLeave={() => handleMouseLeave("invoices")}
+                <div className="block xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm xs:border-b xs:border-violet-600">
+                  <Link href="/bookie">Show Bookings</Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("invoices")}
+            onMouseLeave={() => handleMouseLeave("invoices")}
+          >
+            <button
+              className={`hover:text-gray-300 ${
+                pathname === "/invoice" || (menuopen && isInvoicesDropdownOpen)
+                  ? "border-b border-btton-0 text-gray-300 "
+                  : ""
+              }`}
+              onClick={!menuopen ? handleInvoicesClick : undefined}
             >
-              <button
-                className={`hover:text-gray-300 ${
-                  pathname === "/invoice"
-                    ? "border-b border-btton-0 text-gray-300 "
-                    : ""
-                }`}
-               
-                onClick={!menuopen ? handleInvoicesClick : undefined}
-              >
-                Invoices
-              </button>
-              {isInvoicesDropdownOpen && (
-                <div
-                  className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-40 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10
+              Invoices
+            </button>
+            {isInvoicesDropdownOpen && (
+              <div
+                className="absolute left-0 sm:left-[-10px] top-full mt-1 w-32 sm:w-40 bg-transparent text-hdline-0 rounded-lg shadow-lg z-10
                    xs:relative xs:left-[100px] xs:top-[-50px] xs:shadow-none xs:z-0 "
-                  ref={invoicesDropdownRef}
-                >
-                  <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 ">
-                    <Link href="/invoiceform">Create an Invoice</Link>
-                  </div>
-                  <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0">
-                    <Link href="/updateinvoice">Show Invoices</Link>
-                  </div>
-                  <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0">
-                    <Link href="/invoiceHistory">Invoice History</Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <Link href="/Views/contact">
-              <span
-                className={`${
-                  pathname === "/Views/contact"
-                    ? "border-b border-btton-0 text-gray-300"
-                    : ""
-                }`}
+                ref={invoicesDropdownRef}
               >
-                Contact
-              </span>
-            </Link>
-          </nav>
-        
+                <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 xs:border-b xs:border-violet-600">
+                  <Link href="/invoiceform">Create an Invoice</Link>
+                </div>
+                <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 xs:border-b xs:border-violet-600">
+                  <Link href="/updateinvoice">Show Invoices</Link>
+                </div>
+                <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 xs:border-b xs:border-violet-600">
+                  <Link href="/invoiceHistory">Invoice History</Link>
+                </div>
+              </div>
+            )}
+          </div>
 
-        {userData && (
+          <Link href="/Views/contact">
+            <span
+              className={`${
+                pathname === "/Views/contact"
+                  ? "border-b border-btton-0 text-gray-300"
+                  : ""
+              }`}
+            >
+              Contact
+            </span>
+          </Link>
+
+        </nav>
+
+        {userData  &&(
           <div
             className="relative flex items-center space-x-2 mt-0 xs:flex xs:flex-col xs:top-2 "
             onMouseEnter={handleMouseEnterUser}
