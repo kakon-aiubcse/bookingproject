@@ -127,7 +127,7 @@ const Header = () => {
           </Link>
         </div>
         <Menu
-          className="hidden xs:block xs:absolute  xs:left-[320px] xs:h-16 xs:w-16"
+          className="hidden xs:block xs:absolute xs:top-4  xs:left-[315px] xs:h-14 xs:w-14"
           
           onClick = {()=> setMenuopen(!menuopen) }
         />
@@ -162,7 +162,7 @@ const Header = () => {
                     ? "border-b border-btton-0 text-gray-300"
                     : ""
                 }`}
-                onClick={handleBookingsClick}
+                onClick={!menuopen? handleBookingsClick : undefined}
               >
                 Bookings
               </button>
@@ -194,7 +194,8 @@ const Header = () => {
                     ? "border-b border-btton-0 text-gray-300 "
                     : ""
                 }`}
-                onClick={handleInvoicesClick}
+               
+                onClick={!menuopen ? handleInvoicesClick : undefined}
               >
                 Invoices
               </button>
