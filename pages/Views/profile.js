@@ -153,15 +153,15 @@ const ProfilePage = () => {
     return <div className="text-center">Loading...</div>;
   }
   return (
-    <div className=" overflow-hidden bg-bgrnd-0">
+    <div className=" overflow-hidden bg-bgrnd-0 xs:min-h-screen">
       <Header />
-      <div className="relative flex flex-col overflow-hidden  justify-center items-center min-h-screen  ">
+      <div className="relative flex flex-col overflow-hidden  justify-center items-center min-h-screen x ">
         <h1 className="text-3xl p-5 m-5 font-ios flex flex-col items-center justify-center font-extrabold text-hdline-0">
           Profile details.
         </h1>
-        <div className=" w-screen  min-h-screen  flex flex-row  ">
+        <div className=" w-screen  min-h-screen  flex flex-row xs:flex xs:flex-col xs:items-center xs:justify-center ">
           {/* 1st side: User picture and Delete button */}
-          <div className="w-1/3  h-screen flex flex-col items-end justify-start   p-3 m-3  ">
+          <div className="w-1/3  h-screen flex flex-col items-end justify-start   p-3 m-3 xs:w-screen xs:h-auto xs:items-center xs:justify-center">
             {/* Profile Picture */}
             <div
               className="relative w-40 h-44 rounded-md bg-cover bg-center bg-no-repeat"
@@ -174,7 +174,7 @@ const ProfilePage = () => {
           </div>
 
           {/* 2nd side: User profile details and edit form */}
-          <div className="w-1/3  h-screen flex flex-col items-start justify-start p-3 m-3 ">
+          <div className="w-1/3  h-screen flex flex-col items-start justify-start p-3 m-3 xs:w-screen xs:h-auto xs:items-center xs:justify-center">
             <div className=" space-y-6">
               {userDetails && (
                 <>
@@ -231,7 +231,7 @@ const ProfilePage = () => {
                  
 
                   {/* Phone Field */}
-                  <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center justify-between gap-4 ">
                     <label className="font-semibold text-scdry-0 w-1/3 text-left">
                       Phone:
                     </label>
@@ -255,7 +255,7 @@ const ProfilePage = () => {
             <div className="flex items-center pl-20 ml-4 justify-between gap-4">
               {editMode && (
                 <div className="flex items-center mt-4 relative right-24 space-x-4">
-                  <span className="text-sm font-medium text-scdry-0">
+                  <span className="text-sm font-medium text-scdry-0 xs:text-xs xs:relative xs:left-[40px]">
                     Change Profile Picture:
                   </span>
                   <input
@@ -272,16 +272,16 @@ const ProfilePage = () => {
                     file:bg-btton-0 file:text-bttext-0
                     hover:file:bg-btton-0 hover:file:text-bttext-0
                     focus:outline-none focus:ring-2 focus:ring-btton-0 focus:ring-opacity-50
-                    transition duration-150 ease-in-out"
+                    transition duration-150 ease-in-out xs:relative xs:left-[40px]"
                   />
                 </div>
               )}
             </div>
           </div>
           {/* 3rd side: User profile details and edit form */}
-          <div className="w-1/3 h-screen flex flex-col space-y-5 items-start justify-start p-3 m-3 ">
+          <div className="w-1/3 h-screen flex flex-col space-y-5 items-start justify-start p-3 m-3 xs:w-screen xs:h-auto xs:items-center xs:justify-center">
             {/* Action Buttons */}
-         <div className="flex ">
+         <div className="flex xs:order-3 ">
               <Link href="/resetpass">
               <button className="bg-bgrnd-0 border border-btton-0 text-bttext-0  py-3 px-4 rounded-md  transition duration-200">
                 Reset Password
@@ -289,12 +289,12 @@ const ProfilePage = () => {
             </Link>
             </div>
            
-               <div className="flex  ">
+               <div className="flex xs:order-1 ">
               {editMode ? (
                 <div className="flex space-x-6">
                   <button
                     onClick={handleUpdate}
-                    className="bg-btton-0  text-bttext-0 py-2 px-6 rounded-md hover:bg-violet-600 transition duration-200"
+                    className="bg-btton-0  text-bttext-0 py-2 px-6 rounded-md hover:bg-violet-600 transition duration-200 xs:px-2 xs:mb-3"
                   >
                     Save Changes
                   </button>
@@ -309,7 +309,7 @@ const ProfilePage = () => {
                 <>
                   <button
                     onClick={handleEdit}
-                    className="bg-btton-0 w-[150px] text-bttext-0 py-3 px-4 rounded-md  transition duration-200"
+                    className="bg-btton-0 w-[150px] text-bttext-0 py-3 px-4 rounded-md  transition duration-200 xs:mb-3"
                   >
                     Edit Profile
                   </button>
@@ -317,7 +317,7 @@ const ProfilePage = () => {
                 </>
               )}
             </div>
-             <div className="flex ">
+             <div className="flex xs:order-3 ">
               <DeleteProfile
                 showDeleteForm={showDeleteForm}
                 handleDeleteProfile={handleDeleteProfile}
