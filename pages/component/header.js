@@ -167,7 +167,9 @@ const Header = () => {
           >
             <button
               className={`hover:text-btton-0 ${
-                pathname === "/bookie" || pathname==="/bookings" || (menuopen && isBookingsDropdownOpen) 
+                pathname === "/bookie" ||
+                pathname === "/bookings" ||
+                (menuopen && isBookingsDropdownOpen)
                   ? "border-b w-auto h-auto border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
                   : ""
               }`}
@@ -183,13 +185,25 @@ const Header = () => {
                 ref={bookingsDropdownRef}
               >
                 <div className="block xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0  cursor-pointer text-sm xs:border-b xs:border-violet-600">
-                  <Link href="/bookings"
-                  className={`hover:text-btton-0 ${pathname === "/bookings" ?"text-btton-0":""}`}>Create Manual</Link>
+                  <Link
+                    href="/bookings"
+                    className={`hover:text-btton-0 ${
+                      pathname === "/bookings" ? "text-btton-0" : ""
+                    }`}
+                  >
+                    Create Manual
+                  </Link>
                 </div>
 
                 <div className="block xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm xs:border-b xs:border-violet-600">
-                  <Link href="/bookie"
-                  className={`hover:text-btton-0 ${pathname === "/bookie" ?"text-btton-0":""}`}>Show Bookings</Link>
+                  <Link
+                    href="/bookie"
+                    className={`hover:text-btton-0 ${
+                      pathname === "/bookie" ? "text-btton-0" : ""
+                    }`}
+                  >
+                    Show Bookings
+                  </Link>
                 </div>
               </div>
             )}
@@ -202,7 +216,11 @@ const Header = () => {
           >
             <button
               className={`hover:text-btton-0 ${
-                pathname === "/invoice"|| pathname === "/invoiceform" || pathname === "/updateinvoice"|| pathname === "/invoiceHistory"|| (menuopen && isInvoicesDropdownOpen)
+                pathname === "/invoice" ||
+                pathname === "/invoiceform" ||
+                pathname === "/updateinvoice" ||
+                pathname === "/invoiceHistory" ||
+                (menuopen && isInvoicesDropdownOpen)
                   ? "border-b border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
                   : ""
               }`}
@@ -217,73 +235,99 @@ const Header = () => {
                 ref={invoicesDropdownRef}
               >
                 <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 xs:border-b xs:border-violet-600">
-                  <Link href="/invoiceform"
-                  className={`hover:text-btton-0 ${pathname === "/invoiceform" ?"text-btton-0":""}`}>Create an Invoice</Link>
+                  <Link
+                    href="/invoiceform"
+                    className={`hover:text-btton-0 ${
+                      pathname === "/invoiceform" ? "text-btton-0" : ""
+                    }`}
+                  >
+                    Create an Invoice
+                  </Link>
                 </div>
                 <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 xs:border-b xs:border-violet-600">
-                  <Link href="/updateinvoice"
-                  className={`hover:text-btton-0 ${pathname === "/updateinvoice" ?"text-btton-0":""}`}>Show Invoices</Link>
+                  <Link
+                    href="/updateinvoice"
+                    className={`hover:text-btton-0 ${
+                      pathname === "/updateinvoice" ? "text-btton-0" : ""
+                    }`}
+                  >
+                    Show Invoices
+                  </Link>
                 </div>
                 <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 xs:border-b xs:border-violet-600">
-                  <Link href="/invoiceHistory"
-                  className={`hover:text-btton-0 ${pathname === "/invoiceHistory" ?"text-btton-0":""}`}>Invoice History</Link>
+                  <Link
+                    href="/invoiceHistory"
+                    className={`hover:text-btton-0 ${
+                      pathname === "/invoiceHistory" ? "text-btton-0" : ""
+                    }`}
+                  >
+                    Invoice History
+                  </Link>
                 </div>
               </div>
             )}
           </div>
 
-       <div className="relative xs:border-b xs:border-btton-0 xs:w-[320px] xs:py-2"> <Link href="/Views/contact">
-            <span
-              className={` ${
-                pathname === "/Views/contact"
-                  ? "border-b border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
-                  : ""
-              }`}
-            >
-              Contact
-            </span>
-          </Link>
-        </div>  
-          <div className=" xs:border-b xs:border-btton-0 xs:w-[320px] hidden xs:block xs:py-2">
+          <div className="relative xs:border-b xs:border-btton-0 xs:w-[320px] xs:py-2">
             {" "}
-            <Link href="/Views/profile">
-              <span
-                className={`${
-                  pathname === "/Views/profile"
-                    ? "border-b border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
-                    : ""
-                }`}
-              >
-                Edit Profile
-              </span>
-            </Link>
-          </div>
-          <div className="xs:border-b xs:border-btton-0 xs:w-[320px] hidden xs:block xs:py-2">
-            <Link href="/Views/feedback">
+            <Link href="/Views/contact">
               <span
                 className={` ${
-                  pathname === "/Views/feedback"
+                  pathname === "/Views/contact"
                     ? "border-b border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
                     : ""
                 }`}
               >
-                Feedbacks
+                Contact
               </span>
             </Link>
           </div>
+          
+            {" "}
+            {user && (<div className=" xs:border-b xs:border-btton-0 xs:w-[320px] hidden xs:block xs:py-2">
+              <Link href="/Views/profile">
+                <span
+                  className={`${
+                    pathname === "/Views/profile"
+                      ? "border-b border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
+                      : ""
+                  }`}
+                >
+                  Edit Profile
+                </span>
+              </Link> </div>
+            )}
+         
+         
+            {user && ( <div className="xs:border-b xs:border-btton-0 xs:w-[320px] hidden xs:block xs:py-2">
+              <Link href="/Views/feedback">
+                <span
+                  className={` ${
+                    pathname === "/Views/feedback"
+                      ? "border-b border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
+                      : ""
+                  }`}
+                >
+                  Feedbacks
+                </span>
+              </Link> </div>
+            )}
+         
           <div className="hidden xs:block xs:py-2 ">
             {" "}
-           {user && <Link href="/Views/logout">
-              <span
-                className={` ${ 
-                  pathname === "/Views/logout"
-                    ? "border-b border-btton-0 text-red-500 xs:border-none xs:text-text-500"
-                    : "text-red-500"
-                }`}
-              >
-                Logout
-              </span>
-            </Link>} 
+            {user && (
+              <Link href="/Views/logout">
+                <span
+                  className={` ${
+                    pathname === "/Views/logout"
+                      ? "border-b border-btton-0 text-red-500 xs:border-none xs:text-text-500"
+                      : "text-red-500"
+                  }`}
+                >
+                  Logout
+                </span>
+              </Link>
+            )}
           </div>
         </nav>
 
