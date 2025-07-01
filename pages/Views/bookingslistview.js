@@ -181,11 +181,12 @@ const BookingListView = ({
             </table>
           </div>
           {/* Pagination Controls for Bookings */}
-          <div className="flex bg-bgrnd-0 border border-violet-400 justify-between items-center mt-2 relative top-5 mb-10 ">
+          <div className="flex bg-bgrnd-0 border border-violet-400 justify-between items-center mt-2 relative top-5 mb-10 
+          xs:w-[350px] xs:space-x-14 xs:justify-normal">
             <button
               onClick={() => handlePagination("prev", "bookings")}
               disabled={currentBookingPage === 1}
-              className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 ${
+              className={`py-2 px-4 rounded-lg font-semibold xs:font-extralight xs:text-base xs:py-0 xs:px-0 text-hdline-0 ${
                 currentBookingPage === 1
                   ? "text-scdry-0 cursor-not-allowed"
                   : "text-hdline-0 hover:bg-violet-600"
@@ -197,8 +198,8 @@ const BookingListView = ({
               &lt; Previous
             </button>
 
-            <div className="border-l-2 border-r-2 border-l-violet-400 border-r-violet-400 mt-2 mb-2 pr-10 pl-10">
-              <div className="flex items-center space-x-2">
+            <div className="border-l-2 border-r-2 border-l-violet-400 border-r-violet-400 my-2 px-10 xs:px-0 xs:my-0">
+              <div className="flex items-center space-x-2 xs:space-x-0">
                 {currentBookingPage > 3 && (
                   <>
                     <button
@@ -241,7 +242,7 @@ const BookingListView = ({
                     <span>...</span>
                     <button
                       onClick={() => setCurrentBookingPage(totalPages)}
-                      className={`py-2 px-3 bg-bgrnd-0 ${
+                      className={`py-2 px-3 bg-bgrnd-0 xs:py-0 xs:px-0 ${
                         currentBookingPage === totalPages
                           ? "text-slate-400 cursor-not-allowed"
                           : "text-bttext-0 hover:bg-bgrnd-0 hover:text-white"
@@ -258,7 +259,7 @@ const BookingListView = ({
             <button
               onClick={() => handlePagination("next", "bookings")}
               disabled={currentBookingPage === totalPages}
-              className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 ${
+              className={`py-2 px-4 xs:py-0 xs:px-0 xs:font-extralight xs:text-base rounded-lg font-semibold text-hdline-0  ${
                 currentBookingPage === totalPages
                 ? "text-scdry-0 cursor-not-allowed"
                   : "text-hdline-0 hover:bg-violet-600"
