@@ -155,7 +155,7 @@ const SignupView = ({
               type="submit"
               className={`w-full py-3 px-5 rounded-lg text-white font-semibold transition-colors duration-300 ${
                 loading
-                  ? "bg-gray-400 cursor-not-allowed"
+                  ? "bg-bgrnd-0 text-btton-0 cursor-not-allowed"
                   : "bg-btton-0 hover:bg-violet-600 "
               }`}
               disabled={loading}
@@ -164,7 +164,7 @@ const SignupView = ({
             </button>
 
             {message && (
-              <p className="text-slate-600 text-center mt-4">{message}</p>
+              <p className="text-violet-500 text-center mt-4">{message}</p>
             )}
 
          
