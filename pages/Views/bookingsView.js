@@ -18,12 +18,12 @@ const BookingsView = ({
   const router = useRouter();
   return (
     <>
-      <div>
+      <div className="xs:bg-bgrnd-0 xs:h-auto ">
         <Header />
-        <div className="flex flex-col min-h-screen bg-bgrnd-0  overflow-hidden">
+        <div className="flex flex-col min-h-screen bg-bgrnd-0  overflow-hidden xs:h-full xs:relative xs:top-[-5px]">
           <div className="flex m-3 flex-grow flex-col items-center justify-center px-4 py-0  relative ">
-            <div className="w-full max-w-2xl bg-bgrnd-0 p-4  rounded-lg shadow-md border border-violet-500">
-              <h1 className="text-4xl font-ios p-4 font-semibold mb-4 text-center text-hdline-0">
+            <div className="w-full max-w-2xl bg-bgrnd-0 p-4  rounded-lg shadow-md border border-violet-500  xs:items-center xs:justify-center">
+              <h1 className="text-4xl font-ios p-4 font-semibold mb-4 text-center text-hdline-0 xs:text-2xl xs:w-fit xs:p-2 xs:relative xs:left-8">
                 Create New Booking
               </h1>
 
@@ -45,11 +45,11 @@ const BookingsView = ({
               {loading ? (
                 <div>Loading...</div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-3">
-                  <div className="flex items-center space-x-2">
+                <form onSubmit={handleSubmit} className="space-y-3 xs:flex xs:flex-col xs:items-ce ter">
+                  <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start ">
                     <label
                       htmlFor="PackageName"
-                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-base flex-none w-40"
+                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-base flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start "
                     >
                       Package Name<span className="text-red-500">*</span>
                     </label>
@@ -59,17 +59,18 @@ const BookingsView = ({
                       name="packageName"
                       value={formData?.packageName || ""}
                       onChange={handleChange}
-                      className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
+                      className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm
+                      xs:w-[275px] "
                       placeholder="Package name"
                       required
                     />
                   </div>
 
                   {/* Name */}
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start">
                     <label
                       htmlFor="name"
-                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                     >
                       Book by<span className="text-red-500">*</span>
                     </label>
@@ -80,17 +81,18 @@ const BookingsView = ({
                       value={formData?.name || ""}
                       autoFocus
                       onChange={handleChange}
-                      className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
-                      placeholder="Enter full name"
+                      className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm
+                       xs:w-[275px]"
+                      placeholder="Enter full name "
                       required
                     />
                   </div>
 
                   {/* Passport Number */}
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start">
                     <label
                       htmlFor="passportNumber"
-                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                     >
                       Passport Number<span className="text-red-500">*</span>
                     </label>
@@ -100,17 +102,18 @@ const BookingsView = ({
                       name="passportNumber"
                       value={formData?.passportNumber || ""}
                       onChange={handleChange}
-                      className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
-                      placeholder="Enter passport number"
+                      className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm
+                       xs:w-[275px]"
+                      placeholder="Enter passport number "
                       required
                     />
                   </div>
 
                   {/* Booking Date */}
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start">
                     <label
                       htmlFor="validDate"
-                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                     >
                       Booking Date<span className="text-red-500">*</span>
                     </label>
@@ -123,7 +126,8 @@ const BookingsView = ({
                         }))
                       }
                       dateFormat="dd MMM yyyy"
-                      className="flex-grow border border-gray-200 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
+                      className="flex-grow border border-gray-200 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm
+                       xs:w-[275px]"
                       placeholderText="Select booking date"
                       required
                       minDate={minDate} // Use the minDate prop from Booking component
@@ -131,10 +135,10 @@ const BookingsView = ({
                   </div>
 
                   {/* Net Amount */}
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start">
                     <label
                       htmlFor="netAmount"
-                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                     >
                       Net Amount ($)<span className="text-red-500">*</span>
                     </label>
@@ -144,7 +148,8 @@ const BookingsView = ({
                       name="netAmount"
                       value={formData?.netAmount || ""}
                       onChange={handleChange}
-                      className="flex-grow border border-gray-200 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
+                      className="flex-grow border border-gray-200 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm
+                       xs:w-[275px]"
                       placeholder="Enter net amount"
                       min="0"
                       step="0.01"
@@ -152,10 +157,10 @@ const BookingsView = ({
                   </div>
 
                   {/* Paid Amount */}
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start">
                     <label
                       htmlFor="paidAmount"
-                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                     >
                       Paid Amount ($)<span className="text-red-500">*</span>
                     </label>
@@ -165,8 +170,9 @@ const BookingsView = ({
                       name="paidAmount"
                       value={formData?.paidAmount || ""}
                       onChange={handleChange}
-                      className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
-                      placeholder="Enter paid amount"
+                      className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm
+                       xs:w-[275px]"
+                      placeholder="Enter paid amount "
                       min="0"
                       step="0.01"
                       required
@@ -174,10 +180,10 @@ const BookingsView = ({
                   </div>
 
                   {/* Payment Status */}
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start">
                     <label
                       htmlFor="paymentStatus"
-                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                      className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                     >
                       Payment Status<span className="text-red-500">*</span>
                     </label>
@@ -186,8 +192,9 @@ const BookingsView = ({
                       name="paymentStatus"
                       value={formData?.paymentStatus || ""}
                       onChange={handleChange}
-                      className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
-                      required
+                      className="flex-grow border border-gray-300 rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm
+                       xs:w-[275px]"
+                      require d
                       placeholder="Updated Status "
                       disabled
                     >
@@ -200,11 +207,12 @@ const BookingsView = ({
                   </div>
 
                   {/* Submit and Go Back Buttons */}
-                  <div className="flex flex-col space-y-3 mt-4 p-2">
+                  <div className="flex flex-col space-y-3 mt-4 p-2 xs:items-center xs:justify-center xs:relative  ">
                     <button
                       type="submit"
                       disabled={loading}
-                      className="px-2 py-3 bg-btton-0 text-bttext-0 rounded-lg text-base font-semibold hover:bg-btton-0 transition duration-300 disabled:bg-rose-400"
+                      className="px-2 py-3 bg-btton-0 text-bttext-0 rounded-lg text-base font-semibold hover:bg-btton-0 transition duration-300 disabled:bg-rose-400
+                    "
                     >
                       {loading ? "Submitting..." : "Create Booking"}
                     </button>
