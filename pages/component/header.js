@@ -166,8 +166,8 @@ const Header = () => {
             onMouseLeave={() => handleMouseLeave("bookings")}
           >
             <button
-              className={`hover:text-gray-300 ${
-                pathname === "/bookie" || (menuopen && isBookingsDropdownOpen)
+              className={`hover:text-btton-0 ${
+                pathname === "/bookie" || pathname==="/bookings" || (menuopen && isBookingsDropdownOpen) 
                   ? "border-b w-auto h-auto border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
                   : ""
               }`}
@@ -182,12 +182,14 @@ const Header = () => {
                  xs:relative xs:left-[100px] xs:top-[-35px] xs:shadow-none xs:z-0 xs:text-btton-0"
                 ref={bookingsDropdownRef}
               >
-                <div className="block xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm xs:border-b xs:border-violet-600">
-                  <Link href="/bookings">Create Manual</Link>
+                <div className="block xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0  cursor-pointer text-sm xs:border-b xs:border-violet-600">
+                  <Link href="/bookings"
+                  className={`hover:text-btton-0 ${pathname === "/bookings" ?"text-btton-0":""}`}>Create Manual</Link>
                 </div>
 
                 <div className="block xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 hover:text-btton-0 cursor-pointer text-sm xs:border-b xs:border-violet-600">
-                  <Link href="/bookie">Show Bookings</Link>
+                  <Link href="/bookie"
+                  className={`hover:text-btton-0 ${pathname === "/bookie" ?"text-btton-0":""}`}>Show Bookings</Link>
                 </div>
               </div>
             )}
@@ -199,8 +201,8 @@ const Header = () => {
             onMouseLeave={() => handleMouseLeave("invoices")}
           >
             <button
-              className={`hover:text-gray-300 ${
-                pathname === "/invoice" || (menuopen && isInvoicesDropdownOpen)
+              className={`hover:text-btton-0 ${
+                pathname === "/invoice"|| pathname === "/invoiceform" || pathname === "/updateinvoice"|| pathname === "/invoiceHistory"|| (menuopen && isInvoicesDropdownOpen)
                   ? "border-b border-btton-0 text-gray-300 xs:border-none xs:text-btton-0"
                   : ""
               }`}
@@ -215,13 +217,16 @@ const Header = () => {
                 ref={invoicesDropdownRef}
               >
                 <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 xs:border-b xs:border-violet-600">
-                  <Link href="/invoiceform">Create an Invoice</Link>
+                  <Link href="/invoiceform"
+                  className={`hover:text-btton-0 ${pathname === "/invoiceform" ?"text-btton-0":""}`}>Create an Invoice</Link>
                 </div>
                 <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 xs:border-b xs:border-violet-600">
-                  <Link href="/updateinvoice">Show Invoices</Link>
+                  <Link href="/updateinvoice"
+                  className={`hover:text-btton-0 ${pathname === "/updateinvoice" ?"text-btton-0":""}`}>Show Invoices</Link>
                 </div>
                 <div className="block  xs:w-[150px] px-3 py-1 bg-bgrnd-0 text-hdline-0 cursor-pointer text-sm hover:text-btton-0 xs:border-b xs:border-violet-600">
-                  <Link href="/invoiceHistory">Invoice History</Link>
+                  <Link href="/invoiceHistory"
+                  className={`hover:text-btton-0 ${pathname === "/invoiceHistory" ?"text-btton-0":""}`}>Invoice History</Link>
                 </div>
               </div>
             )}
