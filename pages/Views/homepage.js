@@ -7,7 +7,7 @@ const HomePage = () => {
     <>
       {" "}
       <Header />
-      <div className="bg-bgrnd-0 min-h-screen overflow-hidden ">
+      <div className="bg-bgrnd-0 min-h-screen overflow-hidden xs:min-h-screen ">
         <Packages />
       </div>
     </>

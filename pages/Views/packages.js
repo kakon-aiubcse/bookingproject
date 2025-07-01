@@ -12,12 +12,12 @@ export default function Packages() {
   const router = useRouter();
 
   return (
-    <div className="flex bg-bgrnd-0 flex-col items-center justify-center p-6 h-auto w-screen ">
+    <div className="flex bg-bgrnd-0 flex-col items-center justify-center p-6 h-auto w-screen xs:min-h-screen xs:mb-9">
       <h1 className="text-3xl font-bold text-hdline-0 mb-8">
         Select Any Packages{" "}
         <span className="text-btton-0 font-bold relative right-2">.</span>
       </h1>
-      <div className="grid grid-cols-3  items-center justify-center gap-6 w-screen h-fit px-10">
+      <div className="grid grid-cols-3  items-center justify-center gap-6 w-screen h-fit px-10 xs:px-5 xs:min-h-screen xs:my-4  xs:grid xs:grid-cols-1">
         {packages.map((pkg) => (
           <div
             key={pkg.id}
