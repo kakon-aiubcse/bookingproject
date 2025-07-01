@@ -140,7 +140,7 @@ const SignupView = ({
                   console.log("File input changed:", event.target.files[0]); // Check the file
                 }}
                 className="inline-block text-sm text-gray-500 border border-btton-0 rounded-md
-                file:mr-4 file:py-2 file:px-4
+                file:mr-4 file:py-2 file:px-2 xs:file:mr-0 xs:file:relative xs:w-[230px]
                 file:rounded-full file:border-0
                 file:text-sm file:font-semibold
                 file:bg-btton-0 file:text-bttext-0

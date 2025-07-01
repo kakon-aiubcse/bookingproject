@@ -273,17 +273,17 @@ const Header = () => {
           </div>
           <div className="hidden xs:block xs:py-2 ">
             {" "}
-            <Link href="/Views/logout">
+           {user && <Link href="/Views/logout">
               <span
-                className={`${
+                className={` ${ 
                   pathname === "/Views/logout"
-                    ? "border-b border-btton-0  xs:border-none xs:text-text-500"
+                    ? "border-b border-btton-0 text-red-500 xs:border-none xs:text-text-500"
                     : "text-red-500"
                 }`}
               >
                 Logout
               </span>
-            </Link>
+            </Link>} 
           </div>
         </nav>
 
@@ -312,7 +312,7 @@ const Header = () => {
                 <div className="block px-3 py-1  text-hdline- bg-bgrnd-0 hover:text-btton-0 cursor-pointer text-sm">
                   <Link href="/Views/feedback">Feedbacks</Link>
                 </div>
-                <div className="block px-3 py-1  text-hdline- bg-bgrnd-0 hover:text-btton-0 cursor-pointer text-sm">
+                <div className="block px-3 py-1  text-hdline- bg-bgrnd-0 text-red-500 cursor-pointer text-sm">
                   <a href="/Views/logout">Log out!</a>
                 </div>
               </div>
