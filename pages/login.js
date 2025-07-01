@@ -14,18 +14,22 @@ export default function Login() {
     const [user, setUser] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-        if (currentUser) {
-          setUser(currentUser);
-          router.push("/Views/homepage")
-        } else {
-          router.push("/login"); // Redirect to login if not authenticated
-        }
-      });
-  
-      return () => unsubscribe();
-    }, [router])
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+
+    if (currentUser && router.pathname !== "/Views/homepage") {
+      router.push("/Views/homepage");
+    }
+
+    if (!currentUser && router.pathname !== "/login") {
+      router.push("/login");
+    }
+  });
+
+  return () => unsubscribe();
+}, [router]);
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -83,7 +87,7 @@ export default function Login() {
   return (
     <>
   
-      <div className=" overflow-hidden h-dvh">
+      <div className=" overflow-hidden h-dvh xs:min-h-screen bg-bgrnd-0 xs:mb-10 xs:overflow-x-hidden">
         <LoginView
           handleSubmit={handleSubmit}
           handleChange={handleChange}

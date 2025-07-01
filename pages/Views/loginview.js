@@ -18,17 +18,19 @@ const LoginView = ({
   return (
     <>
       <Header />
-      <div className="relative flex flex-col  w-screen pb-32 justify-center items-center bg-bgrnd-0 h-dvh">
-        <div className="relative  w-full bg-bgrnd-0   flex flex-row ">
+      <div className="relative flex flex-col  w-screen pb-32 justify-center items-center bg-bgrnd-0 h-dvh xs:pb-2 xs:min-h-screen
+       xs:top-0 ">
+        <div className="relative  w-full bg-bgrnd-0   flex flex-row xs:flex xs:flex-col xs:w-screen xs:min-h-screen">
           {/* Left Side */}
-          <div className=" p-10 w-1/2 text-hdline-0  font-bold flex  flex-col justify-center items-center relative">
+          <div className=" p-10 w-1/2 text-hdline-0  font-bold flex  flex-col justify-center items-center relative 
+          xs:p-0 xs:w-screen xs:justify-normal xs:bottom-6">
             <svg
               width="300"
               height="300"
               viewBox="0 0 1024 1024"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="mx-auto"
+              className="mx-auto xs:m-2 xs:h-20 xs:w-20"
             >
               <circle cx="512" cy="512" r="500" fill="#16161a" />
               <path
@@ -39,25 +41,26 @@ const LoginView = ({
             </svg>
 
             <h2
-              className="text-5xl font-ios text-hdline-0
-             font-bold mb-8"
+              className="text-5xl font-ios text-slate-300
+             font-bold mb-8
+             xs:text-xl xs:m-0"
             >
               Welcome Back<span className="text-btton-0">!</span>
             </h2>
-            <p className=" text-scdry-0 font-ios  text-lg">
+            <p className=" text-scdry-0 font-ios  text-lg xs:text-xs   ">
               Log in to access your dashboard, manage your bookings, and more.
             </p>
           </div>
 
           {/* Right Side - Login Form */}
-          <div className="w-1/2 px-24 flex flex-col justify-center relative ">
-            <h2 className="text-4xl font-semibold font-ios text-bttext-0 mb-5 text-center">
+          <div className="w-1/2 px-24 flex flex-col justify-center relative xs:w-screen xs:px-0 xs:top-2">
+            <h2 className="text-4xl font-semibold font-ios text-bttext-0 mb-5 text-center xs:text-3xl xs:mb-0">
               User Login.
             </h2>
-            <h3 className="mt-2 text-base font-light text-gray-400">
+            <h3 className="mt-2 text-base font-light text-gray-400 xs:text-[9px] xs:m-1 xs:p-1 xs:items-center xs:justify-center">
               Start exploring by logging into your dashboard:
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+            <form onSubmit={handleSubmit} className="space-y-6 mt-4 xs:space-y-2 xs:px-2 xs:my-4">
               <div className="relative">
                 <img
                   src="/emailicon.svg"
