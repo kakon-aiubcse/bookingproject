@@ -42,13 +42,14 @@ const ContactPage = () => {
 
   return (
     <>
-      <Header />
+    <div className="xs:min-h-screen xs:bg-bgrnd-0">
+       <Header />
 
-      <div className="flex bg-bgrnd-0 h-dvh w-full overflow-hidden p-20">
+      <div className="flex bg-bgrnd-0 h-dvh w-full overflow-hidden p-20 xs:flex xs:flex-col xs:pt-10 xs:h-auto xs:items-center xs:justify-center xs:space-y-2">
         {/* First Div (Image and Words) */}
-        <div className="relative w-1/2 h-full flex flex-col items-center justify-center ">
+        <div className="relative w-1/2 h-full flex flex-col items-center justify-center xs:w-screen ">
           {/* Image Section */}
-          <div className="relative w-full h-1/2 items-center justify-end flex flex-col bottom-8">
+          <div className="relative w-full h-1/2 items-center justify-end flex flex-col bottom-8 xs:bottom-0">
             <img
               src="/contact.png.png"
               alt="Background"
@@ -57,19 +58,19 @@ const ContactPage = () => {
           </div>
           {/* Text Section */}
           <div className="relative w-full h-1/2 flex flex-col justify-start items-center bg-bgrnd-0 text-hdline-0 p-6 rounded-b-lg">
-            <h2 className="text-4xl font-semibold font-ios ">
-              Manage Your Bookings<label className="text-btton-0">.</label>
+            <h2 className="text-3xl font-semibold font-ios xs:text-xl ">
+             Need Help with Your Bookings?<label className="text-btton-0">.</label>
             </h2>
-            <p className="mt-2 text-center text-prgraph-0">
-              Effortlessly track, manage, and organize all your bookings and
-              invoices in one place.
+            <p className="mt-2 text-center text-prgraph-0 xs:text-sm">
+             Contact us for any questions — we’ll help you manage your bookings easily.
             </p>
           </div>
         </div>
         {/* Second Div (Contact Form) */}
-        <div className="relative w-1/2 font-ios h-full flex items-center justify-center bg-bgrnd-0 text-scdry-0  rounded-lg shadow-lg">
-          <div className=" p-10 w-full  space-y-10">
-            <h1 className="text-4xl font-bold text-center mb-6 text-hdline-0">
+        <div className="relative w-1/2 font-ios h-full flex items-center justify-center bg-bgrnd-0 text-scdry-0  rounded-lg shadow-lg
+        xs:w-screen xs:h-auto xs:p-2 ">
+          <div className=" p-10 w-full  space-y-10 xs:space-y-3 xs:p-2">
+            <h1 className="text-4xl font-bold text-center mb-6 text-hdline-0 xs:text-2xl">
               Contact us
             </h1>
             {successMessage && (
@@ -127,6 +128,8 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
+    </div>
+     
     </>
   );
 };
