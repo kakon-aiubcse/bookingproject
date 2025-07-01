@@ -175,11 +175,12 @@ const UpdateinvoiceView = ({
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex bg-bgrnd-0 border border-violet-400 justify-between items-center mt-2 relative top-5 mb-10 ">
+            <div className="flex bg-bgrnd-0 border border-violet-400 justify-between items-center mt-2 relative top-5 mb-10 
+            xs:w-[350px] xs:space-x-14 xs:justify-normal">
               <button
                 onClick={() => handlePagination("prev", "invoices")}
                 disabled={currentPage === 1}
-                className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 ${
+                className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 xs:font-extralight xs:text-base xs:px-1 xs:py-4 ${
                   currentPage === 1
                     ? "text-scdry-0 cursor-not-allowed"
                     : "text-hdline-0 hover:bg-violet-600"
@@ -191,8 +192,8 @@ const UpdateinvoiceView = ({
                 &lt; Previous
               </button>
 
-              <div className="border-l-2 border-r-2 border-l-violet-400 border-r-violet-400 mt-2 mb-2 pr-10 pl-10">
-                <div className="flex items-center space-x-2">
+              <div className="border-l-2 border-r-2 border-l-violet-400 border-r-violet-400 my-2 px-10 xs:px-0 xs:my-0">
+                <div className="flex items-center space-x-2 xs:space-x-2">
                   {currentPage > 3 && (
                     <>
                       <button
@@ -214,7 +215,7 @@ const UpdateinvoiceView = ({
                           <button
                             key={page}
                             onClick={() => setCurrentPage(page)}
-                            className={`py-2 px-3 border-violet-400 ${
+                            className={`py-2 px-3 border-violet-400  xs:py-0 xs:px-0 ${
                               currentPage === page
                                 ? "border border-violet-400 bg-bgrnd-0 text-hdline-0"
                                 : "bg-bgrnd-0 text-gray-400"
@@ -229,10 +230,10 @@ const UpdateinvoiceView = ({
 
                   {currentPage < totalPages - 3 && (
                     <>
-                      <span>...</span>
+                      <span >...</span>
                       <button
                         onClick={() => setCurrentPage(totalPages)}
-                        className={`py-2 px-3 bg-bgrnd-0 ${
+                        className={`py-2 px-3 bg-bgrnd-0 xs:px-0 ${
                           currentPage === totalPages
                              ? "text-slate-400 cursor-not-allowed"
                           : "text-bttext-0 hover:bg-bgrnd-0 hover:text-white"
@@ -249,7 +250,7 @@ const UpdateinvoiceView = ({
               <button
                 onClick={() => handlePagination("next", "invoices")}
                 disabled={currentPage === totalPages}
-                className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 ${
+                className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 xs:py-0 xs:px-0 xs:font-extralight xs:text-base ${
                 currentPage === totalPages
                 ? "text-scdry-0 cursor-not-allowed"
                   : "text-hdline-0 hover:bg-violet-600"
