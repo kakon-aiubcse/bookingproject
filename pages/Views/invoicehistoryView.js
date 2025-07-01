@@ -439,11 +439,12 @@ const InvoicehistoryView = ({
                   </tbody>
                 </table>
 
-                <div className="flex flex-grow w-screen bg-bgrnd-0 border border-violet-400 justify-between items-center mt-2">
+                <div className="flex flex-grow w-screen bg-bgrnd-0 border border-violet-400 justify-between items-center mt-2
+                  xs:w-[370px] xs:space-x-8 xs:items-center xs:justify-center">
                   <button
                     onClick={handlePrevPage}
                     disabled={currentPage === 1}
-                    className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 disabled:text-red-400   ${
+                    className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 disabled:text-red-400 xs:font-extralight xs:text-base xs:px-1 xs:py-2   ${
                       currentPage === 1
                         ? "text-slate-800 cursor-not-allowed"
                         : "text-slate-200 hover:bg-violet-600"
@@ -455,9 +456,9 @@ const InvoicehistoryView = ({
                     &lt; Previous
                   </button>
 
-                  <div className="border-l-2 border-r-2 border-l-violet-400 border-r-violet-400 mt-2 pr-10 pl-10">
-                    <div className="flex items-center space-x-2">
-                      {currentPage > 3 && (
+                  <div className="border-l-2 border-r-2 border-l-violet-400 border-r-violet-400 mt-2 px-10  xs:px-0 xs:my-0">
+                    <div className="flex items-center space-x-2 xs:space-x-2">
+                      {currentPage > 1 && (
                         <>
                           <button
                             onClick={() => setCurrentPage(1)}
@@ -478,7 +479,7 @@ const InvoicehistoryView = ({
                               <button
                                 key={page}
                                 onClick={() => setCurrentPage(page)}
-                                className={`py-2 px-3 border-violet-400  ${
+                                className={`py-2 px-3 border-violet-400  xs:py-1 xs:px-0 ${
                                   currentPage === page
                                     ? "border border-violet-500 bg-bgrnd-0 text-hdline-0"
                                     : "bg-bgrnd-0 text-scdry-0 hover:bg-bgrnd-0 hover:text-white"
@@ -491,12 +492,12 @@ const InvoicehistoryView = ({
                         }
                       )}
 
-                      {currentPage < totalPages - 3 && (
+                      {currentPage < totalPages - 1 && (
                         <>
                           <span className="text-violet-500">...</span>
                           <button
                             onClick={() => setCurrentPage(totalPages)}
-                            className={`py-2 px-3 bg-bgrnd-0 ${
+                            className={`py-2 px-3 bg-bgrnd-0 xs:py-1 xs:px-1 ${
                               currentPage === totalPages
                                 ? "text-slate-400 cursor-not-allowed"
                                 : "text-gray-400 hover:bg-bgrnd-0 hover:text-white"
@@ -513,7 +514,7 @@ const InvoicehistoryView = ({
                   <button
                     onClick={handleNextPage}
                     disabled={currentPage === totalPages}
-                    className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 disabled:text-red-400 ${
+                    className={`py-2 px-4 rounded-lg font-semibold text-hdline-0 disabled:text-red-400 xs:py-1 xs:px-2 xs:font-extralight xs:text-base ${
                       currentPage === totalPages
                         ? "text-scdry-0 cursor-not-allowed"
                         : "text-hdline-0 hover:bg-violet-600"
