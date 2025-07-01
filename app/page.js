@@ -9,7 +9,7 @@ export default function page() {
         <Header />
         <Home />
       </div>
-      <div className="hidden  xs:flex xs:flex-col">
+      <div className="hidden  xs:flex xs:flex-col xs:bg-bgrnd-0 xs:overflow-hidden">
         <Header/>
         <Home/>
       </div>
