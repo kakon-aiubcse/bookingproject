@@ -87,7 +87,7 @@ useEffect(() => {
   return (
     <>
   
-      <div className=" overflow-hidden h-dvh xs:min-h-screen bg-bgrnd-0 xs:mb-10 xs:overflow-x-hidden">
+      <div className=" overflow-hidden h-dvh  xs:bg-bgrnd-0  xs:h-full ">
         <LoginView
           handleSubmit={handleSubmit}
           handleChange={handleChange}

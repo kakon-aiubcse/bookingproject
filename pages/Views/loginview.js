@@ -18,12 +18,12 @@ const LoginView = ({
   return (
     <>
       <Header />
-      <div className="relative flex flex-col  w-screen pb-32 justify-center items-center bg-bgrnd-0 h-dvh xs:pb-2 xs:min-h-screen
-       xs:top-0 ">
-        <div className="relative  w-full bg-bgrnd-0   flex flex-row xs:flex xs:flex-col xs:w-screen xs:min-h-screen">
+      <div className="relative flex flex-col  w-screen pb-32 justify-center items-center bg-bgrnd-0 h-dvh   
+       xs:top-[90px] xs:pt-[280px] ">
+        <div className="relative  w-full bg-bgrnd-0   flex flex-row xs:flex xs:flex-col xs:w-screen ">
           {/* Left Side */}
           <div className=" p-10 w-1/2 text-hdline-0  font-bold flex  flex-col justify-center items-center relative 
-          xs:p-0 xs:w-screen xs:justify-normal xs:bottom-6">
+          xs:p-0  xs:w-screen xs:justify-normal xs:bottom-4">
             <svg
               width="300"
               height="300"
@@ -53,14 +53,14 @@ const LoginView = ({
           </div>
 
           {/* Right Side - Login Form */}
-          <div className="w-1/2 px-24 flex flex-col justify-center relative xs:w-screen xs:px-0 xs:top-2">
+          <div className="w-1/2 px-24 flex flex-col justify-center relative xs:w-screen xs:px-0 xs:top-10 xs:mb-52">
             <h2 className="text-4xl font-semibold font-ios text-bttext-0 mb-5 text-center xs:text-3xl xs:mb-0">
               User Login.
             </h2>
             <h3 className="mt-2 text-base font-light text-gray-400 xs:text-[9px] xs:m-1 xs:p-1 xs:items-center xs:justify-center">
               Start exploring by logging into your dashboard:
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6 mt-4 xs:space-y-2 xs:px-2 xs:my-4">
+            <form onSubmit={handleSubmit} className="space-y-6 mt-4 xs:space-y-2 xs:px-2 xs:mb-44 xs:pb-40">
               <div className="relative">
                 <img
                   src="/emailicon.svg"
