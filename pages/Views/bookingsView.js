@@ -45,7 +45,7 @@ const BookingsView = ({
               {loading ? (
                 <div>Loading...</div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-3 xs:flex xs:flex-col xs:items-ce ter">
+                <form onSubmit={handleSubmit} className="space-y-3 xs:flex xs:flex-col xs:items-center">
                   <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start ">
                     <label
                       htmlFor="PackageName"

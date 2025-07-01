@@ -252,12 +252,12 @@ const InvoiceForm = () => {
   };
 
   return (
-    <div>
+    <div className="xs:bg-bgrnd-0 xs:h-auto">
       <Header />
-       <div className="flex flex-col min-h-screen bg-bgrnd-0 bottom-10 overflow-hidden">
+       <div className="flex flex-col min-h-screen bg-bgrnd-0 bottom-10 overflow-hidden xs:h-full xs:relative xs:top-[-5px]">
           <div className="flex m-3 flex-grow flex-col items-center justify-center px-4 py-0 bottom-5 relative ">
-            <div className="w-full max-w-2xl bg-bgrnd-0 p-4  rounded-lg shadow-md border border-violet-500">
-              <h1 className="text-4xl font-ios p-4 font-semibold mb-4 text-center text-hdline-0">
+            <div className="w-full max-w-2xl bg-bgrnd-0 p-4  rounded-lg shadow-md border border-violet-500 xs:relative xs:top-[20px] xs:items-center xs:justify-center">
+              <h1 className="text-4xl font-ios p-4 font-semibold mb-4 text-center text-hdline-0 xs:text-2xl xs:w-fit xs:p-2 xs:relative xs:left-8">
               Create First Invoice{" "}
             </h1>
 
@@ -276,23 +276,24 @@ const InvoiceForm = () => {
             )}
 
             {/* Invoice Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4  xs:flex xs:flex-col xs:items-center">
               {/* Invoice Number */}
-              <div className="flex items-center space-x-2">
-                <label className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40">
+              <div className="flex items-center space-x-2   xs:flex-col xs:items-start xs:justify-start ">
+                <label className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start">
                   Invoice Number <span className="text-red-500">*</span>
                 </label>
                 <input
                   value={formData.invoiceNumber || "..."}
-                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm"
+                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm
+                  xs:w-[275px]"
                 />
               </div>
 
               {/* Booking ID */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start ">
                 <label
                   htmlFor="bookingId"
-                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                 >
                   Booking Name <span className="text-red-500">*</span>
                 </label>
@@ -302,7 +303,8 @@ const InvoiceForm = () => {
                   onChange={handleBookingChange}
                   placeholder="Select Booking"
                   isClearable
-                  className="flex-grow  rounded-md p-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-violet-600"
+                  className="flex-grow  rounded-md p-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-violet-600
+                  xs:w-[275px]"
                   styles={{
                     control: (provided, state) => ({
                       ...provided,
@@ -322,10 +324,10 @@ const InvoiceForm = () => {
                 />
               </div>
 
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start ">
                 <label
                   htmlFor="packageName"
-                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                 >
                   Package Name<span className="text-red-500">*</span>
                 </label>
@@ -336,15 +338,15 @@ const InvoiceForm = () => {
                   value={packageName}
                   onChange={handleChange} // If input is read-only, handleChange won't be needed
                   readOnly // Ensures the input cannot be modified
-                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm"
+                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm xs:w-[275px]"
                 />
               </div>
 
               {/* Net Amount */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start ">
                 <label
                   htmlFor="netAmount"
-                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                 >
                   Net Amount<span className="text-red-500">*</span>
                 </label>
@@ -355,15 +357,15 @@ const InvoiceForm = () => {
                   value={netAmount}
                   onChange={handleChange}
                   readOnly
-                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm"
+                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm xs:w-[275px]"
                 />
               </div>
 
               {/* Paid Amount */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start ">
                 <label
                   htmlFor="paidAmount"
-                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                 >
                   Paid Amount<span className="text-red-500">*</span>
                 </label>
@@ -374,15 +376,16 @@ const InvoiceForm = () => {
                   value={paidAmount}
                   onChange={handleChange}
                   readOnly
-                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm"
+                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm
+                  xs:w-[275px]"
                 />
               </div>
 
               {/* Due Amount */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start ">
                 <label
                   htmlFor="dueAmount"
-                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                 >
                   Due Amount<span className="text-red-500">*</span>
                 </label>
@@ -392,15 +395,16 @@ const InvoiceForm = () => {
                   name="dueAmount"
                   value={dueAmount}
                   readOnly
-                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm"
+                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm
+                  xs:w-[275px]"
                 />
               </div>
 
               {/* Payment Status */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 xs:flex-col xs:items-start xs:justify-start ">
                 <label
                   htmlFor="paymentStatus"
-                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40"
+                  className="text-scdry-0 font-ios text-end pr-4 font-medium text-sm flex-none w-40 xs:relative xs:left-2 xs:m-1  xs:text-start"
                 >
                   Payment Status<span className="text-red-500">*</span>
                 </label>
@@ -409,7 +413,8 @@ const InvoiceForm = () => {
                   name="paymentStatus"
                   value={formData.paymentStatus}
                   onChange={handleChange}
-                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm"
+                  className="flex-grow border border-gray-100 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-violet-500 text-sm
+                  xs:w-[275px]"
                   required
                   placeholder="Updated Status "
                   disabled
@@ -426,7 +431,8 @@ const InvoiceForm = () => {
               <div className="flex flex-col space-y-3 mt-4 py-3">
                 <button
                   type="submit"
-                  className="px-2 py-2 bg-btton-0 text-bttext-0 rounded-lg text-base font-semibold  transition duration-300 disabled:bg-gray-400"
+                  className="px-2 py-2 bg-btton-0 text-bttext-0 rounded-lg text-base font-semibold  transition duration-300 disabled:bg-gray-400
+                  "
                 >
                   Create Invoice
                 </button>
