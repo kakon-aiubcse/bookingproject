@@ -145,7 +145,7 @@ const Header = () => {
           } xs:bg-bgrnd-0 xs:w-full  xs:flex xs:flex-col xs:space-y-5  xs:pt-[10px] xs:text-hdline-0 xs:top-[99px] xs:right-0  xs:h-dvh xs:fixed xs:z-50
            relative flex font-semibold flex-row  space-y-0 space-x-10 `}
         >
-          <div className="xs:border-b xs:border-btton-0 relative xs:relative xs:left-10 xs:py-2">
+          <div className="xs:border-b xs:border-btton-0 xs:w-[320px] relative xs:relative xs:left-10 xs:py-2">
             {" "}
             <Link href="/Views/homepage">
               <span
@@ -161,7 +161,7 @@ const Header = () => {
           </div>
 
           <div
-            className="relative  xs:border-b xs:border-btton-0 xs:py-2"
+            className="relative  xs:border-b xs:border-btton-0 xs:w-[320px] xs:py-2"
             onMouseEnter={() => handleMouseEnter("bookings")}
             onMouseLeave={() => handleMouseLeave("bookings")}
           >
@@ -194,7 +194,7 @@ const Header = () => {
           </div>
 
           <div
-            className="relative  xs:border-b xs:border-btton-0 xs:py-2"
+            className="relative  xs:border-b xs:border-btton-0 xs:w-[320px] xs:py-2"
             onMouseEnter={() => handleMouseEnter("invoices")}
             onMouseLeave={() => handleMouseLeave("invoices")}
           >
@@ -227,7 +227,7 @@ const Header = () => {
             )}
           </div>
 
-       <div className="relative xs:border-b xs:border-btton-0 xs:py-2"> <Link href="/Views/contact">
+       <div className="relative xs:border-b xs:border-btton-0 xs:w-[320px] xs:py-2"> <Link href="/Views/contact">
             <span
               className={` ${
                 pathname === "/Views/contact"
@@ -239,7 +239,7 @@ const Header = () => {
             </span>
           </Link>
         </div>  
-          <div className=" xs:border-b xs:border-btton-0 hidden xs:block xs:py-2">
+          <div className=" xs:border-b xs:border-btton-0 xs:w-[320px] hidden xs:block xs:py-2">
             {" "}
             <Link href="/Views/profile">
               <span
@@ -253,7 +253,7 @@ const Header = () => {
               </span>
             </Link>
           </div>
-          <div className="xs:border-b xs:border-btton-0 hidden xs:block xs:py-2">
+          <div className="xs:border-b xs:border-btton-0 xs:w-[320px] hidden xs:block xs:py-2">
             <Link href="/Views/feedback">
               <span
                 className={` ${
@@ -266,7 +266,7 @@ const Header = () => {
               </span>
             </Link>
           </div>
-          <div className="hidden xs:block xs:py-2">
+          <div className="hidden xs:block xs:py-2 ">
             {" "}
             <Link href="/Views/logout">
               <span
