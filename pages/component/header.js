@@ -117,7 +117,7 @@ const Header = () => {
   };
 
   return (
-    <header className=" bg-bgrnd-0 text-hdline-0 py-6 px-6 xs:px-6 xs:overflow-hidden">
+    <header className=" bg-bgrnd-0 text-hdline-0 py-6 px-6 xs:px-6 xs:overflow-hidden xs:h-[115px]">
       <div className="container mx-auto flex flex-row justify-between items-center xs:items-start xs:flex-col ">
         <div className=" flex items-center space-x-2 text-xl sm:text-2xl cursor-pointer ">
           <Link href="/">
@@ -142,7 +142,7 @@ const Header = () => {
         <nav
           className={`${
             !menuopen ? "xs:hidden" : "flex"
-          } xs:bg-bgrnd-0 xs:w-full  xs:flex xs:flex-col xs:space-y-5  xs:pt-[10px] xs:text-hdline-0 xs:top-[95px] xs:right-0  xs:h-dvh xs:fixed xs:z-50
+          } xs:bg-bgrnd-0 xs:w-full  xs:flex xs:flex-col xs:space-y-5  xs:pt-[10px] xs:text-hdline-0 xs:top-[99px] xs:right-0  xs:h-dvh xs:fixed xs:z-50
            relative flex font-semibold flex-row  space-y-0 space-x-10 `}
         >
           <div className="xs:border-b xs:border-btton-0 relative xs:relative xs:left-10 xs:py-2">

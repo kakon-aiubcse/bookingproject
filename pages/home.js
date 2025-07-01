@@ -3,11 +3,13 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <div className=" h-dvh bg-bgrnd-0 justify-evenly items-center flex flex-row w-dvw">
+      <div className=" h-dvh bg-bgrnd-0 justify-evenly items-center flex flex-row w-dvw
+      xs:flex xs:flex-col xs:h-min-h-screen xs:w-screen xs:relative xs:bottom-[2px]">
         {/* left side */}
-        <div className=" p-10 font-ios flex flex-col justify-start relative w-1/3 m-10">
-          <div className="text-center mb-16">
-            <div className="flex justify-center items-center mb-4">
+        <div className=" p-10 font-ios flex flex-col justify-start relative w-1/3 m-10
+        xs:h-1/3 xs:items-center  xs:p-0 xs:m-0 xs:w-screen xs:justify-center">
+          <div className="text-center mb-16 xs:m-0">
+            <div className="flex justify-center items-center mb-4 xs:m-0">
               <img src="/bookinglogo.svg" alt="bookinglogo" className="" />
             </div>
             <h1 className="text-5xl block  items-center font-bold text-hdline-0">
