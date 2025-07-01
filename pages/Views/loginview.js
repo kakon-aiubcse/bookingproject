@@ -127,7 +127,7 @@ const LoginView = ({
                 }`}
                 disabled={loading}
               >
-                {loading ? "Logging in..." : "Sign in"}
+                {loading ? "Logging in..." : "Login"}
               </button>
 
               {message && (

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import { auth } from "../lib/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword , onAuthStateChanged} from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import Header from "./component/header";
@@ -21,6 +21,20 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
+    const [user, setUser] = useState(null);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+  
+      if (currentUser && router.pathname !== "/Views/homepage") {
+        router.push("/Views/homepage");
+      }
+  
+      if (!currentUser && router.pathname !== "/signup") {
+        router.push("/signup");
+      }
+    });return () => unsubscribe();
+}, [router]);
 
   const validate = () => {
     const errors = {};
@@ -150,7 +164,7 @@ export default function SignUp() {
   return (
     <>
       <Header />
-      <div className="overflow-hidden h-dvh">
+      <div className="overflow-hidden  xs:bg-bgrnd-0 xs:relative xs:mt-[-5px] ">
         <SignupView
           handleSubmit={handleSubmit}
           handleChange={handleChange}

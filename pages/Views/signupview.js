@@ -1,8 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useEffect , useState } from "react";
-import { auth } from "../../lib/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import Link from "next/link";
+
 
 const SignupView = ({
   handleSubmit,
@@ -20,36 +19,26 @@ const SignupView = ({
   showPassword,
   onProfileImageChange,
 }) => {
-  const [user, setUser] = useState(null)
+ 
   const router = useRouter();
-  useEffect(()=>{
-    const unsubscribe = onAuthStateChanged(auth,(currentuser)=>{
-      if(currentuser ){
-        setUser(currentuser)
-        router.push("/Views/homepage")
-      }
-      else{
-        router.push("/signup")
-      }
-      return () => unsubscribe();
-
-    })
-  },[router])
+  
 
   return (
-    <div className="rrelative flex flex-col  w-screen pb-32 justify-center items-center bg-bgrnd-0 h-dvh">
-      <div className="relative  w-full bg-bgrnd-0  flex flex-row">
+    <div className="relative flex flex-col  w-screen pb-32 justify-center items-center bg-bgrnd-0 
+     xs:pb-0 ">
+      <div className="relative  w-full bg-bgrnd-0  flex flex-row xs:flex xs:flex-col xs:w-screen">
         {/* Left side - Sign Up Information */}{" "}
-        <div className="px-32 w-1/2 flex flex-col justify-center relative rounded-lg top-5">
-          <h2 className="text-4xl font-semibold text-hdline-0 mb-4 text-center">
+        <div className="px-32 w-1/2 flex flex-col justify-center relative rounded-lg top-5
+              xs:w-screen xs:px-0 xs:top-10 xs:mb-52 xs:order-2">
+          <h2 className="text-4xl font-semibold text-hdline-0 mb-4 text-center xs:text-3xl xs:mb-0 xs:top-6">
             User Registration.
           </h2>
 
-          <h3 className="mt-1 text-lg font-base  text-scdry-0 mb-2 text-left">
+          <h3 className="mt-1 text-lg font-base  text-scdry-0 mb-2 text-left  xs:text-[14px]  xs:pt-10 xs:m-1 xs:p-1 xs:items-center xs:justify-center">
             Start exploring by registering your data:
           </h3>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 xs:px-2">
             {/* Name Input */}
             <div className="relative">
               <input
@@ -177,26 +166,28 @@ const SignupView = ({
             {message && (
               <p className="text-slate-600 text-center mt-4">{message}</p>
             )}
-            <div className="text-base font-ios text-hdline-0 font-medium">
+
+         
+          </form>   <div className="text-base font-ios text-hdline-0 font-medium relative pt-3">
               Already have an account?
-              <button
-                onClick={() => router.push("/login")}
+              <Link href="/login"
+                
                   className="ml-2 mt-2 text-[20px] text-btton-0  font-medium font-ios hover:underline"
               >
                 Log in.
-              </button>
+              </Link>
             </div>
-          </form>
         </div>{" "}
         {/* Right side - Sign Up Form */}
-        <div className=" relative w-1/2 p-10 flex flex-col justify-center items-center">
+        <div className=" relative w-1/2 p-10 flex flex-col justify-center items-center
+         xs:p-0  xs:w-screen xs:justify-normal xs:bottom-4 xs:order-1">
           <svg
             width="300"
             height="300"
             viewBox="0 0 1024 1024"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="mx-auto"
+            className="mx-auto xs:m-2 xs:h-20 xs:w-20"
           >
             <circle cx="512" cy="512" r="500" fill="#16161a" />
             <path
@@ -209,11 +200,11 @@ const SignupView = ({
             />
           </svg>
 
-          <div className="relative font-ios font-semibold text-center">
-            <h2 className="text-5xl text-hdline-0 font-bold mx-10">
+          <div className="relative font-ios font-semibold text-center xs:bottom-7">
+            <h2 className="text-5xl text-hdline-0 font-bold mx-10 xs:text-3xl xs:mx-0 xs:text-slate-300">
               Create your Account <span className="text-btton-0">!</span>
             </h2>
-            <p className="mx-2  text-scdry-0 mt-5 text-lg font-ios">
+            <p className="mx-2  text-scdry-0 mt-5 text-lg font-ios xs:text-xs">
               Sign up now to access exclusive features, manage bookings, view
               invoices, and much more.
             </p>
