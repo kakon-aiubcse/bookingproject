@@ -252,11 +252,11 @@ const ProfilePage = () => {
               )}
             </div>
             {/* Profile Picture Upload */}
-            <div className="flex items-center pl-20 ml-4 justify-between gap-4">
+            <div className="flex items-center pl-20 ml-4 justify-between gap-4 xs:px-10 xs:relative xs:left-12 xs:mx-4">
               {editMode && (
                 <div className="flex items-center mt-4 relative right-24 space-x-4">
                   <span className="text-sm font-medium text-scdry-0 xs:text-xs xs:relative xs:left-[40px]">
-                    Change Profile Picture:
+                    Change Picture:
                   </span>
                   <input
                     type="file"

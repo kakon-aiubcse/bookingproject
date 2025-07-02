@@ -103,7 +103,7 @@ const ForgotPassword = () => {
             {/* Left Side - Welcome Text */}
             <div className="bg-bgrnd-0 p-10 w-1/2 font-bold flex  flex-col justify-center items-center relative xs:w-screen">
               <h2 className="text-4xl font-ios text-hdline-0 font-bold mb-4 xs:text-3xl">
-                forgot password 
+                Forget password 
                 <span className="font-extrabold text-violet-700"> ? </span>
               </h2>
               

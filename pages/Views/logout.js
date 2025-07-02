@@ -15,7 +15,9 @@ const LogoutPage = () => {
       console.error("Error logging out:", error);
     }
   };
-
+const homePage = () =>{
+router.push("/Views/homepage");
+}
   return (
     <>
       <Header />
@@ -36,7 +38,7 @@ const LogoutPage = () => {
             Logout
           </button>
           <button
-            onClick={() => router.back()}
+            onClick={ homePage}
             className="w-1/2 bg-btton-0 text-bttext-0 py-2 rounded-lg "
           >
             Cancel

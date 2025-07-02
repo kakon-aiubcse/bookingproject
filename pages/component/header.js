@@ -317,7 +317,31 @@ const Header = () => {
               </Link>
             )}
           </div>
+           {!userData && <>
+        <div className=" relative xs:flex hidden flex-row">
+          <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100 xs:px-5">
+           <Link href="/login">
+            Sign In</Link>
+          </button>
+          <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100 xs:px-5">
+            <Link href= "/signup">
+            Sign Up</Link>
+          </button>
+        </div>
+        </>}
         </nav>
+        {!userData && <>
+        <div className="flex relative xs:hidden flex-row">
+          <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100">
+           <Link href="/login">
+            Sign In</Link>
+          </button>
+          <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100">
+            <Link href= "/signup">
+            Sign Up</Link>
+          </button>
+        </div>
+        </>}
 
         {userData && (
           <div

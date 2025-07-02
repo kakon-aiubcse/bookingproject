@@ -32,42 +32,42 @@ const UpdateinvoiceView = ({
             )}
 
             {/* Invoices Table */}
-            <div className="overflow-x-auto">
-              <table className="min-w-full bg-bgrnd-0 space-y-10 gap-10 rounded-lg shadow-md">
+            <div className="overflow-x-auto ">
+              <table className="min-w-full bg-bgrnd-0 space-y-10 gap-10 rounded-lg shadow-md xs:p-4 xs:w-[1200px]">
                 <thead>
                   <tr className="bg-bgrnd-0">
                     {/* Table headers */}
-                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
+                    <th className="px-2 py-2  text-left text-hdline-0 font-ios text-xs xs:text-sm">
                       INV No.
                     </th>
-                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs xs:text-sm">
                       Bookie ID
                     </th>
-                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs xs:text-sm">
                       Bookie Name
                     </th>
-                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs xs:text-sm">
                       Package Name
                     </th>
-                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs xs:text-sm">
                       Issued At
                     </th>
-                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs xs:text-sm">
                       Status
                     </th>
-                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs xs:text-sm">
                       Net Amount
                     </th>
-                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs xs:text-sm">
                       Total Paid
                     </th>
-                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs xs:text-sm">
                       Due
                     </th>
-                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs xs:text-sm">
                       Updated At
                     </th>
-                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs">
+                    <th className="px-2 py-2 text-left text-hdline-0 font-ios text-xs xs:text-sm">
                       Actions
                     </th>
                   </tr>
@@ -75,19 +75,19 @@ const UpdateinvoiceView = ({
                 <tbody>
                   {safeinvoices.map((invoice) => (
                     <tr key={invoice.id} className="border-b">
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs xs:text-sm">
                         {invoice.invoiceNumber}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs xs:text-sm">
                         {truncateText(invoice.bookingId, 6)}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs xs:text-sm">
                         {bookings[invoice.bookingId] || "N/A"}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs xs:text-sm">
                         {invoice.packageName}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs xs:text-sm">
                         {invoice.dateIssued
                           ? new Date(invoice.dateIssued).toLocaleDateString(
                               "en-GB",
@@ -100,19 +100,19 @@ const UpdateinvoiceView = ({
                           : "N/A"}
                       </td>
                       <td
-                        className={`px-2 py-2  text-gray-700 font-semibold text-xs md:text-sm ${getStatusClass(
+                        className={`px-2 py-2  text-gray-700 font-semibold text-xs xs:text-sm md:text-sm ${getStatusClass(
                           invoice.paymentStatus
                         )}`}
                       >
                         {invoice.paymentStatus}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs xs:text-sm">
                         $
                         {invoice.netAmount
                           ? Number(invoice.netAmount).toFixed(2)
                           : "N/A"}
                       </td>
-                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs">
+                      <td className="px-2 py-6 text-slate-200 font-ios hover:text-btton-0 text-xs xs:text-sm">
                         $
                         {isNaN(Number(invoice.totalPaidAmount))
                           ? "N/A"
@@ -155,7 +155,7 @@ const UpdateinvoiceView = ({
                           onClick={() =>
                             router.push(`/Controller/editinvoice/${invoice.id}`)
                           }
-                          className="text-btton-0 hover:text-violet-600 text-xs  mr-2"
+                          className="text-btton-0 hover:text-violet-600 text-xs xs:px-4 mr-2"
                         >
                           Edit
                         </button>

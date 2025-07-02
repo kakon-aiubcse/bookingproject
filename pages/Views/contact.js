@@ -59,7 +59,7 @@ const ContactPage = () => {
           {/* Text Section */}
           <div className="relative w-full h-1/2 flex flex-col justify-start items-center bg-bgrnd-0 text-hdline-0 p-6 rounded-b-lg">
             <h2 className="text-3xl font-semibold font-ios xs:text-xl ">
-             Need Help with Your Bookings?<label className="text-btton-0">.</label>
+             Need help with your Bookings<label className="text-btton-0">?</label>
             </h2>
             <p className="mt-2 text-center text-prgraph-0 xs:text-sm">
              Contact us for any questions — we’ll help you manage your bookings easily.
@@ -87,7 +87,7 @@ const ContactPage = () => {
               <div>
                 <input
                   ref={nameInputRef} // Attach the ref
-                  placeholder="Enter your name"
+                  placeholder="Name"
                   type="text"
                   name="name"
                   value={formData.name}
@@ -103,7 +103,7 @@ const ContactPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="Enter your Email"
+                  placeholder="Email"
                   className="w-full p-2 border  rounded-md  focus:ring-2 focus:ring-btton-0"
                 />
               </div>
@@ -113,7 +113,7 @@ const ContactPage = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  placeholder="Share your feedback with us"
+                  placeholder="Text"
                   rows="4"
                   className="w-full p-2 border  rounded-md  focus:ring-2 focus:ring-btton-0"
                 />
