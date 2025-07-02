@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const publicRoutes = ["/", "/login", "/signup", "/contact", "/pages/Views/contact.js","/pages/Views/homepage.js"];
+const publicRoutes = ["/", "/login", "/signup", "/contact", "/pages/Views/contact.js","/pages/Views/homepage.js", "/pages/Views/forgetpassword.js"];
 
 export default function AuthGuard() {
   const router = useRouter();

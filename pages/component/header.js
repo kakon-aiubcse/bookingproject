@@ -38,19 +38,7 @@ const Header = () => {
         } catch (error) {
           console.error("Error fetching user data:", error);
         }
-      } else {
-        const publicRoutes = [
-          "/",
-          "/login",
-          "/signup",
-          "/contact",
-          "/Views/contact",
-          "/Views/homepage",
-        ];
-        if (!publicRoutes.includes(pathname)) {
-          push("/login");
-        }
-      }
+      } 
     });
 
     return () => unsubscribe();

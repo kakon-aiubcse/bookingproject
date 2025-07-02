@@ -101,27 +101,25 @@ const ForgotPassword = () => {
   };
 
   return (
-    <>
-      <Header />
-      
-        <div className="relative flex flex-col bg-bgrnd-0 min-h-screen w-screen justify-center items-center">
-          <div className="relative max-w-6xl mb-24 w-full shadow-lg rounded-lg overflow-hidden flex flex-row">
+    <> <Header />
+   
+     
+      <div className="relative flex flex-col bg-bgrnd-0 min-h-screen w-screen justify-center items-center  xs:top-[-19px] ">
+          <div className="relative max-w-6xl mb-24 w-full shadow-lg rounded-lg overflow-hidden flex flex-row xs:flex xs:flex-col xs:items-center">
             {/* Left Side - Welcome Text */}
-            <div className="bg-bgrnd-0 p-10 w-1/2 font-bold flex  flex-col justify-center items-center relative">
-              <h2 className="text-4xl text-hdline-0 font-bold mb-4">
-                Reset Password{" "}
-                <span className="font-extrabold text-violet-500"> ! </span>
+            <div className="bg-bgrnd-0 p-10 w-1/2 font-bold flex  flex-col justify-center items-center relative xs:w-screen">
+              <h2 className="text-4xl font-ios text-hdline-0 font-bold mb-4 xs:text-3xl">
+                forgot password 
+                <span className="font-extrabold text-violet-700"> ? </span>
               </h2>
-              <p className=" text-scdry-0 text-lg">
-                Enter your email address to receive a password reset link..
-              </p>
+              
             </div>
 
             {/* Right Side - Reset Form */}
-            <div className=" p-10 w-1/2  bg-bgrnd-0 flex flex-col justify-center relative">
-              <h2 className="text-3xl text-hdline-0 font-semibold  mb-5 text-center">
-                Forgot Password?
-              </h2>
+            <div className=" p-10 w-1/2  bg-bgrnd-0 flex flex-col justify-center relative xs:w-screen">
+           <p className=" text-scdry-0 text-lg">
+                Enter your email address to receive a password reset link..
+              </p>
               <form onSubmit={handleSubmit} className="space-y-6 mt-4">
                 <div className="relative">
                   <img
@@ -160,6 +158,9 @@ const ForgotPassword = () => {
           </div>
         </div>
 
+  
+      
+        
     </>
   );
 };
