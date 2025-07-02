@@ -318,7 +318,7 @@ const Header = () => {
               <div className=" relative xs:flex hidden flex-row">
                 {pathname !== "/login" && (
                   <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100 xs:px-5">
-                    <Link href="/login">Sign In</Link>
+                    <Link href="/login">Log In</Link>
                   </button>
                 )}
                    {pathname !== "/signup" && (  <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100">
