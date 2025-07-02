@@ -191,8 +191,8 @@ const ProfilePage = () => {
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between gap-4">
-                    <label className="font-semibold text-scdry-0 w-1/3 text-left">
+                  {/* <div className="flex items-center justify-between gap-4" >
+                    <label className="font-semibold text-scdry-0 w-1/3 text-left" aria-disabled>
                       Password:
                     </label>
 
@@ -207,7 +207,7 @@ const ProfilePage = () => {
                         {userDetails.password || "N/A"}
                       </span>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* Name Field */}
                   <div className="flex items-center justify-between gap-4">

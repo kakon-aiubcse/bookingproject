@@ -19,7 +19,8 @@ const ResetPasswordPage = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword1, setShowPassword1] = useState(false);
+   const [showPassword2, setShowPassword2] = useState(false);
   const [user, setUser] = useState(null);
   const passwordInputRef = useRef(null);
   const [formData, setFormData] = useState({});
@@ -137,8 +138,10 @@ const ResetPasswordPage = () => {
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const togglePasswordVisibility1 = () => {
+    setShowPassword1(!showPassword1);
+  };const togglePasswordVisibility2 = () => {
+    setShowPassword2(!showPassword2);
   };
 
   return (
@@ -158,7 +161,7 @@ const ResetPasswordPage = () => {
             {" "}
             <input
               ref={passwordInputRef}
-              type={showPassword ? "text" : "password"}
+              type={showPassword1 ? "text" : "password"}
               placeholder="Enter current password"
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
@@ -167,9 +170,9 @@ const ResetPasswordPage = () => {
             <button
               type="button"
               className="absolute right-3 top-3"
-              onClick={togglePasswordVisibility}
+              onClick={togglePasswordVisibility1}
             >
-              {showPassword ? (
+              {showPassword1 ? (
                 <Image
                   src="/eyeicon.svg"
                   alt="Open eye icon"
@@ -190,7 +193,7 @@ const ResetPasswordPage = () => {
           {/* New Password */}
           <div className="relative w-full">
             <input
-              type={showPassword ? "text" : "password"}
+              type={showPassword2 ? "text" : "password"}
               placeholder="Enter new password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
@@ -199,9 +202,9 @@ const ResetPasswordPage = () => {
             <button
               type="button"
               className="absolute right-3 top-3"
-              onClick={togglePasswordVisibility}
+              onClick={togglePasswordVisibility2}
             >
-              {showPassword ? (
+              {showPassword2 ? (
                 <Image
                   src="/eyeicon.svg"
                   alt="Open eye icon"
@@ -222,7 +225,7 @@ const ResetPasswordPage = () => {
           {/* Confirm New Password */}
           <div className="relative w-full">
             <input
-             type={showPassword ? "text" : "password"}
+             type={showPassword2 ? "text" : "password"}
               placeholder="Confirm new password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -231,9 +234,9 @@ const ResetPasswordPage = () => {
             <button
               type="button"
               className="absolute right-3 top-3"
-              onClick={togglePasswordVisibility}
+              onClick={togglePasswordVisibility2}
             >
-              {showPassword ? (
+              {showPassword2 ? (
                 <Image
                   src="/eyeicon.svg"
                   alt="Open eye icon"

@@ -56,7 +56,7 @@ const ForgotPassword = () => {
       }
 
       const actionCodeSettings = {
-        url: "http://localhost:7000/resetpass",
+        url: "https://bookingapppersonal.netlify.app/login",
       };
       await sendPasswordResetEmail(auth, trimmedEmail, actionCodeSettings);
 
@@ -73,14 +73,8 @@ const ForgotPassword = () => {
               Check here!
             </a>
           </span>
-          <h2 className="text-red-500 text-xs font-mono text-center mt-4">
-            *only if valid Email Address.
-          </h2>
-          <h3>
-            <Link href="/login" className="text-btton-0 underline">
-              login?
-            </Link>
-          </h3>
+        
+       
         </h1>
       );
       setEmail(""); // Clear the input field after sending the email
