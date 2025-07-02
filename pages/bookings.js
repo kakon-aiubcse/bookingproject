@@ -6,10 +6,12 @@ import { onAuthStateChanged } from "firebase/auth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import BookingsView from "./Views/bookingsView";
+import Spinner from "./component/spinner";
 
 const Booking = () => {
   const router = useRouter();
   const { packageId } = router.query;
+  const [loading2, setLoading2] = useState(true)
 
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
@@ -61,6 +63,18 @@ const Booking = () => {
       }
     }
   }, [packageId]);
+
+       useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading2(false);
+        }, 1500); 
+        return () => clearTimeout(timer);
+      }, []);
+    
+      if (loading2) {
+        return <Spinner />;
+      }
+
 
   // Helper functions for validation
   const isValidNumber = (value) => /^[0-9]+(\.[0-9]+)?$/.test(value);

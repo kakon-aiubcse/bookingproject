@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { db } from "../lib/firebase";
 import { auth } from "../lib/firebase";
 import Header from "./component/header";
-import { collection, getDocs, doc, deleteDoc, } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import { useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import UpdateinvoiceView from "./Views/updateInvoiceView";
+import Spinner from "./component/spinner";
 
 const Updateinvoices = () => {
   const [invoices, setInvoices] = useState([]);
@@ -13,14 +14,22 @@ const Updateinvoices = () => {
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const invoicesPerPage = 10;
-  const router = useRouter()
- 
+  const router = useRouter();
+
 
   const truncateText = (text, maxLength = 10) => {
     return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   };
-useEffect(() => {
+        useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 1500); 
+        return () => clearTimeout(timer);
+      }, []);
+    
+  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
@@ -136,6 +145,9 @@ useEffect(() => {
       setCurrentPage((prev) => prev - 1);
     }
   };
+      if (loading) {
+        return <Spinner />;
+      }
 
   return (
     <>

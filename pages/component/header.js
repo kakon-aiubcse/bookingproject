@@ -38,7 +38,7 @@ const Header = () => {
         } catch (error) {
           console.error("Error fetching user data:", error);
         }
-      } 
+      }
     });
 
     return () => unsubscribe();
@@ -147,7 +147,6 @@ const Header = () => {
               </span>
             </Link>
           </div>
-
           <div
             className="relative  xs:border-b xs:border-btton-0 xs:w-[320px] xs:py-2"
             onMouseEnter={() => handleMouseEnter("bookings")}
@@ -196,7 +195,6 @@ const Header = () => {
               </div>
             )}
           </div>
-
           <div
             className="relative  xs:border-b xs:border-btton-0 xs:w-[320px] xs:py-2"
             onMouseEnter={() => handleMouseEnter("invoices")}
@@ -255,7 +253,6 @@ const Header = () => {
               </div>
             )}
           </div>
-
           <div className="relative xs:border-b xs:border-btton-0 xs:w-[320px] xs:py-2">
             {" "}
             <Link href="/Views/contact">
@@ -269,10 +266,9 @@ const Header = () => {
                 Contact
               </span>
             </Link>
-          </div>
-          
-            {" "}
-            {user && (<div className=" xs:border-b xs:border-btton-0 xs:w-[320px] hidden xs:block xs:py-2">
+          </div>{" "}
+          {user && (
+            <div className=" xs:border-b xs:border-btton-0 xs:w-[320px] hidden xs:block xs:py-2">
               <Link href="/Views/profile">
                 <span
                   className={`${
@@ -283,11 +279,11 @@ const Header = () => {
                 >
                   Edit Profile
                 </span>
-              </Link> </div>
-            )}
-         
-         
-            {user && ( <div className="xs:border-b xs:border-btton-0 xs:w-[320px] hidden xs:block xs:py-2">
+              </Link>{" "}
+            </div>
+          )}
+          {user && (
+            <div className="xs:border-b xs:border-btton-0 xs:w-[320px] hidden xs:block xs:py-2">
               <Link href="/Views/feedback">
                 <span
                   className={` ${
@@ -298,9 +294,9 @@ const Header = () => {
                 >
                   Feedbacks
                 </span>
-              </Link> </div>
-            )}
-         
+              </Link>{" "}
+            </div>
+          )}
           <div className="hidden xs:block xs:py-2 ">
             {" "}
             {user && (
@@ -317,31 +313,36 @@ const Header = () => {
               </Link>
             )}
           </div>
-           {!userData && <>
-        <div className=" relative xs:flex hidden flex-row">
-          <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100 xs:px-5">
-           <Link href="/login">
-            Sign In</Link>
-          </button>
-          <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100 xs:px-5">
-            <Link href= "/signup">
-            Sign Up</Link>
-          </button>
-        </div>
-        </>}
+          {!userData && (
+            <>
+              <div className=" relative xs:flex hidden flex-row">
+                {pathname !== "/login" && (
+                  <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100 xs:px-5">
+                    <Link href="/login">Sign In</Link>
+                  </button>
+                )}
+                   {pathname !== "/signup" && (  <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100">
+                <Link href="/signup">Sign Up</Link>
+              </button>)}
+              </div>
+            </>
+          )}
         </nav>
-        {!userData && <>
-        <div className="flex relative xs:hidden flex-row">
-          <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100">
-           <Link href="/login">
-            Sign In</Link>
-          </button>
-          <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100">
-            <Link href= "/signup">
-            Sign Up</Link>
-          </button>
-        </div>
-        </>}
+        {!userData && (
+          <>
+            <div className="flex relative xs:hidden flex-row">
+            {pathname !== "/login" && (
+                  <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100">
+                    <Link href="/login">Sign In</Link>
+                  </button>
+                )}
+                {pathname !== "/signup" && (  <button className="bg-btton-0 text-bttext-0 m-2 p-1 rounded-md hover:bg-bgrnd-0 hover:text-slate-100">
+                <Link href="/signup">Sign Up</Link>
+              </button>)}
+             
+            </div>
+          </>
+        )}
 
         {userData && (
           <div

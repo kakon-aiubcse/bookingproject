@@ -12,6 +12,8 @@ import {
 import { useRouter } from "next/router";
 import { auth, db } from "../../lib/firebase"; // Import Firebase services
 import Header from "../component/header";
+import Spinner from "../component/spinner";
+  
 
 const Feedback = () => {
   const [messages, setMessages] = useState([]);
@@ -20,7 +22,15 @@ const Feedback = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const router = useRouter();
-
+ const [loading, setLoading] = useState(true)
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 1500); 
+        return () => clearTimeout(timer);
+      }, []);
+    
+     
   // Fetch messages from Firestore
   const fetchMessages = async () => {
     try {
@@ -97,6 +107,9 @@ const Feedback = () => {
       setErrorMessage("Error deleting the message. Please try again.");
     }
   };
+   if (loading) {
+        return <Spinner />;
+      }
 
   return (
     <>

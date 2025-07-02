@@ -1,7 +1,8 @@
-import React from "react";
+import React,{useEffect , useState} from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "../component/header";
+import Spinner from "../component/spinner";
 
 const LoginView = ({
   handleSubmit,
@@ -14,7 +15,16 @@ const LoginView = ({
   showPassword,
 }) => {
   const router = useRouter();
-
+ const [loading2, setLoading2] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading2(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+  if (loading2) {
+    return <Spinner />;
+  }
   return (
     <>
       <Header />

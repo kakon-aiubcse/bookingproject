@@ -1,12 +1,16 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { auth } from "../lib/firebase";
-import { createUserWithEmailAndPassword , onAuthStateChanged} from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import Header from "./component/header";
 import SignupView from "./Views/signupview";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 
 export default function SignUp() {
   const router = useRouter();
@@ -21,20 +25,23 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
-    const [user, setUser] = useState(null);
+ 
+  const [user, setUser] = useState(null);
+  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-  
+
       if (currentUser && router.pathname !== "/Views/homepage") {
         router.push("/Views/homepage");
       }
-  
+
       if (!currentUser && router.pathname !== "/signup") {
         router.push("/signup");
       }
-    });return () => unsubscribe();
-}, [router]);
+    });
+    return () => unsubscribe();
+  }, [router]);
 
   const validate = () => {
     const errors = {};
@@ -161,6 +168,7 @@ export default function SignUp() {
     setShowPassword((prev) => !prev);
   };
 
+
   return (
     <>
       <Header />
@@ -176,7 +184,6 @@ export default function SignUp() {
           toggleShowPassword={toggleShowPassword}
           showPassword={showPassword}
         />
-       
         {profileImage && <p>Selected file: {profileImage.name}</p>}{" "}
         {/* Feedback on file selection */}
       </div>

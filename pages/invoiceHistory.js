@@ -13,6 +13,7 @@ import { auth } from "../lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/router";
 import InvoicehistoryView from "./Views/invoicehistoryView";
+import Spinner from "./component/spinner";
 
 const InvoiceHistory = () => {
   const router = useRouter();
@@ -22,6 +23,15 @@ const InvoiceHistory = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
+  const [loading, setLoading] = useState(true)
+  useEffect(()=> {
+    const timeout = setTimeout(()=>{
+      setLoading(false)
+
+    },1500);
+    return ()=> clearTimeout(timeout);
+
+  },[]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -149,6 +159,9 @@ const handlePrev = () => {
   const truncateText = (text, maxLength = 10) => {
     return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   };
+      if (loading) {
+        return <Spinner />;
+      }
 
   const getStatusClass = (status) => {
     switch (status) {

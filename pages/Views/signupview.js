@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-
+import Spinner from "../component/spinner";
 
 const SignupView = ({
   handleSubmit,
@@ -19,25 +19,34 @@ const SignupView = ({
   showPassword,
   onProfileImageChange,
 }) => {
- 
   const router = useRouter();
-  
-
+  const [loading2, setLoading2] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading2(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+  if (loading2) {
+    return <Spinner />;
+  }
   return (
-    <div className="relative flex flex-col  w-screen pb-32 justify-center items-center bg-bgrnd-0 
-     xs:pb-0 ">
+    <div
+      className="relative flex flex-col  w-screen pb-32 justify-center items-center bg-bgrnd-0 
+     xs:pb-0 "
+    >
       <div className="relative  w-full bg-bgrnd-0  flex flex-row xs:flex xs:flex-col xs:w-screen">
         {/* Left side - Sign Up Information */}{" "}
-        <div className="px-32 w-1/2 flex flex-col justify-center relative rounded-lg top-5
-              xs:w-screen xs:px-0 xs:top-10 xs:mb-52 xs:order-2">
+        <div
+          className="px-32 w-1/2 flex flex-col justify-center relative rounded-lg top-5
+              xs:w-screen xs:px-0 xs:top-10 xs:mb-52 xs:order-2"
+        >
           <h2 className="text-4xl font-semibold text-hdline-0 mb-4 text-center xs:text-3xl xs:mb-0 xs:top-6">
             User Registration.
           </h2>
-
           <h3 className="mt-1 text-lg font-base  text-scdry-0 mb-2 text-left  xs:text-[14px]  xs:pt-10 xs:m-1 xs:p-1 xs:items-center xs:justify-center">
             Start exploring by registering your data:
           </h3>
-
           <form onSubmit={handleSubmit} className="space-y-4 xs:px-2">
             {/* Name Input */}
             <div className="relative">
@@ -166,21 +175,22 @@ const SignupView = ({
             {message && (
               <p className="text-violet-500 text-center mt-4">{message}</p>
             )}
-
-         
-          </form>   <div className="text-base font-ios text-hdline-0 font-medium relative pt-3">
-              Already have an account?
-              <Link href="/login"
-                
-                  className="ml-2 mt-2 text-[20px] text-btton-0  font-medium font-ios hover:underline"
-              >
-                Log in.
-              </Link>
-            </div>
+          </form>{" "}
+          <div className="text-base font-ios text-hdline-0 font-medium relative pt-3">
+            Already have an account?
+            <Link
+              href="/login"
+              className="ml-2 mt-2 text-[20px] text-btton-0  font-medium font-ios hover:underline"
+            >
+              Log in.
+            </Link>
+          </div>
         </div>{" "}
         {/* Right side - Sign Up Form */}
-        <div className=" relative w-1/2 p-10 flex flex-col justify-center items-center
-         xs:p-0  xs:w-screen xs:justify-normal xs:bottom-4 xs:order-1">
+        <div
+          className=" relative w-1/2 p-10 flex flex-col justify-center items-center
+         xs:p-0  xs:w-screen xs:justify-normal xs:bottom-4 xs:order-1"
+        >
           <svg
             width="300"
             height="300"

@@ -3,9 +3,22 @@ import { useRouter } from "next/router";
 import { auth } from "../../lib/firebase";
 import { signOut } from "firebase/auth";
 import Header from "../component/header";
+import {useEffect, useState} from "react";
+import Spinner from "../component/spinner";
 
 const LogoutPage = () => {
   const router = useRouter();
+   const [loading, setLoading] = useState(true)
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 1500); 
+        return () => clearTimeout(timer);
+      }, []);
+    
+  if (loading) {
+        return <Spinner />;
+      }
 
   const handleLogout = async () => {
     try {

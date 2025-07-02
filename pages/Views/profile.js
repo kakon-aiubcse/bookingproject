@@ -13,6 +13,7 @@ import Header from "../../pages/component/header";
 import DeleteProfile from "./deleteprofile";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Link from "next/link";
+import Spinner from "../component/spinner";
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -27,6 +28,12 @@ const ProfilePage = () => {
   const [editMode, setEditMode] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
   const [message, setMessage] = useState("");
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const auth = getAuth();
@@ -149,9 +156,10 @@ const ProfilePage = () => {
     }
   };
 
-  if (loading) {
-    return <div className="text-center">Loading...</div>;
-  }
+
+    if (loading) {
+        return <Spinner />;
+      }
   return (
     <div className=" overflow-hidden bg-bgrnd-0 xs:min-h-screen">
       <Header />
@@ -164,13 +172,11 @@ const ProfilePage = () => {
           <div className="w-1/3  h-screen flex flex-col items-end justify-start   p-3 m-3 xs:w-screen xs:h-auto xs:items-center xs:justify-center">
             {/* Profile Picture */}
             <div
-              className="relative w-40 h-44 rounded-md bg-cover bg-center bg-no-repeat"
+              className="relative w-52 h-56 rounded-md bg-cover bg-center bg-no-repeat"
               style={{
                 backgroundImage: `url(${userDetails.pic || "/usericon.svg"})`,
               }} // Fallback to default icon
-            >
-             
-            </div>
+            ></div>
           </div>
 
           {/* 2nd side: User profile details and edit form */}
@@ -228,8 +234,6 @@ const ProfilePage = () => {
                     )}
                   </div>
 
-                 
-
                   {/* Phone Field */}
                   <div className="flex items-center justify-between gap-4 ">
                     <label className="font-semibold text-scdry-0 w-1/3 text-left">
@@ -281,15 +285,16 @@ const ProfilePage = () => {
           {/* 3rd side: User profile details and edit form */}
           <div className="w-1/3 h-screen flex flex-col space-y-5 items-start justify-start p-3 m-3 xs:w-screen xs:h-auto xs:items-center xs:justify-center">
             {/* Action Buttons */}
-         <div className="flex xs:order-3 ">
+            <div className="flex xs:order-3 ">
               <Link href="/resetpass">
-              <button className="bg-bgrnd-0 border border-btton-0 text-bttext-0  py-3 px-4 rounded-md  transition duration-200">
-                Reset Password
-              </button>
-            </Link>
+                <button className="bg-bgrnd-0 border border-btton-0 text-bttext-0  py-3 px-4 rounded-md  
+                transition duration-200 hover:text-btton-0">
+                  Reset Password
+                </button>
+              </Link>
             </div>
-           
-               <div className="flex xs:order-1 ">
+
+            <div className="flex xs:order-1 ">
               {editMode ? (
                 <div className="flex space-x-6">
                   <button
@@ -309,7 +314,8 @@ const ProfilePage = () => {
                 <>
                   <button
                     onClick={handleEdit}
-                    className="bg-btton-0 w-[150px] text-bttext-0 py-3 px-4 rounded-md  transition duration-200 xs:mb-3"
+                    className="bg-btton-0 w-[150px] text-bttext-0 py-3 px-4 rounded-md
+                     hover:text-bgrnd-0 hover:bg-bttext-0  transition duration-200 xs:mb-3"
                   >
                     Edit Profile
                   </button>
@@ -317,7 +323,7 @@ const ProfilePage = () => {
                 </>
               )}
             </div>
-             <div className="flex xs:order-3 ">
+            <div className="flex xs:order-3 ">
               <DeleteProfile
                 showDeleteForm={showDeleteForm}
                 handleDeleteProfile={handleDeleteProfile}
@@ -326,7 +332,6 @@ const ProfilePage = () => {
                 setShowDeleteForm={setShowDeleteForm}
               />
             </div>
-            
           </div>
         </div>
       </div>

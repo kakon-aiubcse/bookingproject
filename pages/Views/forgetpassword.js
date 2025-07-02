@@ -10,7 +10,7 @@ import {
   getDocs,
   where,
 } from "firebase/firestore";
-import Link from "next/link";
+import Spinner from "../component/spinner";
 
 const ForgotPassword = () => {
   const router = useRouter();
@@ -18,7 +18,13 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const [loading , setLoading] = useState(true);
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 1500); 
+        return () => clearTimeout(timer);
+      }, []);
   // Create a ref for the email input
   const emailInputRef = useRef(null);
 
@@ -92,7 +98,9 @@ const ForgotPassword = () => {
     } finally {
       setIsSubmitting(false); // Reset loading state
     }
-  };
+  };  if (loading) {
+        return <Spinner />;
+      }
 
   return (
     <> <Header />

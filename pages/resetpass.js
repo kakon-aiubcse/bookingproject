@@ -13,6 +13,7 @@ import { db } from "../lib/firebase";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Header from "./component/header";
+import Spinner from "./component/spinner";
 
 const ResetPasswordPage = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -25,6 +26,13 @@ const ResetPasswordPage = () => {
   const passwordInputRef = useRef(null);
   const [formData, setFormData] = useState({});
   const router = useRouter();
+  const [loading, setLoading] = useState(true)
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 1500); 
+        return () => clearTimeout(timer);
+      }, []);
 
   useEffect(() => {
     const auth = getAuth();
@@ -143,6 +151,9 @@ const ResetPasswordPage = () => {
   };const togglePasswordVisibility2 = () => {
     setShowPassword2(!showPassword2);
   };
+  if(loading){
+    return <Spinner/>
+  }
 
   return (
     <>

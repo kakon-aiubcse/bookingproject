@@ -14,6 +14,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/router";
 import Select from "react-select";
 import "react-datepicker/dist/react-datepicker.css";
+import Spinner from "./component/spinner";
 
 const InvoiceForm = () => {
   const router = useRouter();
@@ -44,6 +45,8 @@ const InvoiceForm = () => {
   const { packageName } = formData;
 
   const [dueAmount, setDueAmount] = useState("");
+  const [loading, setLoading] = useState(true)
+    
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -56,6 +59,14 @@ const InvoiceForm = () => {
 
     return () => unsubscribe();
   }, [router]);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 1500); 
+        return () => clearTimeout(timer);
+      }, []);
+    
+     
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -88,6 +99,7 @@ const InvoiceForm = () => {
     } else {
       setPaidAmount(""); // Set to blank if either value is not valid
     }
+    
 
     // Handle dueAmount only when netAmount and paidAmount are numbers
     const net = netAmount !== "" ? parseFloat(netAmount) : null;
@@ -130,7 +142,9 @@ const InvoiceForm = () => {
 
     fetchLatestInvoiceNumber();
   }, []);
-
+ if (loading) {
+        return <Spinner />;
+      }
   const handleChange = (e) => {
     const { name, value } = e.target;
 
