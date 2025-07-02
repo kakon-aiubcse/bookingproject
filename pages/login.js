@@ -97,6 +97,7 @@ useEffect(() => {
           message={message}
           toggleShowPassword={toggleShowPassword}
           showPassword={showPassword}
+          setLoading = {setLoading}
         />
       </div>
     </>

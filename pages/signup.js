@@ -183,6 +183,7 @@ export default function SignUp() {
           loading={loading}
           toggleShowPassword={toggleShowPassword}
           showPassword={showPassword}
+          setLoading= {setLoading}
         />
         {profileImage && <p>Selected file: {profileImage.name}</p>}{" "}
         {/* Feedback on file selection */}

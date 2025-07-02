@@ -1,4 +1,4 @@
-import React,{useEffect , useState} from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "../component/header";
@@ -13,9 +13,12 @@ const LoginView = ({
   message,
   toggleShowPassword,
   showPassword,
+  setLoading,
 }) => {
   const router = useRouter();
- const [loading2, setLoading2] = useState(true);
+  const [loading2, setLoading2] = useState(true);
+
+ 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading2(false);
@@ -28,12 +31,16 @@ const LoginView = ({
   return (
     <>
       <Header />
-      <div className="relative flex flex-col  w-screen pb-32 justify-center items-center bg-bgrnd-0 h-dvh   
-       xs:top-[10px] xs:h-auto ">
+      <div
+        className="relative flex flex-col  w-screen pb-32 justify-center items-center bg-bgrnd-0 h-dvh   
+       xs:top-[10px] xs:h-auto "
+      >
         <div className="relative  w-full bg-bgrnd-0   flex flex-row xs:flex xs:flex-col xs:w-screen ">
           {/* Left Side */}
-          <div className=" p-10 w-1/2 text-hdline-0  font-bold flex  flex-col justify-center items-center relative 
-          xs:p-0  xs:w-screen xs:justify-normal xs:bottom-8">
+          <div
+            className=" p-10 w-1/2 text-hdline-0  font-bold flex  flex-col justify-center items-center relative 
+          xs:p-0  xs:w-screen xs:justify-normal xs:bottom-8"
+          >
             <svg
               width="300"
               height="300"
@@ -70,7 +77,10 @@ const LoginView = ({
             <h3 className="mt-2 text-base font-light text-gray-400 xs:text-[14px]  xs:pt-10 xs:m-1 xs:p-1 xs:items-center xs:justify-center">
               Start exploring by logging into your dashboard:
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6 mt-4 xs:space-y-2 xs:px-2 xs:mb-24 xs:pb-10">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6 mt-4 xs:space-y-2 xs:px-2 xs:mb-24 xs:pb-10"
+            >
               <div className="relative">
                 <img
                   src="/emailicon.svg"
@@ -129,15 +139,42 @@ const LoginView = ({
               </div>
 
               <button
+              
                 type="submit"
-                className={`w-full py-3 px-5 rounded-lg text-bttext-0 font-ios font-semibold transition-colors duration-300 ${
+                className={`w-full py-3 px-5 rounded-lg text-bttext-0 font-ios font-semibold transition-colors duration-300 flex items-center justify-center ${
                   loading
                     ? "bg-btton-0 cursor-not-allowed"
                     : "bg-btton-0 hover:bg-violet-700"
                 }`}
                 disabled={loading}
               >
-                {loading ? "Logging in..." : "Login"}
+                {loading ? (
+                  <>
+                    Signing in
+                    <svg
+                      className="w-5 h-5 animate-spin ml-2 text-bttext-0"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-50"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-100"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      />
+                    </svg>
+                  </>
+                ) : (
+                  "Log in"
+                )}
               </button>
 
               {message && (

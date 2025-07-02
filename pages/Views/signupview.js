@@ -18,9 +18,12 @@ const SignupView = ({
   toggleShowPassword,
   showPassword,
   onProfileImageChange,
+  setLoading
 }) => {
   const router = useRouter();
   const [loading2, setLoading2] = useState(true);
+
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading2(false);
@@ -160,20 +163,38 @@ const SignupView = ({
             </div>
 
             {/* Submit Button */}
-            <button
-              type="submit"
-              className={`w-full py-3 px-5 rounded-lg text-white font-semibold transition-colors duration-300 ${
-                loading
-                  ? "bg-bgrnd-0 text-btton-0 cursor-not-allowed"
-                  : "bg-btton-0 hover:bg-violet-600 "
-              }`}
-              disabled={loading}
-            >
-              {loading ? "Signing Up..." : "Sign Up"}
-            </button>
+           <button
+           
+            disabled={loading}
+            className="w-full flex justify-center items-center px-4 py-3 text-bttext-0 bg-btton-0 rounded-xl text-lg font-bold disabled:opacity-70"
+          >  {loading ? "Signing up" : "Sign up"}
+            {loading ? (
+              <svg
+                className="w-5 h-5 animate-spin mr-2 text-bttext-0"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-50"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-100"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                />
+              </svg>
+            ) : null}
+          
+          </button>
 
             {message && (
-              <p className="text-violet-500 text-center mt-4">{message}</p>
+              <p className="text-red-500 text-center mt-4">{message}</p>
             )}
           </form>{" "}
           <div className="text-base font-ios text-hdline-0 font-medium relative pt-3">
