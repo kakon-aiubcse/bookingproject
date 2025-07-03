@@ -106,7 +106,7 @@ const ForgotPassword = () => {
     <> <Header />
    
      
-      <div className="relative flex flex-col bg-bgrnd-0 min-h-screen w-screen justify-center items-center  xs:top-[-19px] ">
+      <div className="relative flex flex-col bg-bgrnd-0 min-h-screen w-screen justify-center items-center overflow-hidden xs:top-[-19px] ">
           <div className="relative max-w-6xl mb-24 w-full shadow-lg rounded-lg overflow-hidden flex flex-row xs:flex xs:flex-col xs:items-center">
             {/* Left Side - Welcome Text */}
             <div className="bg-bgrnd-0 p-10 w-1/2 font-bold flex  flex-col justify-center items-center relative xs:w-screen">

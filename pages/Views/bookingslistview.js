@@ -540,7 +540,7 @@ const BookingListView = ({
               </button>
               <button
                 onClick={() => router.push("/updateinvoice")}
-                className="bg-btton-0 text-bttext-0 py-1 px-4 rounded hover:bg-amber-600 ml-4"
+                className="bg-btton-0 text-bttext-0 py-1 px-4 rounded hover:bg-violet-600 ml-4"
               >
                 Update Invoices
               </button>
