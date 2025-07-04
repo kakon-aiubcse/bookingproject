@@ -210,7 +210,7 @@ const InvoicehistoryView = ({
                           : "N/A"}
                       </p>
                     </div>
-                    <div className="flex bg-bgrnd-0 w-full justify-between items-center my-2 py-2">
+                    <div className="flex flex-grow bg-bgrnd-0 w-full justify-between items-center my-2 py-2">
                       {/* Previous Button */}
                       <button
                         onClick={handlePrev}
